@@ -8,27 +8,47 @@ $(function() {
 	});
 	// 给文本框加上验证器
 	$("#PoolID").validatebox({
-		required : true
+		required : true,
+		missingMessage : '不能为空'
 	});
-	// 时间的验证
-//	$("#t").validatebox({
-//		required : true,
-//		missingMessage : '不能为空'
-//	});
-//	// 价格用货币验证框
-//	$("#price").numberbox({
-//		required : true,
-//		min : 5.5,		//最低价格为5.5
-//		max : 9999,
-//		precision : 2,
-//		missingMessage : '请输入价格'
-//	});
-//	// 简介加验证
-//	$("#intro").validatebox({
-//		required : true,		//需要有内容
-//		missingMessage:'请补充项目简介'
-//	});
+	//
+	$("#InV").validatebox({
+		required : true,
+		missingMessage : '不能为空'
+	});
 
+	$("#OutV").validatebox({
+		required : true,
+		missingMessage : '不能为空'
+	});
+	$("#HLInV").validatebox({
+		required : true,
+		missingMessage : '不能为空'
+	});
+	$("#HXOutV").validatebox({
+		required : true,
+		missingMessage : '不能为空'
+	});
+	$("#LCOutV").validatebox({
+		required : true,
+		missingMessage : '不能为空'
+	});
+	$("#TCOutV").validatebox({
+		required : true,
+		missingMessage : '不能为空'
+	});
+	$("#JJOutV").validatebox({
+		required : true,
+		missingMessage : '不能为空'
+	});
+	$("#Storage").validatebox({
+		required : true,
+		missingMessage : '不能为空'
+	});
+	$("#PreH").validatebox({
+		required : true,
+		missingMessage : '不能为空'
+	});
 
 });
 
@@ -88,19 +108,19 @@ function listDataAnalysis() {
 		}
 		],*/
 
-		columns : [ [ {field : 'ID', title : '编号', align :'center', sortable : true,width:80},
+		columns : [ [ /*{field : 'ID', title : '编号', align :'center', sortable : true,width:80},*/
 			  		    {field : 'poolID', title : '水池编号', align : 'center', sortable : true,width:150},
-					    {field : 't', title : '时间',align : 'center', sortable : true, width:150,
+					    {field : 't', title : '时间',align : 'center', sortable : true, width:120,
 			  		    	formatter : function(value) {
 			  		    		//只显示日期，不显示时间
 			  		    		return value.substring(0, 10);
 						}},
 					    {field : 'inV', title : '总来水量', align :'center', sortable : true,width:80},
 					    {field : 'outV', title : '出水量', align : 'center', sortable : true,width:80},
-					    {field : 'HXOutV', title : '洗虹吸滤池', align :'center', sortable : true,width:80},
-					    {field : 'LCOutV', title : '洗V型滤池', align : 'center', sortable : true,width:80},
-					    {field : 'TCOutV', title : '炭池反冲洗', align :'center', sortable : true,width:80},
-					    {field : 'JJOutV', title : '机加池排泥', align : 'center', sortable : true,width:80},
+					    {field : 'HXOutV', title : '洗虹吸滤池', align :'center', sortable : true,width:100},
+					    {field : 'LCOutV', title : '洗V型滤池', align : 'center', sortable : true,width:100},
+					    {field : 'TCOutV', title : '炭池反冲洗', align :'center', sortable : true,width:100},
+					    {field : 'JJOutV', title : '机加池排泥', align : 'center', sortable : true,width:100},
 					    {field : 'HLInV', title : '回流进水', align : 'center', sortable : true,width:80,
 					    
 //						formatter : function(value) {
@@ -431,7 +451,7 @@ $.getJSON(url, function(json) {
 		valueField:'poolID',
 		textField:'poolID',
 		onLoadSuccess: function () {
-             $(this).combobox('setText', '--请选择--');
+             $(this).combobox('setText', '');
          }
 			
 	});

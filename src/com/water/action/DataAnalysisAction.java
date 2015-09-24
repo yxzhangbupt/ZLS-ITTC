@@ -14,9 +14,9 @@ import com.water.service.DataAnalysisService;
 public class DataAnalysisAction extends ActionSupport{
 	private DataAnalysisService dataAnalysisService;
 
-	private DataAnalysis dataAnalysis; // Ò»±¾Êé
+	private DataAnalysis dataAnalysis; // Ò»ï¿½ï¿½ï¿½ï¿½
 
-	//²éÑ¯²ÎÊý
+	//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	private String searchPoolID=null;
 	public String getSearchPoolID() {
 		return searchPoolID;
@@ -36,50 +36,50 @@ public class DataAnalysisAction extends ActionSupport{
 		this.searchT = searchT;
 	}
 
-	private int page;// µ±Ç°µÚ¼¸Ò³
-	private Map<String, Object> data = new HashMap<String, Object>();// ·â×°Êý¾Ý
-	private int size;// Ò³Ãæ´óÐ¡£¬Ò³ÃæÊÇrows
-	private String order;// ÅÅÐò·½Ïò£¬descºÍasc
-	private String sort;// ÅÅÐòÊôÐÔÃû£¬Èçprice
+	private int page;// ï¿½ï¿½Ç°ï¿½Ú¼ï¿½Ò³
+	private Map<String, Object> data = new HashMap<String, Object>();// ï¿½ï¿½×°ï¿½ï¿½ï¿½
+	private int size;// Ò³ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½rows
+	private String order;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½descï¿½ï¿½asc
+	private String sort;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½price
 
-	// ±êÊ¶²Ù×÷ÊÇ·ñ³É¹¦
+	// ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½É¹ï¿½
 	private boolean operateSuccess;
 
-	// set×¢Èë
+	// set×¢ï¿½ï¿½
 	public void setDataAnalysisService(DataAnalysisService dataAnalysisService) {
 		this.dataAnalysisService = dataAnalysisService;
 	}
 
 	/*
-	 * ¸øeasyuiÅÅÐòÓÃµÄ£¬±íÊ¾ÅÅÐò·½·¨
+	 * ï¿½ï¿½easyuiï¿½ï¿½ï¿½ï¿½ï¿½ÃµÄ£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ò·½·ï¿½
 	 */
 	public void setOrder(String order) {
 		this.order = order;
 	}
 
 	/*
-	 * ¸øeasyuiÅÅÐòÓÃµÄ£¬±íÊ¾ÅÅÐò×Ö¶Î
+	 * ï¿½ï¿½easyuiï¿½ï¿½ï¿½ï¿½ï¿½ÃµÄ£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
 	 */
 	public void setSort(String sort) {
 		this.sort = sort;
 	}
 
 	/*
-	 * ¸øeasyuiÖ¸¶¨Ò³Ãæ´óÐ¡ÓÃµÄ£¬Èç¹ûÒªÖ¸¶¨Ò³Ãæ´óÐ¡¿É±ä
-	 * Ò³ÃæÊÇrows
+	 * ï¿½ï¿½easyuiÖ¸ï¿½ï¿½Ò³ï¿½ï¿½ï¿½Ð¡ï¿½ÃµÄ£ï¿½ï¿½ï¿½ï¿½ÒªÖ¸ï¿½ï¿½Ò³ï¿½ï¿½ï¿½Ð¡ï¿½É±ï¿½
+	 * Ò³ï¿½ï¿½ï¿½ï¿½rows
 	 */
 	public void setRows(int size) {
 		this.size = size;
 	}
 
 	/*
-	 * ¸øeasyui·ÖÒ³ÓÃµÄ
+	 * ï¿½ï¿½easyuiï¿½ï¿½Ò³ï¿½Ãµï¿½
 	 */
 	public void setPage(int page) {
 		this.page = page;
 	}
 
-	// getter/setter·½·¨
+	// getter/setterï¿½ï¿½ï¿½ï¿½
 
 	public DataAnalysis getDataAnalysis() {
 		return dataAnalysis;
@@ -122,25 +122,25 @@ public class DataAnalysisAction extends ActionSupport{
 	}
 
 	/**
-	 * ²éÑ¯Ä³Ò»Ò³µÄÊé¼®
+	 * ï¿½ï¿½Ñ¯Ä³Ò»Ò³ï¿½ï¿½ï¿½é¼®
 	 */
 	public String list() {
-		data.clear();// Çå³ý
+		data.clear();// ï¿½ï¿½ï¿½
 		if (sort == null) {
-			sort = "id";// Ä¬ÈÏ°´ÊéÃûÅÅÐò
+			sort = "id";// Ä¬ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 		if (order == null) {
-			order = "asc";// Ä¬ÈÏ°´ÉýÐòÅÅÐò
+			order = "asc";// Ä¬ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 		
-		data.put("total", dataAnalysisService.findTotal());// µÃµ½ËùÓÐµÄ¼ÇÂ¼Êý
-		data.put("rows", dataAnalysisService.findPages(page, size, sort, order));// µÃµ½Ä³Ò»Ò³µÄÊý¾Ý
+		data.put("total", dataAnalysisService.findTotal());// ï¿½Ãµï¿½ï¿½ï¿½ï¿½ÐµÄ¼ï¿½Â¼ï¿½ï¿½
+		data.put("rows", dataAnalysisService.findPages(page, size, sort, order));// ï¿½Ãµï¿½Ä³Ò»Ò³ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		return "success";
 	}
 
 	/**
-	 * Ìí¼ÓÊé¼®
+	 * ï¿½ï¿½ï¿½ï¿½é¼®
 	 */
 	public String addDataAnalysis() {
 		operateSuccess = (dataAnalysisService.addDataAnalysis(dataAnalysis) > 0);
@@ -148,7 +148,7 @@ public class DataAnalysisAction extends ActionSupport{
 	}
 
 	/**
-	 * ¸üÐÂÊé¼®
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½é¼®
 	 */
 	public String updateDataAnalysis() {
 		operateSuccess = (dataAnalysisService.updateDataAnalysis(dataAnalysis) > 0);
@@ -156,7 +156,7 @@ public class DataAnalysisAction extends ActionSupport{
 	}
 
 	/**
-	 * É¾³ýÊé¼®
+	 * É¾ï¿½ï¿½ï¿½é¼®
 	 */
 	public String deleteDataAnalysis() {
 		operateSuccess = (dataAnalysisService.deleteDataAnalysis(dataAnalysis.getID()) > 0);
@@ -164,7 +164,7 @@ public class DataAnalysisAction extends ActionSupport{
 	}
 
 	/**
-	 * ²éÑ¯Ò»¸ö¼ÇÂ¼
+	 * ï¿½ï¿½Ñ¯Ò»ï¿½ï¿½ï¿½ï¿½Â¼
 	 */
 	public String findDataAnalysis() {
 		dataAnalysis = dataAnalysisService.findDataAnalysisById(dataAnalysis.getID());
@@ -172,28 +172,43 @@ public class DataAnalysisAction extends ActionSupport{
 	}
 	
 	public String searchDataAnalysis() {
-		String sql="from DataAnalysis where 1=1";
-		/*²éÑ¯Ìõ¼þÆ´½Ó*/
-		if (searchT!=null)
-		{
-			sql+= " and t = '"+searchT+"'";
+		String sql;
+//		/*ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½*/
+		if(searchT==null && searchPoolID ==null ){
+			sql="from DataAnalysis";
 		}
-		if(!searchPoolID.equals(""))
-		{
-			sql+=" and PoolID like '%"+searchPoolID+"'";
+		else {
+			sql="from DataAnalysis where 1=1";
+			if (searchT!=null)
+			{
+				sql+= " and t = '"+searchT+"'";
+			}
+			if(!searchPoolID.equals(""))
+			{
+				sql+=" and PoolID like '%"+searchPoolID+"'";
+			}
 		}
+//		/*ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½*/
+//		if (searchT!=null)
+//		{
+//			sql+= " and t = '"+searchT+"'";
+//		}
+//		if(!searchPoolID.equals(""))
+//		{
+//			sql+=" and PoolID like '%"+searchPoolID+"'";
+//		}
 		System.out.println(sql);
-//		System.out.println("²âÊÔ½á¹û");
-//		data.clear();// Çå³ý
+//		System.out.println("ï¿½ï¿½ï¿½Ô½ï¿½ï¿½");
+//		data.clear();// ï¿½ï¿½ï¿½
 //		if (sort == null) {
-//			sort = "ID";// Ä¬ÈÏ°´±àºÅÅÅÐò
+//			sort = "ID";// Ä¬ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //		}
 //		if (order == null) {
-//			order = "asc";// Ä¬ÈÏ°´ÉýÐòÅÅÐò
+//			order = "asc";// Ä¬ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //		}
 		List<DataAnalysis> searchList = dataAnalysisService.findBySql(sql);
-		data.put("total", searchList.size());// µÃµ½ËùÓÐµÄ¼ÇÂ¼Êý
-		data.put("rows", searchList);// µÃµ½Ä³Ò»Ò³µÄÊý¾Ý
+		data.put("total", searchList.size());// ï¿½Ãµï¿½ï¿½ï¿½ï¿½ÐµÄ¼ï¿½Â¼ï¿½ï¿½
+		data.put("rows", searchList);// ï¿½Ãµï¿½Ä³Ò»Ò³ï¿½ï¿½ï¿½ï¿½ï¿½
 		return "success";
 	}
 }
