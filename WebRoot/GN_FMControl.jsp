@@ -413,7 +413,8 @@
     position: absolute;
     left:1203px;
     top: 27px;
-    z-index: 999
+    z-index: 999;
+    color:black;
     }
     #WFM05{
     position: absolute;
