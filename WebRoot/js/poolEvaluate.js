@@ -16,22 +16,72 @@ $(function() {
 		missingMessage : '不能为空'
 	});
 	$("#OpenDegree").numberbox({  //开启度最小为0
-	 	min:0
+	 	min:0,
+	 	required : true,
+		missingMessage : '不能为空'
 	});
 	$("#RotationSpeed").numberbox({	
-	 	min:0
+	 	min:0,
+	 	required : true,
+		missingMessage : '不能为空'
 	});
 	$("#WaterTemp").numberbox({
-	 	min:0
+	 	min:0,
+	 	required : true,
+		missingMessage : '不能为空'
 	});
 	$("#FeCl3").numberbox({
-	 	min:0
+	 	min:0,
+	 	required : true,
+		missingMessage : '不能为空'
 	});
 	
 	$("#PAC").numberbox({
-	 	min:0
+	 	min:0,
+	 	required : true,
+		missingMessage : '不能为空'
 	});
-
+	
+	$("#SV").numberbox({
+	 	min:0,
+	 	required : true,
+		missingMessage : '不能为空'
+	});
+	$("#SmallMudFre").numberbox({
+	 	min:0,
+	 	required : true,
+		missingMessage : '不能为空'
+	});
+	$("#BigMudFre").numberbox({
+	 	min:0,
+	 	required : true,
+		missingMessage : '不能为空'
+	});
+	$("#NTU").numberbox({
+	 	min:0,
+	 	required : true,
+		missingMessage : '不能为空'
+	});
+	$("#AlgaeContent").numberbox({
+	 	min:0,
+	 	required : true,
+		missingMessage : '不能为空'
+	});
+	
+	$("#OutNTU").numberbox({
+	 	min:0,
+	 	required : true,
+		missingMessage : '不能为空'
+	});
+	$("#state").combobox({
+	 	required : true,
+		missingMessage : '不能为空'
+	});
+	$("#CL").numberbox({
+	 	min:0,
+	 	required : true,
+		missingMessage : '不能为空'
+	});
 	
 
 //	// 价格用货币验证框
@@ -103,7 +153,7 @@ function listPoolEvaluate() {
 		     field : 't',
 	         title : '时间',
 	         align : 'center',
-	         width : 80,
+	         width : 110,
 	     	 formatter : function(value) {
 				return value.substring(0, 10);
 			 }
@@ -112,7 +162,7 @@ function listPoolEvaluate() {
 			field : 'poolID',
 			title : '水池编号',
 			align : 'center',
-			width : 80,
+			width : 125,
 		//可以排序，但服务器也完成相应的代码，要加入sort和order属性
 			sortable : true
 		}, 
@@ -120,7 +170,10 @@ function listPoolEvaluate() {
 			field : 'feCl3',
 			title : 'FeCl3含量',
 			align : 'center',
-			width : 80,
+			width : 85,
+			formatter : function(value) {
+					return value+"%";
+			}
 			
 		},
 		{
@@ -128,28 +181,33 @@ function listPoolEvaluate() {
 			title : '加PAC量',
 			align : 'center',
 			width : 80,
+			formatter : function(value) {
+				return value+"%";
+			}
 		},{
 			field : 'openDegree',
 			title : '开启度',
-			width : 80,
+			width : 70,
 			align : 'center',
-//			formatter : function(value) {
-//				return value+"米";
-//			}
+			formatter : function(value) {
+			return value+"%";
+			}
 		}, 
 		
 		{
 			field : 'rotationSpeed',
 			title : '转速',
-			width : 80,
+			width : 60,
 			align : 'center'
 		},
 		{
 			field : 'SV',
 			title : '沉降比',
-			width : 80,
-			align : 'center'
-			
+			width : 70,
+			align : 'center',
+			formatter : function(value) {
+				return value+"%";
+			}			
 		},	
 		{
 			field : 'smallMudFre',
@@ -166,16 +224,20 @@ function listPoolEvaluate() {
 		{
 			field : 'NTU',
 			title : '浊度',
-			width : 80,
+			width : 60,
 			align : 'center'
 		},
 		{
 			field : 'waterTemp',
 			title : '水温',
-			width : 80,
+			width : 60,
 			align : 'center',
 			formatter : function(value) {
-				return value+"℃";
+//				if (value <5){
+//					return '<span style="background-color:DeepSkyBlue;">'+value+'℃</span>';
+//				} else {
+					return value+"℃";
+//				}	
 			}
 		},
 		{
@@ -183,15 +245,22 @@ function listPoolEvaluate() {
 			title : '藻类含量',
 			width : 80,
 			align : 'center',
-//			formatter : function(value) {
-//				return value+"";
-//			}
+			formatter : function(value) {
+			return value+"%";
+			}
 		},
 		{
 			field : 'outNTU',
 			title : '出水浊度',
 			width : 80,
-			align : 'center'
+			align : 'center',
+			/*formatter : function(value) {
+				if (value >0.8){
+					return '<span style="background-color:LightCoral;">'+value+'</span>';
+				} else {
+					return '<span style="background-color:LightGreen;">'+value+'</span>';
+					}	
+			}*/
 		},
 		{
 			field : 'state',
@@ -199,7 +268,11 @@ function listPoolEvaluate() {
 			width : 80,
 			align : 'center',
 			formatter: function(value,rec){
-				return value=='1'?"正常":"不正常";
+				if(value==0){
+					return '<span style="background-color:LightCoral;">不正常</span>';
+				}else{
+					return '<span style="background-color:LightGreen;">正常</span>';
+				}
 			}
 		},
 		{
@@ -395,6 +468,8 @@ function searchPoolEvaluate(){
 	$("#searchState").val(searchState);
 	$('#lowAlgaeContent').numberbox("setValue",lowAlgaeContent);
 	$('#highAlgaeContent').numberbox("setValue",highAlgaeContent);
+	$('#lowNTU').numberbox("setValue",lowNTU);
+	$('#highNTU').numberbox("setValue",highNTU);
 	showSearchForm();
 }
 
@@ -491,7 +566,7 @@ $.getJSON(url, function(json) {
 		valueField:'poolID',
 		textField:'poolID',
 		onLoadSuccess: function () {
-             $(this).combobox('setText', '--请选择--');
+             $(this).combobox('setText', '');
          }			
 	});
 });

@@ -14,15 +14,15 @@ import com.water.service.PoolEvaluateService;
 public class PoolEvaluateAction extends ActionSupport{
 	private PoolEvaluateService poolEvaluateService;
 
-	private PoolEvaluate poolEvaluate; // Ò»±¾Êé
-	private int page;// µ±Ç°µÚ¼¸Ò³
-	private Map<String, Object> data = new HashMap<String, Object>();// ·â×°Êý¾Ý
-	private int size;// Ò³Ãæ´óÐ¡£¬Ò³ÃæÊÇrows
-	private String order;// ÅÅÐò·½Ïò£¬descºÍasc
-	private String sort;// ÅÅÐòÊôÐÔÃû
+	private PoolEvaluate poolEvaluate; // Ò»ï¿½ï¿½ï¿½ï¿½
+	private int page;// ï¿½ï¿½Ç°ï¿½Ú¼ï¿½Ò³
+	private Map<String, Object> data = new HashMap<String, Object>();// ï¿½ï¿½×°ï¿½ï¿½ï¿½
+	private int size;// Ò³ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½rows
+	private String order;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½descï¿½ï¿½asc
+	private String sort;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	/*²éÑ¯ÊäÈë²ÎÊý*/
-	private String searchPoolID=null;	//²éÑ¯Ë®³Ø±àºÅ
+	/*ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+	private String searchPoolID=null;	//ï¿½ï¿½Ñ¯Ë®ï¿½Ø±ï¿½ï¿½
 	public String getSearchPoolID() {
 		return searchPoolID;
 	}
@@ -30,7 +30,7 @@ public class PoolEvaluateAction extends ActionSupport{
 		this.searchPoolID = searchPoolID;
 	}
 	
-	private Date searchT=null;		//²éÑ¯Ê±¼ä
+	private Date searchT=null;		//ï¿½ï¿½Ñ¯Ê±ï¿½ï¿½
 	public Date getSearchT() {
 		return searchT;
 	}
@@ -38,7 +38,7 @@ public class PoolEvaluateAction extends ActionSupport{
 		this.searchT = searchT;
 	}
 
-	private int searchState=-1;		//²éÑ¯µÄ×´Ì¬
+	private int searchState=-1;		//ï¿½ï¿½Ñ¯ï¿½ï¿½×´Ì¬
 	
 	public int getSearchState() {
 		return searchState;
@@ -47,8 +47,8 @@ public class PoolEvaluateAction extends ActionSupport{
 		this.searchState = searchState;
 	}
 
-	private double lowAlgaeContent;  //ÔåÀàº¬Á¿²éÑ¯ÏÂ½ç
-	private double highAlgaeContent; //ÔåÀàº¬Á¿²éÑ¯ÉÏ½ç
+	private double lowAlgaeContent;  //ï¿½ï¿½ï¿½àº¬ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½Â½ï¿½
+	private double highAlgaeContent; //ï¿½ï¿½ï¿½àº¬ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½Ï½ï¿½
 	
 	
 	public double getLowAlgaeContent() {
@@ -63,45 +63,63 @@ public class PoolEvaluateAction extends ActionSupport{
 	public void setHighAlgaeContent(double highAlgaeContent) {
 		this.highAlgaeContent = highAlgaeContent;
 	}
+	
+	/*NTUæŸ¥è¯¢å‚æ•°*/
+	private double lowNTU;
+	private double highNTU;
+	
 
-	// ±êÊ¶²Ù×÷ÊÇ·ñ³É¹¦
+	public double getLowNTU() {
+		return lowNTU;
+	}
+	public void setLowNTU(double lowNTU) {
+		this.lowNTU = lowNTU;
+	}
+	public double getHighNTU() {
+		return highNTU;
+	}
+	public void setHighNTU(double highNTU) {
+		this.highNTU = highNTU;
+	}
+
+	// ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½É¹ï¿½
 	private boolean operateSuccess;
 
-	// set×¢Èë
+	// set×¢ï¿½ï¿½
 	public void setPoolEvaluateService(PoolEvaluateService poolEvaluateService) {
 		this.poolEvaluateService = poolEvaluateService;
 	}
 
 	/*
-	 * ¸øeasyuiÅÅÐòÓÃµÄ£¬±íÊ¾ÅÅÐò·½·¨
+	 * ï¿½ï¿½easyuiï¿½ï¿½ï¿½ï¿½ï¿½ÃµÄ£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ò·½·ï¿½
 	 */
 	public void setOrder(String order) {
 		this.order = order;
 	}
 
 	/*
-	 * ¸øeasyuiÅÅÐòÓÃµÄ£¬±íÊ¾ÅÅÐò×Ö¶Î
+	 * ï¿½ï¿½easyuiï¿½ï¿½ï¿½ï¿½ï¿½ÃµÄ£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
 	 */
 	public void setSort(String sort) {
 		this.sort = sort;
 	}
 
 	/*
-	 * ¸øeasyuiÖ¸¶¨Ò³Ãæ´óÐ¡ÓÃµÄ£¬Èç¹ûÒªÖ¸¶¨Ò³Ãæ´óÐ¡¿É±ä
-	 * Ò³ÃæÊÇrows
+	 * ï¿½ï¿½easyuiÖ¸ï¿½ï¿½Ò³ï¿½ï¿½ï¿½Ð¡ï¿½ÃµÄ£ï¿½ï¿½ï¿½ï¿½ÒªÖ¸ï¿½ï¿½Ò³ï¿½ï¿½ï¿½Ð¡ï¿½É±ï¿½
+	 * Ò³ï¿½ï¿½ï¿½ï¿½rows
 	 */
 	public void setRows(int size) {
 		this.size = size;
 	}
 
 	/*
-	 * ¸øeasyui·ÖÒ³ÓÃµÄ
+	 * ï¿½ï¿½easyuiï¿½ï¿½Ò³ï¿½Ãµï¿½
 	 */
 	public void setPage(int page) {
 		this.page = page;
 	}
 
-	// getter/setter·½·¨
+	// getter/setterï¿½ï¿½ï¿½ï¿½
 
 	public PoolEvaluate getPoolEvaluate() {
 		return poolEvaluate;
@@ -144,25 +162,25 @@ public class PoolEvaluateAction extends ActionSupport{
 	}
 
 	/**
-	 * ²éÑ¯Ä³Ò»Ò³µÄÊé¼®
+	 * ï¿½ï¿½Ñ¯Ä³Ò»Ò³ï¿½ï¿½ï¿½é¼®
 	 */
 	public String list() {
-		data.clear();// Çå³ý
+		data.clear();// ï¿½ï¿½ï¿½
 		if (sort == null) {
-			sort = "id";// Ä¬ÈÏ°´ÊéÃûÅÅÐò
+			sort = "id";// Ä¬ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 		if (order == null) {
-			order = "asc";// Ä¬ÈÏ°´ÉýÐòÅÅÐò
+			order = "asc";// Ä¬ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
-			data.put("total", poolEvaluateService.findTotal());// µÃµ½ËùÓÐµÄ¼ÇÂ¼Êý
+			data.put("total", poolEvaluateService.findTotal());// ï¿½Ãµï¿½ï¿½ï¿½ï¿½ÐµÄ¼ï¿½Â¼ï¿½ï¿½
 //		data.put("rows", poolEvaluateService.findAll());
-		data.put("rows", poolEvaluateService.findPages(page, size, sort, order));// µÃµ½Ä³Ò»Ò³µÄÊý¾Ý
+		data.put("rows", poolEvaluateService.findPages(page, size, sort, order));// ï¿½Ãµï¿½Ä³Ò»Ò³ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		return "success";
 	}
 
 	/**
-	 * Ìí¼ÓÊé¼®
+	 * ï¿½ï¿½ï¿½ï¿½é¼®
 	 */
 	public String addPoolEvaluate() {
 		operateSuccess = (poolEvaluateService.addPoolEvaluate(poolEvaluate) > 0);
@@ -170,7 +188,7 @@ public class PoolEvaluateAction extends ActionSupport{
 	}
 
 	/**
-	 * ¸üÐÂÊé¼®
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½é¼®
 	 */
 	public String updatePoolEvaluate() {
 		operateSuccess = (poolEvaluateService.updatePoolEvaluate(poolEvaluate) > 0);
@@ -178,7 +196,7 @@ public class PoolEvaluateAction extends ActionSupport{
 	}
 
 	/**
-	 * É¾³ýÊé¼®
+	 * É¾ï¿½ï¿½ï¿½é¼®
 	 */
 	public String deletePoolEvaluate() {
 		operateSuccess = (poolEvaluateService.deletePoolEvaluate(poolEvaluate.getID()) > 0);
@@ -186,7 +204,7 @@ public class PoolEvaluateAction extends ActionSupport{
 	}
 
 	/**
-	 * ²éÑ¯Ò»±¾Êé
+	 * ï¿½ï¿½Ñ¯Ò»ï¿½ï¿½ï¿½ï¿½
 	 */
 	public String findPoolEvaluate() {
 		poolEvaluate = poolEvaluateService.findPoolEvaluateById(poolEvaluate.getID());
@@ -195,8 +213,8 @@ public class PoolEvaluateAction extends ActionSupport{
 	
 	public String searchPoolEvaluate() {
 		String sql;
-//		/*²éÑ¯Ìõ¼þÆ´½Ó*/
-		if(searchT==null && searchPoolID ==null){
+//		/*ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½*/
+		if(searchT==null && searchPoolID ==null && searchState==-1){
 			sql="from PoolEvaluate";
 		}
 		else {
@@ -221,13 +239,21 @@ public class PoolEvaluateAction extends ActionSupport{
 			{
 				sql+=" and AlgaeContent <= '"+highAlgaeContent+"'";
 			}
+			if(lowNTU!=0)
+			{
+				sql+=" and NTU >='"+lowNTU+"'";
+			}
+			if(highNTU!=0)
+			{
+				sql+=" and NTU <= '"+highNTU+"'";
+			}
 			
 		}
 		System.out.println(sql);
-		data.clear();// Çå³ý
+		data.clear();// ï¿½ï¿½ï¿½
 		List<PoolEvaluate> searchList = poolEvaluateService.findBySql(sql);
-		data.put("total", searchList.size());// µÃµ½ËùÓÐµÄ¼ÇÂ¼Êý
-		data.put("rows", searchList);// µÃµ½Ä³Ò»Ò³µÄÊý¾Ý
+		data.put("total", searchList.size());// ï¿½Ãµï¿½ï¿½ï¿½ï¿½ÐµÄ¼ï¿½Â¼ï¿½ï¿½
+		data.put("rows", searchList);// ï¿½Ãµï¿½Ä³Ò»Ò³ï¿½ï¿½ï¿½ï¿½ï¿½
 		return "success";
 	}
 

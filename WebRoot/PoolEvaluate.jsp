@@ -237,13 +237,11 @@
 					
 						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 
-					    水池编号:  <!-- <input type="text" size="15" id="searchPoolID" name="searchPoolID" /> -->
-					    	  <select  lass="easyui-combobox" type="text"  id="searchPoolID" style="width:120px"
+					    水池编号:   <input type="text" size="15" id="searchPoolID" name="searchPoolID" />
+					    	  <!-- <select  lass="easyui-combobox" type="text"  id="searchPoolID" style="width:120px"
 					                  name="searchPoolID" >
 					                   <option value="" selected="">--请选择--</option>
-					          </select>
-					        <!--  <input class="easyui-combobox" style="width:120px" id="searchPoolID" 
-								name="searchPoolID" text="" type="text" value=""></input> -->
+					          </select> -->
 					</dd>
 					<dd>
 						<br/>
@@ -254,6 +252,12 @@
                                     <option value="1">正常</option>
                                  </select>
 					</dd>
+					<dd>
+						<br/>
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+					浊  &nbsp; 度： <input class="easyui-numberbox" id="lowNTU" name="lowNTU" style="width:50px" value="0" type="text"></input> ~ 
+							<input class="easyui-numberbox" id="highNTU" name="highNTU" style="width:50px" value="100" type="text"></input>
+					</dd> 
 					<dd>
 						<br/>
 					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
