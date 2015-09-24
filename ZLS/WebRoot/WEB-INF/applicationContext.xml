@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<!-- 数据源 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+		</property>
+		<property name="url" value="jdbc:sqlserver://182.92.162.3:1433;DatabaseName=自来水集团管控平台">
+		</property>
+		<property name="username" value="sa"></property>
+		<property name="password" value="simp2014"></property> 
+		<!-- <property name="url" value="jdbc:sqlserver://localhost:1433;DatabaseName=自来水集团管控平台">
+		</property>
+		<property name="username" value="sa"></property>
+		<property name="password" value="mima"></property> -->
+	</bean>
+
+	<!-- 会话工厂 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.SQLServerDialect
+				</prop>
+				<prop key="show_sql">true</prop>
+				<prop key="format_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/water/beans/PoolEvaluate.hbm.xml</value>
+				<value>com/water/beans/DataAnalysis.hbm.xml</value>
+				<value>com/water/beans/User.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	
+
+<!-- dao -->
+<!-- 	<bean id="baseDao" class="com.water.dao.impl.BaseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	 -->
+	<bean id="userDao" class="com.water.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- Service -->
+	<bean id="userService" class="com.water.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+
+	<!-- action -->
+	<bean id="userAction" class="com.water.action.UserAction">
+		<property name="userService" ref="userService" />
+	</bean>
+	<!-- PoolEvaluate -->
+		<!-- dao -->
+	<bean id="poolEvaluateDao" class="com.water.dao.impl.PoolEvaluateDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- Service -->
+	<bean id="poolEvaluateService" class="com.water.service.impl.PoolEvaluateServiceImpl">
+		<property name="poolEvaluateDao" ref="poolEvaluateDao" />
+	</bean>
+
+	<!-- action -->
+	<bean id="poolEvaluateAction" class="com.water.action.PoolEvaluateAction">
+		<property name="poolEvaluateService" ref="poolEvaluateService" />
+	</bean>
+	
+		<!-- dao -->
+	<bean id="dataAnalysisDao" class="com.water.dao.impl.DataAnalysisDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- Service -->
+	<bean id="dataAnalysisService" class="com.water.service.impl.DataAnalysisServiceImpl">
+		<property name="dataAnalysisDao" ref="dataAnalysisDao" />
+	</bean>
+
+	<!-- action -->
+	<bean id="dataAnalysisAction" class="com.water.action.DataAnalysisAction">
+		<property name="dataAnalysisService" ref="dataAnalysisService" />
+	</bean>
+	<!-- 配置事务 -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- 定义事务通知 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 定义哪些方法可以使用这些规则 -->
+	<aop:config>
+		<aop:pointcut id="ServiceMethod" expression="execution(* com.water.service.*.*(..))" />
+		<!-- 将事务通知与应用规则的方法组合 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="ServiceMethod" />
+	</aop:config>
+
+</beans>

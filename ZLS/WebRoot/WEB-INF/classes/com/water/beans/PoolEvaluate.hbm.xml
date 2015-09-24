@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-7-1 16:21:49 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.water.beans.PoolEvaluate" table="POOLEVALUATE">
+        <id name="ID" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="t" type="java.sql.Date">
+            <column name="T" />
+        </property>
+        <property name="PoolID" type="java.lang.String">
+            <column name="POOLID" />
+        </property>
+
+        <property name="OpenDegree" type="java.lang.Double">
+            <column name="OPENDEGREE" />
+        </property>
+        <property name="RotationSpeed" type="java.lang.Double">
+            <column name="ROTATIONSPEED" />
+        </property>
+        <property name="SV" type="double">
+            <column name="SV" />
+        </property>
+        <property name="SmallMudFre" type="java.lang.Double">
+            <column name="SMALLMUDFRE" />
+        </property>
+          <property name="BigMudFre" type="java.lang.Double">
+            <column name="BIGMUDFRE" />
+        </property>
+        <property name="NTU" type="java.lang.Double">
+            <column name="NTU" />
+        </property>
+        <property name="WaterTemp" type="java.lang.Double">
+            <column name="WATERTEMP" />
+        </property>
+          <property name="AlgaeContent" type="java.lang.Double">
+            <column name="ALGAECONTENT" />
+        </property>
+        <property name="FeCl3" type="java.lang.Double">
+            <column name="FECL3" />
+        </property>
+        <property name="PAC" type="java.lang.Double">
+            <column name="PAC" />
+        </property>
+        <property name="OutNTU" type="java.lang.Double">
+            <column name="OUTNTU" />
+        </property>
+        <property name="state" type="java.lang.Integer">
+            <column name="STATE" />
+        </property>
+        <property name="CL" type="java.lang.Double">
+            <column name="CL" />
+        </property>
+    </class>
+</hibernate-mapping>

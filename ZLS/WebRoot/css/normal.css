@@ -1,0 +1,80 @@
+body {
+    background: #eeeeef;
+}
+#myPage {
+    font-family: '微软雅黑','Source Sans Pro';
+    font-size: 15px;
+    /*background:url("image/bg03.jpg") no-repeat;*/
+    /*background-size: 1600px 800px;*/
+    width: 1600px;
+    height: 800px;
+    margin:0px auto;
+}
+
+#pageHead {
+    height: 50px;
+}
+#pageHead .navbar{
+    opacity: 0.85;
+    z-index: 10;
+}
+.sidebar a{
+    color: #000000;
+    margin-top: 2px;
+}
+.sidebar a:hover{
+    color:blue;
+}
+.navbar-brand {
+    padding-top: 10px;
+}
+.sidebar a:hover{
+    background: #eeeeef;
+}
+a {
+    margin-left: 10px;
+}
+
+#myContent{
+    margin: 0px 0px 0px 0px;
+    position: relative;
+    height: 750px;
+    width: 1600px;
+    background: #eeeeef;
+}
+* {
+    font-family: '微软雅黑', 'Arial';
+}
+
+#btn_group {
+    position: absolute;
+    top: 80px;
+    left: 1482px;
+    z-index: 9;
+}
+
+#canvas_QS {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+#readout_SimTime{
+    position: absolute;
+    left: 1476px;
+    top: 10px;
+    width: 200px;
+    height: 75px;
+    font-size: 15px;
+    z-index: 999;
+}
+#GZW{
+    position: absolute;
+    left: 651px;
+    top: 0px;
+    width: 150px;
+    height: 40px;
+    font-size: 25px;
+    color: #758fc8;
+    z-index: 999;
+}

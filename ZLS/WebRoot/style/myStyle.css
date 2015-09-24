@@ -1,0 +1,42 @@
+#divEdit {
+	display: none;
+	width:600px;
+}
+
+#tabEdit input[type="text"],#tabEdit textarea {
+	border: solid #66ccff 1px;
+	
+}
+
+
+#tabEdit dl {
+	
+	padding-right: 35px;
+}
+
+#tabEdit{
+	width:600px;
+	height:200px;
+	font:14px ;
+}
+
+
+#divSearch{
+	display:none;
+	width:600px;
+}
+
+#tabSearch{
+	width:600px;
+	height:200px;
+	font:14px ;
+}
+#tabSearch dl {
+	
+	padding-right: 35px;
+}
+
+#tabSearch input[type="text"],#tabSearch textarea {
+	border: solid #66ccff 1px;
+	
+}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 由spring管理 -->
+	<constant name="stuts.objectFactory" value="spring" />
+
+	<!-- 打开开发模式 -->
+	<constant name="struts.devMode" value="false" />
+
+	<package name="struts" extends="json-default" namespace="/">
+		
+		<action name="listUser" class="userAction" method="list">
+			<!-- 指定的属性作为根元素输出 -->
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+	
+
+		<!-- 添加项目 -->
+		<action name="addUser" class="userAction" method="addUser">
+			<result type="json" />
+		</action>
+		
+		<!-- 删除项目 -->
+		<action name="deleteUser" class="userAction" method="deleteUser">
+			<result type="json" />
+		</action>
+		
+		<!-- 得到一项记录 -->
+		<action name="findUser" class="userAction" method="findUser">
+			<result type="json" />
+		</action>
+		
+		<!-- 更新项目 -->
+		<action name="updateUser" class="userAction" method="updateUser">
+			<result type="json" />
+		</action>
+		
+		
+		<action name="listPoolEvaluate" class="poolEvaluateAction" method="list">
+			<!-- 指定的属性作为根元素输出 -->
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+
+		<!-- 添加项目 -->
+		<action name="addPoolEvaluate" class="poolEvaluateAction" method="addPoolEvaluate">
+			<result type="json" />
+		</action>
+		
+		<!-- 删除项目 -->
+		<action name="deletePoolEvaluate" class="poolEvaluateAction" method="deletePoolEvaluate">
+			<result type="json" />
+		</action>
+		
+		<!-- 得到一项记录 -->
+		<action name="findPoolEvaluate" class="poolEvaluateAction" method="findPoolEvaluate">
+			<result type="json" />
+		</action>
+		
+		<!-- 更新项目 -->
+		<action name="updatePoolEvaluate" class="poolEvaluateAction" method="updatePoolEvaluate">
+			<result type="json" />
+		</action>
+		
+		<!-- 查询项目 -->
+		<action name="searchPoolEvaluate" class="poolEvaluateAction" method="searchPoolEvaluate">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		
+			<!-- 显示所有的项目 -->
+		<action name="listDataAnalysis" class="dataAnalysisAction" method="list">
+			<!-- 指定的属性作为根元素输出 -->
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+
+		<!-- 添加项目 -->
+		<action name="addDataAnalysis" class="dataAnalysisAction" method="addDataAnalysis">
+			<result type="json" />
+		</action>
+		
+		<!-- 删除项目 -->
+		<action name="deleteDataAnalysis" class="dataAnalysisAction" method="deleteDataAnalysis">
+			<result type="json" />
+		</action>
+		
+		<!-- 得到一项记录 -->
+		<action name="findDataAnalysis" class="dataAnalysisAction" method="findDataAnalysis">
+			<result type="json" />
+		</action>
+		
+		<!-- 更新项目 -->
+		<action name="updateDataAnalysis" class="dataAnalysisAction" method="updateDataAnalysis">
+			<result type="json" />
+		</action>
+		
+		<action name="searchDataAnalysis" class="dataAnalysisAction" method="searchDataAnalysis">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>
+</struts>

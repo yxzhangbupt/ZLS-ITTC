@@ -1,0 +1,30 @@
+#myContent{
+    margin: 0px 0px 0px 0px;
+    position: relative;
+    height: 779px;
+    width: 1600px;
+}
+#btn_start{
+    z-index: 11;
+    position: absolute;
+    left: 1100px;
+    top: 15px;
+}
+#btn_pause{
+    z-index: 11;
+    position: absolute;
+    left: 1150px;
+    top: 15px;
+}
+#btn_upS{
+    z-index: 11;
+    position: absolute;
+    left: 1200px;
+    top: 15px;
+}
+#btn_downS{
+    z-index: 11;
+    position: absolute;
+    left: 1250px;
+    top: 15px;
+}

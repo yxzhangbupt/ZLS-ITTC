@@ -1,0 +1,11 @@
+.breadcrumb{
+    background-color:#eeeeed;
+    position:absolute;
+    left:290px;
+    top:56px;
+    z-index:999;
+    background-color: transparent;
+}
+.breadcrumb li a{
+margin-left:0;
+}
