@@ -89,11 +89,13 @@
       /* background: url("image/QSC3.png") no-repeat;  */ 
       /* background-position: center; */
    }
+   
+      
     #tab_description{
     font-family: '微软雅黑','Arial';
     position: absolute;
     left:1400px;
-    top: 335px;
+    top: 435px;
     z-index: 999;
     font-size:14px;
     width:200px;
@@ -102,6 +104,16 @@
     font-size:20px;
     color:#ff4400;
     font-weight:bold;
+    }
+
+ #tab_export{
+    font-family: '微软雅黑','Arial';
+    position: absolute;
+    left:1482px;
+    top: 320px;
+    z-index: 999;
+    font-size:14px;
+    width:200px;
     }
 
     </style>
@@ -113,22 +125,7 @@
     <div id="myContent" style="overflow: hidden">
 
         <a href="download/QSC_cal.xlsx">点击下载机加池评估表 - 模板 .xlsx</a>
-     <!-- <div id="tb" style="padding:5px;height:auto">   
-	<form id="frmSearch"> 
-    <div style="margin-bottom:5px">    
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:addPoolEvaluate()">添加</a>    
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="javascript:editPoolEvaluate()">编辑</a>    
-        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="javascript:deletePoolEvaluate()">删除</a> 
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="javascript:listAllPoolEvaluate()">查询全部</a>
-   	   </div> 
-   	 <div>    
-         Date From: <input class="easyui-datebox" style="width:80px">    
-        To: <input class="easyui-datebox" style="width:80px">    
-       &nbsp; &nbsp; 时间:     
-        <input class="easyui-datebox" style="width:120px" id="searchT" name="searchT" text="" type="text"> 
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="javascript:searchPoolEvaluate()">查询</a>
-        </form>    
-     </div>  -->
+     <!-- 操作按钮 -->
      <div id="btn_group" class="btn-group-vertical btn-group-lg" role="group">
 
 				<button id="btn_addRow" class="btn btn-primary"
@@ -140,9 +137,18 @@
 				<button id="btn_searchAll" class="btn btn-primary"
 					onclick="javascript:listAllPoolEvaluate()">查询全部</button>
 				<button id="btn_search" class="btn btn-primary"
-					onclick="javascript:searchPoolEvaluate()">条件查询</button>
-			    
+					onclick="javascript:searchPoolEvaluate()">条件查询</button>    
 		</div>
+		<!-- 文件导出操作 -->
+		<div id="tab_export">
+				<form action="exportPoolEvaluate" id="exportPoolEvaluate">
+				   <span style="font-size:18px">导出文件名：</span><br/><input type="text" id="filename" name="filename" style="width:100px"/>
+				   <br/><br/>			
+				   <button id="btn-export" class="btn btn-primary" style="font-size:18px;" type="submit" 
+					   onclick="alert('导出成功，请在D盘根目录下查看文件！')"> &nbsp; &nbsp; 导出  &nbsp; &nbsp; </button>
+				</form>
+		</div>
+		<!-- 特征量说明 -->
 		<div id="tab_description">
              <h1 style="font-size: 20px" >填表说明:</h1>
         <p style="font-size: 15px" >各特征量取值分段为：</p>

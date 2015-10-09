@@ -106,5 +106,14 @@
 				<param name="root">data</param>
 			</result>
 		</action>
+		
+		<!-- 导出到excel  -->
+		<action name="exportDataAnalysis" class="dataAnalysisAction" method="export2excel">
+			 <result name="success">DataAnalysis.jsp</result>
+		</action>
+		
+		<action name="exportPoolEvaluate" class="poolEvaluateAction" method="export2excel">
+			 <result name="success">PoolEvaluate.jsp</result>
+		</action>
 	</package>
 </struts>
