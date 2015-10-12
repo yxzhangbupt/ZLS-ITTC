@@ -1,0 +1,55 @@
+#myPage {
+    font-family: 'Î¢ÈíÑÅºÚ','Source Sans Pro';
+    font-size: 15px;
+    width: 1600px;
+    height: 800px;
+    margin:0px auto;
+}
+#myNav{
+    background: #f1f3f5;
+}
+#pageHead {
+    height: 50px;
+    font-size: 19px;
+}
+#pageHead .navbar{
+    /*opacity: 0.85;*/
+    z-index: 10;
+}
+#btn_group_data{
+    position: absolute;
+    left: 1450px;
+    top: 50px;
+}
+#myContent_data{
+    margin: 0px auto;
+    position: relative;
+    height: 1030px;
+    width: 1600px;
+
+    background-position: bottom;
+}
+#pageFooter{
+    background: #e5e5e5;
+}
+#pageFooter p{
+    text-align: center;
+}
+#myNavbar a:hover
+{
+    color: #d510ff;
+    background: #ffeae4;}
+#tab_description{
+    font-family: 'Î¢ÈíÑÅºÚ','Arial';
+    position: absolute;
+    left:1400px;
+    top: 335px;
+    z-index: 999;
+    font-size:14px;
+    width:200px;
+}
+#tab_description h1{
+    font-size:20px;
+    color:#ff4400;
+    font-weight:bold;
+}

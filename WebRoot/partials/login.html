@@ -1,0 +1,14 @@
+<div id="wrap_login">
+    <div id="page_login" ng-controller="loginCtrl">
+        <form>
+            <input type="text" id="username" placeholder="请输入您的用户名" ng-model="username">
+            <input type="password" id="password" placeholder="请输入您的密码" ng-model="password">
+            <label for="servers" id="server_label">水厂:</label>
+            <select name="servers" id="servers"
+                    ng-options="option.name for option in servers"
+                    ng-model="server">
+            </select>
+            <input type="button" id="btn_login" ng-click="login()">
+        </form>
+    </div>
+</div>

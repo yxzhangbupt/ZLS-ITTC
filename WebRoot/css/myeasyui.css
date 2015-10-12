@@ -1,0 +1,90 @@
+
+/*设置表头行高*/
+.datagrid-header-row {
+	height: 35px;
+	font-size: 28px;
+	font-weight: bold;
+	color: #0E2D5F;
+}
+/*表头字体大小*/
+.datagrid-header .datagrid-cell span {
+  font-size: 14px;
+}
+/*设置表格行高*/
+.datagrid-row {
+	height: 35px;
+}
+/*单元格显示字体*/
+.datagrid-cell {
+	font-size: 14px;
+}
+
+/*列标号*/
+.datagrid-cell-rownumber {
+	font-size: 14px;
+	height: 20px;
+}
+
+/* 标题设计*/
+.panel-title {
+	font-size: 20px;
+	font-weight: bold;
+	color: #0E2D5F;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+}
+
+.panel-body {
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 14px;
+  width:600px;
+}
+
+/**分页设计*/
+.pagination-page-list{
+	font:14px;
+}
+
+.datagrid-pager {
+  background: #F4F4F4;
+  font-size: 14px;
+}
+
+.datagrid-toolbar {
+	font-size: 14px;
+}
+
+#divEdit {
+	display: none;
+	width:600px;
+}
+
+#tabEdit input[type="text"],#tabEdit textarea {
+	border: solid #66ccff 1px;
+}
+#tabEdit dl {
+	padding-right: 35px;
+}
+#tabEdit{
+	width:600px;
+	height:200px;
+	font:14px ;
+}
+#divSearch{
+	display:none;
+	width:600px;
+}
+#tabSearch{
+	width:600px;
+	height:200px;
+	font-size:14px ;
+}
+#tabSearch dl {
+	padding-right: 35px;
+}
+
+#tabSearch input[type="text"],#tabSearch textarea {
+	border: solid #66ccff 1px;
+}

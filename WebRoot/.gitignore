@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+# Eclipse project files
+.classpath
+.project
+.settings/
+# Intellij project files
+*.iml
+.idea/
+bower_components/
+# Others
+target/
+logs/

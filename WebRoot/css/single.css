@@ -1,0 +1,89 @@
+#myContent_single{
+    margin: 0px auto;
+    position: relative;
+    height: 750px;
+    width: 1600px;
+}
+#left {
+    padding-right: 0;
+    padding-top: 0;
+    padding-left: 0;
+    margin-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+}
+#up{
+    height: 23%;
+    background-color: #f1f3f5;
+}
+#down{
+    height:77%;
+    background-color: #f1f3f5;
+}
+#right {
+    padding-right: 0;
+    padding-top: 0;
+    padding-left: 0;
+    margin-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+}
+
+#btn_start_single {
+    position: relative;
+    left: 60px;
+}
+
+#btn_downS_single {
+    position: relative;
+    left: 60px;
+}
+
+#btn_upS_single {
+    position: relative;
+    left: 60px;
+}
+
+#btn_reset_single {
+    position: relative;
+    left: 60px;
+}
+
+.btn_main {
+    width: 150px;
+    display: block;
+    background-color: #337ab7;
+}
+
+.btn_list {
+    width: 100%;
+    display: block;
+    color: black;
+    background-color: #ffffff;
+    font-size: 18px;
+    margin: 0px 5px;
+}
+
+.btn-info.disabled {
+    background-color: #eeeeee;
+}
+
+.flag {
+    font-size: 30px;
+    color: #000000;
+    z-index: 999;
+    width: 150px;
+    height: 40px;
+}
+
+#flag1 {
+    position: absolute;
+    left: 138px;
+    top: 533px;
+}
+
+#flag2 {
+    position: absolute;
+    left: 1061px;
+    top: 533px;
+}

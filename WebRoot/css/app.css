@@ -1,0 +1,116 @@
+
+#page_login {
+  width: 1600px;
+  height: 775px;
+  margin: 0 auto auto auto;
+  background: url("../image/login/denglu.jpg") no-repeat;
+  background-size: 1600px 800px; }
+
+#username {
+  position: relative;
+  background: url("../image/login/unameOff.png") no-repeat;
+  left: 857px;
+  top: 311px;
+  width: 234px;
+  height: 35px;
+  border: none;
+  padding-left: 50px; }
+
+#username:focus {
+  background: url("../image/login/unameOn.png") no-repeat;
+  border: transparent; }
+
+#password {
+  display: block;
+  background: url("../image/login/pwdOff.png") no-repeat;
+  position: relative;
+  left: 857px;
+  top: 336px;
+  width: 234px;
+  height: 35px;
+  border: none;
+  padding-left: 50px; }
+#server_label{
+  position: relative;
+  left: 862px;
+  top: 361px;
+  text-align: left;
+  font-size: 17px
+}
+#servers {
+  display: inline-block;
+  position: relative;
+  left: 870px;
+  top: 361px;
+  width: 170px;
+  text-align: left;
+  border: 3px solid #afd9ee;
+  font-size: 17px; }
+
+#password:focus {
+  background: url("../image/login/pwdOn.png") no-repeat; }
+
+#btn_login {
+  display: block;
+  background: url("../image/login/loginOff.png") no-repeat;
+  position: relative;
+  border: none;
+  left: 857px;
+  top: 386px;
+  width: 245px;
+  height: 38px; }
+
+#btn_login:focus {
+  background: url("../image/login/loginOn.png") no-repeat; }
+
+#myContent{
+  margin: 0px auto;
+  position: relative;
+  height: 750px;
+  width: 1600px;
+}
+
+#ZP_New_content ,#ZP_Old_content{
+  font-family: '微软雅黑','Source Sans Pro';
+  font-size: 15px;
+  width: 1600px;
+  height: 800px;
+  margin:0px auto;
+}
+#btn_start_ZP{
+  z-index: 11;
+  position: relative;
+  left: 1100px;
+  top: 15px;
+}
+#btn_upS_ZP{
+  z-index: 11;
+  position: relative;
+  left: 1100px;
+  top: 15px;
+}
+#txt_speed{
+  z-index: 11;
+  position: relative;
+  text-align: center;
+  padding-top: 5px;
+  left: 1100px;
+  width:50px;
+  height:34px;
+  top: 15px;
+  display: inline-block;
+  background-color:#5cc0de;
+  color:#ffffff;
+}
+#btn_downS_ZP{
+  z-index: 11;
+  position: relative;
+  left: 1100px;
+  top: 15px;
+}
+#btn_reset_ZP{
+  z-index: 11;
+  position: relative;
+  left: 1100px;
+  top: 15px;
+}

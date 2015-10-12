@@ -1,0 +1,155 @@
+<div ui-view="top"></div>
+<div id="myContent_data" style="overflow: hidden">
+    <a href="download/QSC_cal.xlsx">点击下载机加池评估表 - 模板 .xlsx</a>
+
+    <div id="btn_group_data" class="btn-group-vertical btn-group-lg" role="group">
+        <button id="btn_addRow" class="btn btn-primary" onclick="javascript:addPoolEvaluate()">添加
+        </button>
+        <button id="btn_editRow" class="btn btn-primary" onclick="javascript:editPoolEvaluate()">编辑
+        </button>
+        <button id="btn_deleteRow" class="btn btn-primary" onclick="javascript:deletePoolEvaluate()">删除
+        </button>
+        <button id="btn_searchAll" class="btn btn-primary" onclick="javascript:listAllPoolEvaluate()">查询全部
+        </button>
+        <button id="btn_search" class="btn btn-primary" onclick="javascript:searchPoolEvaluate()">条件查询
+        </button>
+    </div>
+    <div id="tab_description">
+        <h1 style="font-size: 20px">填表说明:</h1>
+
+        <p style="font-size: 15px">各特征量取值分段为：</p>
+        <img src="./image/JJC1.png" alt=""/><br/><br/>
+        <img src="./image/JJC2.png" alt=""/><br/><br/>
+        <img src="./image/JJC3.png" alt=""/><br/><br/>
+        <img src="./image/JJC4.png" alt=""/><br/>
+    </div>
+    <center><br/>
+        <table id="poolEvaluatebody" class="easyui-datagrid">
+        </table>
+    </center>
+    <!-- 编辑数据的div，默认看不到 -->
+    <div id="divEdit">
+        <div id="tabEdit">
+            <form id="frmEdit">
+                <input type="hidden" id="ID" name="poolEvaluate.ID"/>
+                <br/>
+                <dl>
+                    <dd>&nbsp; &nbsp;
+                        水池编号:&nbsp; <input type="text" size="15" id="PoolID" name="poolEvaluate.PoolID"/>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        时&nbsp; &nbsp;间:&nbsp;&nbsp;<input type="date" size="20" id="t" name="poolEvaluate.t"/>
+                    </dd>
+                    <br/>
+                    <dd>&nbsp; &nbsp;
+                        沉 降 比: &nbsp;&nbsp;<input class="easyui-numberbox" precision="2" type="text" size="15"
+                                                  id="SV" name="poolEvaluate.SV"/>
+                        &nbsp; &nbsp;&nbsp; &nbsp;
+                        开 启 度:&nbsp; <input class="easyui-numberbox" precision="2" type="text" size="18"
+                                            id="OpenDegree" name="poolEvaluate.OpenDegree"/>
+                    </dd>
+                    <br/>
+                    <dd>&nbsp; &nbsp;
+                        转&nbsp; &nbsp;速: &nbsp; &nbsp; <input class="easyui-numberbox" precision="2" type="text"
+                                                              size="15" id="RotationSpeed"
+                                                              name="poolEvaluate.RotationSpeed"/>
+                        &nbsp; &nbsp;&nbsp; &nbsp;
+                        浊&nbsp; &nbsp;度: &nbsp; &nbsp;&nbsp;<input class="easyui-numberbox" precision="2"
+                                                                   type="text" size="18" id="NTU"
+                                                                   name="poolEvaluate.NTU"/>
+                    </dd>
+                    <br/>
+                    <dd>&nbsp; &nbsp;
+                        水&nbsp; &nbsp;温: &nbsp; &nbsp;
+                        <input class="easyui-numberbox" precision="1" type="text" size="15" id="WaterTemp"
+                               name="poolEvaluate.WaterTemp"/>
+                        &nbsp; &nbsp;&nbsp; &nbsp;
+                        藻类含量:&nbsp;
+                        <input class="easyui-numberbox" precision="2" type="text" size="18" id="AlgaeContent"
+                               name="poolEvaluate.AlgaeContent"/>
+                    </dd>
+                    <br/>
+                    <dd>&nbsp; &nbsp;
+                        加FeCl3量:&nbsp;
+                        <input class="easyui-numberbox" precision="2" type="text" size="21" id="FeCl3"
+                               name="poolEvaluate.FeCl3"/>
+                    </dd>
+                    <br/>
+                    <dd>&nbsp; &nbsp;
+                        加PAC量:&nbsp;
+                        <input class="easyui-numberbox" precision="2" type="text" size="22" id="PAC"
+                               name="poolEvaluate.PAC"/>
+                    </dd>
+                    <br/>
+                    <dd>&nbsp; &nbsp;
+                        小斗排泥频率:&nbsp;
+                        <input class="easyui-numberbox" precision="0" type="text" size="18" id="SmallMudFre"
+                               name="poolEvaluate.SmallMudFre"/>
+                    </dd>
+                    <br/>
+                    <dd>&nbsp; &nbsp;
+                        大斗排泥频率:&nbsp;
+                        <input class="easyui-numberbox" precision="0" type="text" size="18" id="BigMudFre"
+                               name="poolEvaluate.BigMudFre"/>
+                    </dd>
+                    <br/>
+                    <dd>&nbsp; &nbsp;
+                        机加池出水浊度:&nbsp;
+                        <input class="easyui-numberbox" precision="2" type="text" size="16" id="OutNTU"
+                               name="poolEvaluate.OutNTU"/>
+                    </dd>
+                    <br/>
+                    <dd>&nbsp; &nbsp;
+                        状&nbsp;态:&nbsp;
+                        <select id="state" class="easyui-combobox" name="poolEvaluate.state" style="width:150px;">
+                            <option value="0">不正常</option>
+                            <option value="1">正常</option>
+                        </select>
+                        &nbsp; &nbsp;&nbsp;&nbsp;
+                        预加氯:&nbsp;
+                        <input class="easyui-numberbox" precision="2" type="text" size="15" id="CL"
+                               name="poolEvaluate.CL"/>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+    </div>
+    <div id="divSearch">
+        <div id="tabSearch">
+            <form id="frmSearch">
+                <dl>
+                    <dd>
+                        <br/>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        时 &nbsp; 间： <input type="text" id="searchT" name="searchT" class="easyui-datebox"
+                                           style="width:120px">
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+                        水池编号:
+                        <select class="easyui-combobox" id="searchPoolID" style="width:120px" name="searchPoolID">
+                            <option value="" selected="">--请选择--</option>
+                        </select>
+                    </dd>
+                    <dd>
+                        <br/>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        状 &nbsp; 态：<select id="searchState" name="searchState" style="width:120px"
+                                           class="easyui-combobox">
+                        <option value="-1" selected="">--请选择--</option>
+                        <option value="0">不正常</option>
+                        <option value="1">正常</option>
+                    </select>
+                    </dd>
+                    <dd>
+                        <br/>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        藻类含量： <input type="text" class="easyui-numberbox" id="lowAlgaeContent" name="lowAlgaeContent"
+                                     style="width:50px" value="0">
+                        <input type="text" class="easyui-numberbox" id="highAlgaeContent" name="highAlgaeContent"
+                               style="width:50px" value="100">
+                    </dd>
+                </dl>
+            </form>
+        </div>
+    </div>
+</div>
+<div ui-view="down"></div>
