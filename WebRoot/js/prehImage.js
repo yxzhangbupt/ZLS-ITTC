@@ -15,15 +15,14 @@
 			error: function(){  
 				alert("服务器没有返回数据，可能服务器忙，请重试");  
 			},  
-			success: function(json){  
-
+			success: function(json){ 
 				var datalist = eval(json).rows;
 				if (datalist.length>0){
 					for (var i=0; i<datalist.length;i++){
 						var row = datalist[i];
 //						listArray.push(row.preH);   //	预测高度
 						var flag_i = jQuery.inArray(row.poolID, poollist); //判断水池是否存在
-						var flag_j = jQuery.inArray(row.t.substring(0, 10),tlist);
+						var flag_j = jQuery.inArray(row.t.substring(0, 10),tlist); 
 						if(flag_i<0){  //不存在
 							poollist.push(row.poolID);
 							flag_i=poollist.length-1;
@@ -36,6 +35,15 @@
 						listArray[flag_i][flag_j]=row.preH;
 						
 					} //for
+					
+					//填充undefined项
+					for(var i=0;i<flag_i+1;i++){
+						for(var j=0;j<flag_j+1;j++){
+							if(listArray[i][j]==''||listArray[i][j]==undefined){
+								listArray[i][j]=null;
+							}//if
+						}//j
+					}//i
 				} //if
 			
 				title  = "水位预测图";
@@ -51,6 +59,7 @@
 					//type: 'spline'          //指定图表的类型，默认是折线图（line）
 				},
 				lang:{
+					
 					printChart: "打印",
 					downloadJPEG: "下载JPEG 图片",
 	                downloadPDF: "下载PDF文档",

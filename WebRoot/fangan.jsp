@@ -342,7 +342,7 @@
         </table>
         </div>
         </div>
-        <button id="btn_submit" class="btn btn-info btn-sm btn_main" value="0">提交</button>
+        <button id="btn_submit" class="btn btn-info btn-sm btn_main" value="0">保存</button>
         <jsp:include page="down.jsp" />
         <script>
         function open_mainView(){

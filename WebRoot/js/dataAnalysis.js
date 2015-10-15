@@ -41,14 +41,14 @@ $(function() {
 		required : true,
 		missingMessage : '不能为空'
 	});
-	$("#Storage").validatebox({
-		required : true,
-		missingMessage : '不能为空'
-	});
-	$("#PreH").validatebox({
-		required : true,
-		missingMessage : '不能为空'
-	});
+//	$("#Storage").validatebox({
+//		required : true,
+//		missingMessage : '不能为空'
+//	});
+//	$("#PreH").validatebox({
+//		required : true,
+//		missingMessage : '不能为空'
+//	});
 
 });
 
@@ -77,37 +77,7 @@ function listDataAnalysis() {
 		remoteSort : true, // 从服务器端排序，默认true
 		pageList : [ 10, 15, 20, 25], // 可以设置每页记录条数的列表，服务器要加上rows属性
 		idField : 'ID', // 主键属性
-		//toolbar:"#tb",
-
-/*
-		toolbar : [ {// 工具栏
-			text : '添加',
-			iconCls : 'icon-add', // 图标
-			handler : function() { // 处理函数
-				addDataAnalysis();
-			}
-		}, {
-			text : '删除',
-			iconCls : 'icon-cancel', // 图标
-			handler : function() { // 处理函数
-				deleteDataAnalysis();
-			}
-		}, {
-			text : '编辑',
-			iconCls : 'icon-edit',// 图标
-			handler : function() {// 处理函数
-				editDataAnalysis();
-			}
-		},{
-			text : '查询',
-			iconCls : 'icon-search',
-			handler:function(){
-				showSearchForm();
-				searchDataAnalysis();
-			}
-		}
-		],*/
-
+	
 		columns : [ [ /*{field : 'ID', title : '编号', align :'center', sortable : true,width:80},*/
 			  		    {field : 'poolID', title : '水池编号', align : 'center', sortable : true,width:150},
 					    {field : 't', title : '时间',align : 'center', sortable : true, width:120,
@@ -121,12 +91,8 @@ function listDataAnalysis() {
 					    {field : 'LCOutV', title : '洗V型滤池', align : 'center', sortable : true,width:100},
 					    {field : 'TCOutV', title : '炭池反冲洗', align :'center', sortable : true,width:100},
 					    {field : 'JJOutV', title : '机加池排泥', align : 'center', sortable : true,width:100},
-					    {field : 'HLInV', title : '回流进水', align : 'center', sortable : true,width:80,
-					    
-//						formatter : function(value) {
-//							return value.substring(0, 10);
-//						}
-					    },{field : 'storage',	title : '蓄水量',	align : 'center',width:80},
+					    {field : 'HLInV', title : '回流进水', align : 'center', sortable : true,width:80},
+					    {field : 'storage',	title : '蓄水量',	align : 'center',width:80},
 					    {field : 'preH', title : '预测水位', align :'center', sortable : true,width:80,
 					    	//只显示两位小数
 					    	formatter : function(value) {
@@ -307,37 +273,6 @@ function deleteDataAnalysis() {
 }
  
 
-//查询下拉框显示的数据
-//var url = "${pageContext.request.contextPath}/listDataAnalysis.action";
-//$.getJSON(url, function(json) {
-//	//去除重复项
-////	var obj=eval(json.rows);
-////	var seaerchData=[1,2,3];
-////	for(var i=0;i<json.total;i++){
-////		if($.inArray(obj[i][t], searchData)>0){
-////			searchData.push(obj[i][t]);
-////		}
-////		else {
-////			searchData.push(obj[i][t]);
-////		}
-////			
-////	}
-//	
-////	searchData.unshift('all');
-//
-//	$('#searchT').combobox({
-//
-//		data : json.rows,
-//		valueField:'t',
-//		textField:'t',
-//		 onLoadSuccess: function () {
-//             $(this).combobox('setText', '--请选择--');
-//         }
-//			
-//	});
-//});
-
-
 function searchDataAnalysis(){
 	$("#searchT").val(searchT);
 	$("#searchPoolID").val(searchPoolID);
@@ -348,19 +283,6 @@ function searchDataAnalysis(){
 function dealSearch() {
 	// 表单数据序列化成一个字符串用&拼接
 	var params = $("#frmSearch").serialize();
-//	var params2=$("#searchT").datebox("getValue");
-//	document.getElementById("test").innerHTML=params2;
-	// 得到searchT的值
-//	$.post("searchDataAnalysis.action", params, function(result) {
-//		if (result.total!=0) {
-//			
-//			$('#poolEvaluatebody').datagrid('reload');// 重新加载
-//		
-////			$.messager.alert('查询', '查询成功', 'info');
-//		} else {
-//			$.messager.alert('查询', '查询失败,未查找到相关信息', 'warning');
-//		}
-//	});
 	if ($("#searchT").datebox("getValue")!= null || $("#searchPoolID").combobox("getValue")!= null){
 		$.post("searchDataAnalysis.action", params, function(result) {
 			if (result.total!=0) {
@@ -373,17 +295,6 @@ function dealSearch() {
 			}
 		});
 	} else {
-//		params="searchT=0";
-//		// 提示选择
-//		$.post("updateDataAnalysis.action", params, function(result) {
-//			if (result.operateSuccess) {
-//				$('#dataAnalysisbody').datagrid('reload');// 重新加载
-//				$.messager.alert('更新', '更新成功', 'info');
-//			} else {
-//				$.messager.alert('更新', '更新失败', 'warning');
-//			}
-//		});
-//		
 		$.messager.alert('查询', '请选择。。。', 'warning');
 	}
 }
@@ -443,8 +354,6 @@ $.getJSON(url, function(json) {
 
 	}
 
-//	searchData.unshift('all');
-
 	$('#searchPoolID').combobox({
 
 		data : poollist,
@@ -457,15 +366,3 @@ $.getJSON(url, function(json) {
 	});
 });
 
-//function preHfun(){
-//	if($("#searchPoolID").val().length>5)
-//		{
-//		document.getElementById("preHButton").disable=false;
-//		window.open("preHImage.jsp");}
-//	else
-//		{
-//		document.getElementById("preHButton").disable=true;
-//		alert("一次只能分析一个水池，请选择水池");
-//		window.open("preHImage.jsp");
-//		}
-//}

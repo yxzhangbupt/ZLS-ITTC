@@ -116,7 +116,7 @@ body {
 	<div id="test"></div>
 	<div id="myPage">
 		<div id="myContent" style="overflow: hidden">
-			<a href="download/QSC_cal.xlsx">点击下载机加池评估表 - 模板 .xlsx</a><br /> <br />
+			<a href="download/QSC_cal.xlsx">点击下载清水池水位计算表 - 模板 .xlsx</a><br /> <br />
 			<div id="analyze">
 
 				<input type="button" id="analyzeButton" value=" 数据分析图  "
@@ -219,10 +219,11 @@ body {
 								size="25" id="HLInV" name="dataAnalysis.HLInV" />
 						</dd>
 					</dl>
-					<input type="hidden" class="easyui-numberbox" precision="2"
-						id="Storage" name="dataAnalysis.Storage" /> <input type="hidden"
+					<!-- <input type="hidden" class="easyui-numberbox" precision="2"
+						id="Storage" name="dataAnalysis.Storage" />
+				    <input type="hidden"
 						class="easyui-numberbox" precision="2" id="PreH"
-						name="dataAnalysis.PreH" />
+						name="dataAnalysis.PreH" /> -->
 					<!-- 可以自动计算 -->
 					<!--
 				 <dl>
