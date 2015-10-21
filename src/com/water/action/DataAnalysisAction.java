@@ -1,7 +1,7 @@
 package com.water.action;
 
 import java.io.File;
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -203,7 +203,7 @@ public class DataAnalysisAction extends ActionSupport{
 			sql="from DataAnalysis where 1=1";
 			if (searchT!=null)
 			{
-				sql+= " and t = '"+searchT+"'";
+				sql+= " and t = '"+(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(searchT)+"'";
 			}
 			if(!searchPoolID.equals(""))
 			{
@@ -285,7 +285,7 @@ public class DataAnalysisAction extends ActionSupport{
 
 					sheet.addCell(new Label(0,i+1,Long.toString(list.get(i).getID()),formatBody));
 					sheet.addCell(new Label(1,i+1,list.get(i).getPoolID()));
-					sheet.addCell(new Label(2,i+1,(new SimpleDateFormat("yyyy-MM-dd")).format(list.get(i).getT()),formatBody));
+					sheet.addCell(new Label(2,i+1,(new SimpleDateFormat("yyyy-MM-dd hh")).format(list.get(i).getT()),formatBody));
 					sheet.addCell(new Label(3,i+1,Double.toString(list.get(i).getInV()),formatBody));
 					sheet.addCell(new Label(4,i+1,Double.toString(list.get(i).getOutV()),formatBody));
 					sheet.addCell(new Label(5,i+1,Double.toString(list.get(i).getHXOutV()),formatBody));

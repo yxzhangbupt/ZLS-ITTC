@@ -283,7 +283,8 @@ function searchDataAnalysis(){
 function dealSearch() {
 	// 表单数据序列化成一个字符串用&拼接
 	var params = $("#frmSearch").serialize();
-	if ($("#searchT").datebox("getValue")!= null || $("#searchPoolID").combobox("getValue")!= null){
+	console.log($("#searchT").datetimebox("getValue"));
+	if ($("#searchT").datetimebox("getValue")!= null || $("#searchPoolID").combobox("getValue")!= null){
 		$.post("searchDataAnalysis.action", params, function(result) {
 			if (result.total!=0) {
 				
