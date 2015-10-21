@@ -1,20 +1,20 @@
 package com.water.beans;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class DataAnalysis {
-	private long ID;		//±àºÅ
-	private String PoolID;		//Ë®³Ø±àºÅ
-	private Date t;		//Ê±¼ä
-	private double InV;		//À´Ë®Á¿
-	private double OutV;		//³öË®Á¿
-	private double LCOutV;		//Ï´ÂË³ØÓÃË®
-	private double TCOutV;		//Ï´»îÐÔÌ¿³ØÓÃË®
-	private double JJOutV;		//»ú¼Ó³ØÅÅË®
-	private double HXOutV;		//Ï´ºçÎüÂË³ØË®
-	private double Storage;		//ÐîË®Á¿
-	private double HLInV;		//ÐîË®Á¿»ØÁ÷Ë®
-	private double PreH;		//Ô¤²âË®Î»
+	private long ID;		//ï¿½ï¿½ï¿½
+	private String PoolID;		//Ë®ï¿½Ø±ï¿½ï¿½
+	private Date t;		//Ê±ï¿½ï¿½
+	private double InV;		//ï¿½ï¿½Ë®ï¿½ï¿½
+	private double OutV;		//ï¿½ï¿½Ë®ï¿½ï¿½
+	private double LCOutV;		//Ï´ï¿½Ë³ï¿½ï¿½ï¿½Ë®
+	private double TCOutV;		//Ï´ï¿½ï¿½ï¿½ï¿½Ì¿ï¿½ï¿½ï¿½ï¿½Ë®
+	private double JJOutV;		//ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ë®
+	private double HXOutV;		//Ï´ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½Ë®
+	private double Storage;		//ï¿½ï¿½Ë®ï¿½ï¿½
+	private double HLInV;		//ï¿½ï¿½Ë®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë®
+	private double PreH;		//Ô¤ï¿½ï¿½Ë®Î»
 	public long getID() {
 		return ID;
 	}

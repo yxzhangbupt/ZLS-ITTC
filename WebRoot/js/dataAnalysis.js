@@ -2,7 +2,7 @@
 $(function() {
 	listDataAnalysis();
 	// 日期加上日期控件
-	$("#t").datebox({
+	$("#t").datetimebox({
 		required : true,
 		missingMessage : '不能为空'
 	});
@@ -62,7 +62,7 @@ function listAllDataAnalysis(){
 function listDataAnalysis() {
 	$("#dataAnalysisbody").datagrid({
 		title:" 数据分析表 ",
-		width : "950",
+		width : "1060",
 		height : "800",
 		//iconCls : 'icon-help', // 表格左上角的图标样式
 		/*url : 'listDataAnalysis.action', // 访问服务器的地址，要求返回JSON对象*/
@@ -80,10 +80,10 @@ function listDataAnalysis() {
 	
 		columns : [ [ /*{field : 'ID', title : '编号', align :'center', sortable : true,width:80},*/
 			  		    {field : 'poolID', title : '水池编号', align : 'center', sortable : true,width:150},
-					    {field : 't', title : '时间',align : 'center', sortable : true, width:120,
+					    {field : 't', title : '时间',align : 'center', sortable : true, width:150,
 			  		    	formatter : function(value) {
-			  		    		//只显示日期，不显示时间
-			  		    		return value.substring(0, 10);
+			  		    		//显示日期到小时
+			  		    		return value.substring(0, 10)+" "+value.substring(11,13)+"时";
 						}},
 					    {field : 'inV', title : '总来水量', align :'center', sortable : true,width:80},
 					    {field : 'outV', title : '出水量', align : 'center', sortable : true,width:80},
@@ -204,7 +204,7 @@ function editDataAnalysis() {
 	// 填充数据 填充的是json数据
 	$("#ID").val(dataAnalysis.ID);
 	$("#PoolID").val(dataAnalysis.poolID);
-	$("#t").datebox("setValue",dataAnalysis.t);
+	$("#t").datetimebox("setValue",dataAnalysis.t);
 	$("#InV").val(dataAnalysis.inV);
 	$("#OutV").val(dataAnalysis.outV);
 	$("#HLInV").val(dataAnalysis.HLInV);
@@ -334,9 +334,7 @@ function closeSearchForm() {
 	$('#tabSearch').dialog('close');
 }
 
-
 //查询下拉框显示的数据
-
 var url = "${pageContext.request.contextPath}/listDataAnalysis.action";
 var pidlist  = new Array();
 var poollist = new Array();
@@ -351,18 +349,15 @@ $.getJSON(url, function(json) {
 			poollist.push(row);
 			pidlist.push(row.poolID);
 		}
-
 	}
 
 	$('#searchPoolID').combobox({
-
 		data : poollist,
 		valueField:'poolID',
 		textField:'poolID',
 		onLoadSuccess: function () {
              $(this).combobox('setText', '');
-         }
-			
+         }			
 	});
 });
 

@@ -16,7 +16,7 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
- * ½Ó¿ÚÊµÏÖÀà
+ * ï¿½Ó¿ï¿½Êµï¿½ï¿½ï¿½ï¿½
  * 
  * @author miao
  * 
@@ -34,7 +34,7 @@ public class DataAnalysisDaoImpl extends HibernateDaoSupport implements DataAnal
 //		}
 //		return list;
 		DetachedCriteria criteria = DetachedCriteria.forClass(DataAnalysis.class);
-		criteria.addOrder(Order.desc("id"));
+		criteria.addOrder(Order.desc("ID"));
 		return super.getHibernateTemplate().findByCriteria(criteria);
 	}
 
@@ -85,17 +85,17 @@ public class DataAnalysisDaoImpl extends HibernateDaoSupport implements DataAnal
 	}
 
 	/**
-	 * ²éÑ¯Ò»Ò³µÄÊı¾İ
+	 * ï¿½ï¿½Ñ¯Ò»Ò³ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
-	 * @param begin ´ÓÄÄÌõ¿ªÊ¼0
-	 * @param end µÃµ½¶àÉÙÌõ
-	 * @param sort ÅÅĞò×Ö¶Î
-	 * @param order ÉıĞò»ò½µĞò desc/asc
+	 * @param begin ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼0
+	 * @param end ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param sort ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
+	 * @param order ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ desc/asc
 	 */
 	@SuppressWarnings("unchecked")
 	public List<DataAnalysis> findPages(final int begin, final int end, final String sort,
 			final String order) {
-		// µ±ÒªÓÃµ½Ô­ÉúµÄHibernateµÄSessionµÄÊ±ºò£¬ÕâÖÖ×îÁé»î£¬¿ÉÒÔÊ¹ÓÃQueryºÍCriteria£¬²»ÓÃ×Å¼±¹ÜÀí»á»°ºÍÊÂ
+		// ï¿½ï¿½Òªï¿½Ãµï¿½Ô­ï¿½ï¿½ï¿½Hibernateï¿½ï¿½Sessionï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Queryï¿½ï¿½Criteriaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¼ï¿½ï¿½ï¿½ï¿½ï¿½á»°ï¿½ï¿½ï¿½ï¿½
 		return super.getHibernateTemplate().executeFind(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
 				Criteria criteria = session.createCriteria(DataAnalysis.class);

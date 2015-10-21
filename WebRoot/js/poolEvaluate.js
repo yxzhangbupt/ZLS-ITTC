@@ -1,16 +1,12 @@
 //JQuery的入口
 $(function() {
 	listPoolEvaluate();
-	// 日期加上日期控件
-//	$("#pubdate").datebox({
-//		required : true
-//	});
 	// 给文本框加上验证器
 	$("#PoolID").validatebox({
 		required : true,
 		missingMessage : '不能为空'
 	});
-
+	// 日期加上日期控件
 	$("#t").datebox({
 		required : true,
 		missingMessage : '不能为空'
@@ -25,11 +21,11 @@ $(function() {
 	 	required : true,
 		missingMessage : '不能为空'
 	});
-	$("#WaterTemp").numberbox({
-	 	min:0,
-	 	required : true,
-		missingMessage : '不能为空'
-	});
+//	$("#WaterTemp").numberbox({
+//	 	min:0,
+//	 	required : true,
+//		missingMessage : '不能为空'
+//	});
 	$("#FeCl3").numberbox({
 	 	min:0,
 	 	required : true,
@@ -73,36 +69,21 @@ $(function() {
 	 	required : true,
 		missingMessage : '不能为空'
 	});
-	$("#state").combobox({
-	 	required : true,
-		missingMessage : '不能为空'
-	});
+//	$("#state").combobox({
+//	 	required : true,
+//		missingMessage : '不能为空'
+//	});
 	$("#CL").numberbox({
 	 	min:0,
 	 	required : true,
 		missingMessage : '不能为空'
 	});
-	
-
-//	// 价格用货币验证框
-//	$("#price").numberbox({
-//		required : true,
-//		min : 5.5,		//最低价格为5.5
-//		max : 9999,
-//		precision : 2,
-//		missingMessage : '请输入价格'
-//	});
-//	// 简介加验证
-//	$("#intro").validatebox({
-//		required : true,		//需要有内容
-//		missingMessage:'请补充项目简介'
-//	});
 });
 var tburl='searchPoolEvaluate.action'; 
 
 function listAllPoolEvaluate(){
 	$('#frmSearch').form('clear');
-	$('#searchState').combobox('setValue','-1');
+//	$('#searchState').combobox('setValue','-1');
 	$('#searchPoolID').combobox('setValue','');
 //	$('#lowAlgaeContent').val('0');
 //	$('#highAlgaeContent').val('100');
@@ -126,28 +107,6 @@ function listPoolEvaluate() {
 		remoteSort : true, // 从服务器端排序，默认true
 		pageList : [ 10, 15, 20, 30], // 可以设置每页记录条数的列表，服务器要加上rows属性
 		idField : 'ID', // 主键属性
-//		toolbar:"#tb",
-//		toolbar : [ {// 工具栏
-//			text : '添加',
-//			iconCls : 'icon-add', // 图标
-//			handler : function() { // 处理函数
-//				addPoolEvaluate();
-//			}
-//		}, {
-//			text : '删除',
-//			iconCls : 'icon-cancel', // 图标
-//			handler : function() { // 处理函数
-//				deletePoolEvaluate();
-//			}
-//		}, {
-//			text : '编辑',
-//			iconCls : 'icon-edit',// 图标
-//			handler : function() {// 处理函数
-//
-//				editPoolEvaluate();
-//			}
-//		} ],
-
 		columns : [ [
 		     {
 		     field : 't',
@@ -160,15 +119,23 @@ function listPoolEvaluate() {
              },
 			{
 			field : 'poolID',
-			title : '水池编号',
+			title : '机加池池编号',
 			align : 'center',
 			width : 125,
 		//可以排序，但服务器也完成相应的代码，要加入sort和order属性
 			sortable : true
 		}, 
 		{
+			field : 'PAC',
+			title : 'PAC投加量',
+			align : 'center',
+			width : 80,
+			formatter : function(value) {
+				return value+"%";
+			}
+		},{
 			field : 'feCl3',
-			title : 'FeCl3含量',
+			title : 'FeCl3投加量',
 			align : 'center',
 			width : 85,
 			formatter : function(value) {
@@ -177,14 +144,6 @@ function listPoolEvaluate() {
 			
 		},
 		{
-			field : 'PAC',
-			title : '加PAC量',
-			align : 'center',
-			width : 80,
-			formatter : function(value) {
-				return value+"%";
-			}
-		},{
 			field : 'openDegree',
 			title : '开启度',
 			width : 70,
@@ -211,38 +170,38 @@ function listPoolEvaluate() {
 		},	
 		{
 			field : 'smallMudFre',
-			title : '小斗排泥频率',
+			title : '小斗排泥时长',
 			width : 80,
 			align : 'center'
 		},
 		{
 			field : 'bigMudFre',
-			title : '大斗排泥频率',
+			title : '大斗排泥时长',
 			width : 80,
 			align : 'center'
 		},
 		{
 			field : 'NTU',
-			title : '浊度',
+			title : '原水浊度',
 			width : 60,
 			align : 'center'
 		},
-		{
-			field : 'waterTemp',
-			title : '水温',
-			width : 60,
-			align : 'center',
-			formatter : function(value) {
-//				if (value <5){
-//					return '<span style="background-color:DeepSkyBlue;">'+value+'℃</span>';
-//				} else {
-					return value+"℃";
-//				}	
-			}
-		},
+//		{
+//			field : 'waterTemp',
+//			title : '水温',
+//			width : 60,
+//			align : 'center',
+//			formatter : function(value) {
+////				if (value <5){
+////					return '<span style="background-color:DeepSkyBlue;">'+value+'℃</span>';
+////				} else {
+//					return value+"℃";
+////				}	
+//			}
+//		},
 		{
 			field : 'algaeContent',
-			title : '藻类含量',
+			title : '原水藻类含量',
 			width : 80,
 			align : 'center',
 			formatter : function(value) {
@@ -262,22 +221,22 @@ function listPoolEvaluate() {
 					}	
 			}*/
 		},
-		{
-			field : 'state',
-			title : '状态',
-			width : 80,
-			align : 'center',
-			formatter: function(value,rec){
-				if(value==0){
-					return '<span style="background-color:LightCoral;">不正常</span>';
-				}else{
-					return '<span style="background-color:LightGreen;">正常</span>';
-				}
-			}
-		},
+//		{
+//			field : 'state',
+//			title : '状态',
+//			width : 80,
+//			align : 'center',
+//			formatter: function(value,rec){
+//				if(value==0){
+//					return '<span style="background-color:LightCoral;">不正常</span>';
+//				}else{
+//					return '<span style="background-color:LightGreen;">正常</span>';
+//				}
+//			}
+//		},
 		{
 			field : 'CL',
-			title : '预加氯',
+			title : '预加氯量',
 			width : 80,
 			align : 'center'
 		}
@@ -398,12 +357,12 @@ function editPoolEvaluate() {
 	$("#SmallMudFre").numberbox("setValue",poolEvaluate.smallMudFre);
 	$("#BigMudFre").numberbox("setValue",poolEvaluate.bigMudFre);
 	$("#NTU").numberbox("setValue",poolEvaluate.NTU);
-	$("#WaterTemp").numberbox("setValue",poolEvaluate.waterTemp);
+//	$("#WaterTemp").numberbox("setValue",poolEvaluate.waterTemp);
 	$("#AlgaeContent").numberbox("setValue",poolEvaluate.algaeContent);
 	$("#FeCl3").numberbox("setValue",poolEvaluate.feCl3);
 	$("#PAC").numberbox("setValue", poolEvaluate.PAC);
 	$("#OutNTU").numberbox("setValue",poolEvaluate.outNTU);
-	$("#state").combobox( "setValue",poolEvaluate.state);
+//	$("#state").combobox( "setValue",poolEvaluate.state);
 	$("#CL").numberbox("setValue",poolEvaluate.CL);
 //	// 显示编辑页面
 	showEditForm();
@@ -465,11 +424,13 @@ function deletePoolEvaluate() {
 function searchPoolEvaluate(){
 	$("#searchT").val(searchT);
 	$("#searchPoolID").val(searchPoolID);
-	$("#searchState").val(searchState);
+//	$("#searchState").val(searchState);
 	$('#lowAlgaeContent').numberbox("setValue",lowAlgaeContent);
 	$('#highAlgaeContent').numberbox("setValue",highAlgaeContent);
 	$('#lowNTU').numberbox("setValue",lowNTU);
 	$('#highNTU').numberbox("setValue",highNTU);
+	$('#lowOutNTU').numberbox("setValue",lowOutNTU);
+	$('#highOutNTU').numberbox("setValue",highOutNTU);
 	showSearchForm();
 }
 

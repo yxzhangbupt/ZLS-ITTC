@@ -14,8 +14,8 @@
 <body>
 <center>
 <br>
-	<button id="showSpline" onclick="javascript:showSpline()" style="width:200px;height:25px;font-size:16px">柱状图/折线图/混合图</button>
-
+	<!-- <button id="showSpline" onclick="javascript:showSpline()" style="width:200px;height:25px;font-size:16px">柱状图/折线图/混合图</button>
+ -->
 <br><br>
 	<div id="imageContainer" style="max-width:1000px;height:600px;" ></div><br>
 	

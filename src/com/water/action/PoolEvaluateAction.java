@@ -56,7 +56,23 @@ public class PoolEvaluateAction extends ActionSupport{
 	public void setSearchT(Date searchT) {
 		this.searchT = searchT;
 	}
+	/*NTU查询参数*/
+	private double lowNTU;  //来水浊度下限
+	private double highNTU;	//来水浊度上限
+	
 
+	public double getLowNTU() {
+		return lowNTU;
+	}
+	public void setLowNTU(double lowNTU) {
+		this.lowNTU = lowNTU;
+	}
+	public double getHighNTU() {
+		return highNTU;
+	}
+	public void setHighNTU(double highNTU) {
+		this.highNTU = highNTU;
+	}
 	private int searchState=-1;		//查询状态	
 	public int getSearchState() {
 		return searchState;
@@ -64,9 +80,9 @@ public class PoolEvaluateAction extends ActionSupport{
 	public void setSearchState(int searchState) {
 		this.searchState = searchState;
 	}
-	/*藻类含量查询参数*/
-	private double lowAlgaeContent;  //藻类含量下限
-	private double highAlgaeContent; //藻类含量上限
+	/*来水藻类含量查询参数*/
+	private double lowAlgaeContent;  //来水藻类含量下限
+	private double highAlgaeContent; //来水藻类含量上限
 	
 	
 	public double getLowAlgaeContent() {
@@ -82,24 +98,26 @@ public class PoolEvaluateAction extends ActionSupport{
 		this.highAlgaeContent = highAlgaeContent;
 	}
 	
-	/*NTU查询参数*/
-	private double lowNTU;  //浊度下限
-	private double highNTU;	//浊度上限
+	/* 出水浊度查询参数	 */
+	private double lowOutNTU;	//出水浊度下限
+	private double highOutNTU;	//出水浊度上限
+		
+	public double getLowOutNTU() {
+		return lowOutNTU;
+	}
+
+	public void setLowOutNTU(double lowOutNTU) {
+		this.lowOutNTU = lowOutNTU;
+	}
+
+	public double getHighOutNTU() {
+		return highOutNTU;
+	}
+
+	public void setHighOutNTU(double highOutNTU) {
+		this.highOutNTU = highOutNTU;
+	}
 	
-
-	public double getLowNTU() {
-		return lowNTU;
-	}
-	public void setLowNTU(double lowNTU) {
-		this.lowNTU = lowNTU;
-	}
-	public double getHighNTU() {
-		return highNTU;
-	}
-	public void setHighNTU(double highNTU) {
-		this.highNTU = highNTU;
-	}
-
 	// 标识操作是否成功
 	private boolean operateSuccess;
 
@@ -249,14 +267,6 @@ public class PoolEvaluateAction extends ActionSupport{
 			{
 				sql+=" and State ='"+searchState+"'";
 			}
-			if(lowAlgaeContent!=0)
-			{
-				sql+=" and AlgaeContent >='"+lowAlgaeContent+"'";
-			}
-			if(highAlgaeContent!=0)
-			{
-				sql+=" and AlgaeContent <= '"+highAlgaeContent+"'";
-			}
 			if(lowNTU!=0)
 			{
 				sql+=" and NTU >='"+lowNTU+"'";
@@ -265,7 +275,22 @@ public class PoolEvaluateAction extends ActionSupport{
 			{
 				sql+=" and NTU <= '"+highNTU+"'";
 			}
-			
+			if(lowAlgaeContent!=0)
+			{
+				sql+=" and AlgaeContent >='"+lowAlgaeContent+"'";
+			}
+			if(highAlgaeContent!=0)
+			{
+				sql+=" and AlgaeContent <= '"+highAlgaeContent+"'";
+			}
+			if(lowOutNTU!=0)
+			{
+				sql+=" and OutNTU >='"+lowOutNTU+"'";
+			}
+			if(highOutNTU!=0)
+			{
+				sql+=" and OutNTU <= '"+highOutNTU+"'";
+			}			
 		}
 		System.out.println(sql);
 		data.clear();//清除数据
@@ -296,6 +321,14 @@ public class PoolEvaluateAction extends ActionSupport{
 			{
 				sql+=" and State ='"+searchState+"'";
 			}
+			if(lowNTU!=0)
+			{
+				sql+=" and NTU >='"+lowNTU+"'";
+			}
+			if(highNTU!=0)
+			{
+				sql+=" and NTU <= '"+highNTU+"'";
+			}
 			if(lowAlgaeContent!=0)
 			{
 				sql+=" and AlgaeContent >='"+lowAlgaeContent+"'";
@@ -304,13 +337,13 @@ public class PoolEvaluateAction extends ActionSupport{
 			{
 				sql+=" and AlgaeContent <= '"+highAlgaeContent+"'";
 			}
-			if(lowNTU!=0)
+			if(lowOutNTU!=0)
 			{
-				sql+=" and NTU >='"+lowNTU+"'";
+				sql+=" and OutNTU >='"+lowOutNTU+"'";
 			}
-			if(highNTU!=0)
+			if(highOutNTU!=0)
 			{
-				sql+=" and NTU <= '"+highNTU+"'";
+				sql+=" and OutNTU <= '"+highOutNTU+"'";
 			}
 			
 		}
@@ -344,41 +377,45 @@ public class PoolEvaluateAction extends ActionSupport{
 	        
 //			List<DataAnalysis> list = dataAnalysisService.findAll();
 			if(list!=null && !list.isEmpty()){
-				sheet.addCell(new Label(0,0," 编号 ",formatHead));
-				sheet.addCell(new Label(1,0," 水池编号 ",formatHead));
-				sheet.addCell(new Label(2,0," 时间 ",formatHead));
-				sheet.addCell(new Label(3,0," 开启度 ",formatHead));
-				sheet.addCell(new Label(4,0," 转速 ",formatHead));
-				sheet.addCell(new Label(5,0," 沉降比 ",formatHead));
-				sheet.addCell(new Label(6,0," 小斗排泥频率 ",formatHead));
-				sheet.addCell(new Label(7,0," 大斗排泥频率 ",formatHead));				
-				sheet.addCell(new Label(8,0," 浊度 ",formatHead));	
-				sheet.addCell(new Label(9,0," 水温 ",formatHead));
-				sheet.addCell(new Label(10,0," 藻类含量 ",formatHead));
-				sheet.addCell(new Label(11,0," FeCl3含量 ",formatHead));				
-				sheet.addCell(new Label(12,0," PAC含量 ",formatHead));
-				sheet.addCell(new Label(13,0," 机加池出水浊度 ",formatHead));
-				sheet.addCell(new Label(14,0," 预加氯 ",formatHead));
-				sheet.addCell(new Label(15,0," 状态 ",formatHead));
+				
+				sheet.addCell(new Label(0,0," 时间 ",formatHead));
+				sheet.addCell(new Label(1,0," 机加池编号 ",formatHead));				
+				sheet.addCell(new Label(2,0," PAC投加量 ",formatHead));
+				sheet.addCell(new Label(3,0," FeCl3投加量 ",formatHead));
+				sheet.addCell(new Label(4,0," 开启度 ",formatHead));
+				sheet.addCell(new Label(5,0," 转速 ",formatHead));
+				sheet.addCell(new Label(6,0," 沉降比 ",formatHead));
+				sheet.addCell(new Label(7,0," 小斗排泥时长 ",formatHead));
+				sheet.addCell(new Label(8,0," 大斗排泥时长 ",formatHead));				
+				sheet.addCell(new Label(9,0," 原水浊度 ",formatHead));	
+				sheet.addCell(new Label(10,0," 原水藻类含量 ",formatHead));
+				sheet.addCell(new Label(11,0," 出水浊度 ",formatHead));
+				sheet.addCell(new Label(12,0," 预加氯量 ",formatHead));
+
+//				sheet.addCell(new Label(0,0," 编号 ",formatHead));
+//				sheet.addCell(new Label(9,0," 水温 ",formatHead));
+//				sheet.addCell(new Label(15,0," 状态 ",formatHead));
 			
 				for (int i=0;i<list.size();i++){
 
-					sheet.addCell(new Label(0,i+1,Long.toString(list.get(i).getID()),formatBody));
-					sheet.addCell(new Label(1,i+1,list.get(i).getPoolID()));
-					sheet.addCell(new Label(2,i+1,(new SimpleDateFormat("yyyy-MM-dd")).format(list.get(i).getT()),formatBody));					
-					sheet.addCell(new Label(3,i+1,Double.toString(list.get(i).getOpenDegree()),formatBody));
-					sheet.addCell(new Label(4,i+1,Double.toString(list.get(i).getRotationSpeed()),formatBody));
-					sheet.addCell(new Label(5,i+1,Double.toString(list.get(i).getSV()),formatBody));
-					sheet.addCell(new Label(6,i+1,Double.toString(list.get(i).getSmallMudFre()),formatBody));
-					sheet.addCell(new Label(7,i+1,Double.toString(list.get(i).getBigMudFre()),formatBody));
-					sheet.addCell(new Label(8,i+1,Double.toString(list.get(i).getNTU()),formatBody));
-					sheet.addCell(new Label(9,i+1,Double.toString(list.get(i).getWaterTemp()),formatBody));
-					sheet.addCell(new Label(10,i+1,Double.toString(list.get(i).getAlgaeContent()),formatBody));
-					sheet.addCell(new Label(11,i+1,Double.toString(list.get(i).getFeCl3()),formatBody));	
-					sheet.addCell(new Label(12,i+1,Double.toString(list.get(i).getPAC()),formatBody));
-					sheet.addCell(new Label(13,i+1,Double.toString(list.get(i).getCL()),formatBody));
-					sheet.addCell(new Label(14,i+1,Double.toString(list.get(i).getOutNTU()),formatBody));
-					sheet.addCell(new Label(15,i+1,list.get(i).getState()==0?"不正常":"正常",formatBody));
+					
+					sheet.addCell(new Label(0,i+1,(new SimpleDateFormat("yyyy-MM-dd")).format(list.get(i).getT()),formatBody));  //时间
+					sheet.addCell(new Label(1,i+1,list.get(i).getPoolID()));	//水池编号
+					sheet.addCell(new Label(2,i+1,Double.toString(list.get(i).getPAC()),formatBody)); //PAC投加量
+					sheet.addCell(new Label(3,i+1,Double.toString(list.get(i).getFeCl3()),formatBody));	 //FeCl3投加量
+					sheet.addCell(new Label(4,i+1,Double.toString(list.get(i).getOpenDegree()),formatBody)); //开启度
+					sheet.addCell(new Label(5,i+1,Double.toString(list.get(i).getRotationSpeed()),formatBody)); //转速
+					sheet.addCell(new Label(6,i+1,Double.toString(list.get(i).getSV()),formatBody)); //沉降比
+					sheet.addCell(new Label(7,i+1,Double.toString(list.get(i).getSmallMudFre()),formatBody)); //小斗排泥时长
+					sheet.addCell(new Label(8,i+1,Double.toString(list.get(i).getBigMudFre()),formatBody)); //大斗排泥时长
+					sheet.addCell(new Label(9,i+1,Double.toString(list.get(i).getNTU()),formatBody)); //原水浊度
+					sheet.addCell(new Label(10,i+1,Double.toString(list.get(i).getAlgaeContent()),formatBody)); //原水藻类含量
+					sheet.addCell(new Label(11,i+1,Double.toString(list.get(i).getOutNTU()),formatBody)); // 出水浊度
+					sheet.addCell(new Label(12,i+1,Double.toString(list.get(i).getCL()),formatBody));  //预加氯量
+					
+//					sheet.addCell(new Label(0,i+1,Long.toString(list.get(i).getID()),formatBody));
+//					sheet.addCell(new Label(9,i+1,Double.toString(list.get(i).getWaterTemp()),formatBody));
+//					sheet.addCell(new Label(15,i+1,list.get(i).getState()==0?"不正常":"正常",formatBody));
 					
 
 				}//for

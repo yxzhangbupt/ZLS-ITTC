@@ -11,7 +11,7 @@
         <property name="PoolID" type="java.lang.String">
             <column name="POOLID" />
         </property>
-        <property name="t" type="java.sql.Date">
+        <property name="t" type="java.util.Date">
             <column name="T" />
         </property>
         <property name="InV" type="java.lang.Double">

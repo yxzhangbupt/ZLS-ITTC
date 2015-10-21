@@ -119,8 +119,8 @@ body {
 			<a href="download/QSC_cal.xlsx">点击下载清水池水位计算表 - 模板 .xlsx</a><br /> <br />
 			<div id="analyze">
 
-				<input type="button" id="analyzeButton" value=" 数据分析图  "
-					onclick="window.open('analyzeImage.jsp');"></input>
+				<!-- <input type="button" id="analyzeButton" value=" 数据分析图  "
+					onclick="window.open('analyzeImage.jsp');"></input> -->
 				<!--  <input type="button" id="preHButton" value=" 水池水位分析图  "
 					onclick="javascript:preHfun()"></input> -->
 				<input type="button" id="preHButton" value=" 水池水位分析图  "
@@ -250,15 +250,13 @@ body {
 					<dd>
 						<br/>
 						&nbsp; &nbsp; &nbsp; &nbsp;
-					         时  &nbsp; 间: <input class="easyui-datebox" style="width:120px" id="searchT"
+					         时  &nbsp; 间 : &nbsp; <input class="easyui-datetimebox" style="width:150px" id="searchT"
 					                        name="searchT" text="" type="text"></input>
-					</dd>
-					<dd>
-						<br/>
+					
 						&nbsp; &nbsp; &nbsp; &nbsp;
   						<!-- 水池编号:  <input  class="easyui-validatebox" type="text" style="width:120px" id="searchPoolID"
 					                 size="20px" name="searchPoolID" ></input> -->
-					         水池编号:  <input type="text" size="15" id="searchPoolID" name="searchPoolID" />
+					         清水池编号 :  <input type="text" size="20" id="searchPoolID" name="searchPoolID" />
 					          <!-- <input class="easyui-combobox" style="width:120px" id="searchPoolID" 
 								name="searchPoolID" text="" type="text"></input>  -->
 					</dd>

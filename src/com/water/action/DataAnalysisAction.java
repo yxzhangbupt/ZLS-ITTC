@@ -277,7 +277,7 @@ public class DataAnalysisAction extends ActionSupport{
 				sheet.addCell(new Label(6,0," 洗V型滤池 ",formatHead));				
 				sheet.addCell(new Label(7,0," 炭池反冲洗 ",formatHead));
 				sheet.addCell(new Label(8,0," 机加池排泥 ",formatHead));					
-				sheet.addCell(new Label(9,0," 回流进水 ",formatHead));
+				sheet.addCell(new Label(9,0," 回流水量 ",formatHead));
 				sheet.addCell(new Label(10,0," 蓄水量 ",formatHead));
 				sheet.addCell(new Label(11,0," 预测水位 ",formatHead));
 
