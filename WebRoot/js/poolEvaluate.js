@@ -104,7 +104,7 @@ function listPoolEvaluate() {
 		singleSelect : true, // 每次只选中一行
 		loadMsg : '加载项目列表ing……',
 		pageSize : 15, // 指定每页的大小，服务器要加上page属性和total属性
-		remoteSort : true, // 从服务器端排序，默认true
+		remoteSort : false, // 从服务器端排序，默认true
 		pageList : [ 10, 15, 20, 30], // 可以设置每页记录条数的列表，服务器要加上rows属性
 		idField : 'ID', // 主键属性
 		columns : [ [
@@ -115,7 +115,8 @@ function listPoolEvaluate() {
 	         width : 110,
 	     	 formatter : function(value) {
 				return value.substring(0, 10);
-			 }
+			 },
+		     sortable : true
              },
 			{
 			field : 'poolID',
@@ -132,7 +133,8 @@ function listPoolEvaluate() {
 			width : 80,
 			formatter : function(value) {
 				return value+"%";
-			}
+			},
+			sortable : true
 		},{
 			field : 'feCl3',
 			title : 'FeCl3投加量',
@@ -140,8 +142,8 @@ function listPoolEvaluate() {
 			width : 85,
 			formatter : function(value) {
 					return value+"%";
-			}
-			
+			},
+			sortable : true			
 		},
 		{
 			field : 'openDegree',
@@ -150,14 +152,16 @@ function listPoolEvaluate() {
 			align : 'center',
 			formatter : function(value) {
 			return value+"%";
-			}
+			},
+			sortable : true
 		}, 
 		
 		{
 			field : 'rotationSpeed',
 			title : '转速',
 			width : 60,
-			align : 'center'
+			align : 'center',
+			sortable : true
 		},
 		{
 			field : 'SV',
@@ -166,25 +170,29 @@ function listPoolEvaluate() {
 			align : 'center',
 			formatter : function(value) {
 				return value+"%";
-			}			
+			},
+			sortable : true
 		},	
 		{
 			field : 'smallMudFre',
 			title : '小斗排泥时长',
 			width : 80,
-			align : 'center'
+			align : 'center',
+			sortable : true
 		},
 		{
 			field : 'bigMudFre',
 			title : '大斗排泥时长',
 			width : 80,
-			align : 'center'
+			align : 'center',
+			sortable : true
 		},
 		{
 			field : 'NTU',
 			title : '原水浊度',
 			width : 60,
-			align : 'center'
+			align : 'center',
+			sortable : true
 		},
 //		{
 //			field : 'waterTemp',
@@ -206,13 +214,15 @@ function listPoolEvaluate() {
 			align : 'center',
 			formatter : function(value) {
 			return value+"%";
-			}
+			},
+			sortable : true
 		},
 		{
 			field : 'outNTU',
 			title : '出水浊度',
 			width : 80,
 			align : 'center',
+			sortable : true
 			/*formatter : function(value) {
 				if (value >0.8){
 					return '<span style="background-color:LightCoral;">'+value+'</span>';
@@ -238,7 +248,8 @@ function listPoolEvaluate() {
 			field : 'CL',
 			title : '预加氯量',
 			width : 80,
-			align : 'center'
+			align : 'center',
+			sortable : true
 		}
 		] ],
 

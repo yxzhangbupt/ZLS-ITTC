@@ -74,7 +74,7 @@ function listDataAnalysis() {
 		singleSelect : true, // 每次只选中一行
 		loadMsg : '加载项目列表ing……',
 		pageSize : 15, // 指定每页的大小，服务器要加上page属性和total属性
-		remoteSort : true, // 从服务器端排序，默认true
+		remoteSort : false, // 排序，true表示从服务器端排序
 		pageList : [ 10, 15, 20, 25], // 可以设置每页记录条数的列表，服务器要加上rows属性
 		idField : 'ID', // 主键属性
 	
@@ -85,14 +85,14 @@ function listDataAnalysis() {
 			  		    		//显示日期到小时
 			  		    		return value.substring(0, 10)+" "+value.substring(11,13)+"时";
 						}},
-					    {field : 'inV', title : '总来水量', align :'center', sortable : true,width:80},
+					    {field : 'inV', title : '总来水量', align :'center', sortable : true, orderwidth:80},
 					    {field : 'outV', title : '出水量', align : 'center', sortable : true,width:80},
 					    {field : 'HXOutV', title : '洗虹吸滤池', align :'center', sortable : true,width:100},
 					    {field : 'LCOutV', title : '洗V型滤池', align : 'center', sortable : true,width:100},
 					    {field : 'TCOutV', title : '炭池反冲洗', align :'center', sortable : true,width:100},
 					    {field : 'JJOutV', title : '机加池排泥', align : 'center', sortable : true,width:100},
 					    {field : 'HLInV', title : '回流进水', align : 'center', sortable : true,width:80},
-					    {field : 'storage',	title : '蓄水量',	align : 'center',width:80},
+					    {field : 'storage',	title : '蓄水量',	align : 'center',sortable : true,width:80},
 					    {field : 'preH', title : '预测水位', align :'center', sortable : true,width:80,
 					    	//只显示两位小数
 					    	formatter : function(value) {
@@ -283,7 +283,6 @@ function searchDataAnalysis(){
 function dealSearch() {
 	// 表单数据序列化成一个字符串用&拼接
 	var params = $("#frmSearch").serialize();
-	console.log($("#searchT").datetimebox("getValue"));
 	if ($("#searchT").datetimebox("getValue")!= null || $("#searchPoolID").combobox("getValue")!= null){
 		$.post("searchDataAnalysis.action", params, function(result) {
 			if (result.total!=0) {
