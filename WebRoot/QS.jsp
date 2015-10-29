@@ -156,12 +156,12 @@
                 </div>
                 <div id="list_group" class="list-group">
                     <button  class="btn btn-info  btn_list active" onclick="window.location.href='QS.jsp'" >取水泵房</button>
-                    <button  class="btn btn-info  btn_list disabled" >混合井</button>
+                    <button  class="btn btn-info  btn_list" onclick="window.location.href='hhj.jsp'" >混合井</button>
                     <button  class="btn btn-info  btn_list" onclick="window.location.href='JJC.jsp'"  >机加池</button>
                     <button  class="btn btn-info  btn_list" onclick="window.location.href='VL.jsp'">V型滤池</button>
-                    <button  class="btn btn-info  btn_list disabled" >臭氧池</button>
-                    <button  class="btn btn-info  btn_list disabled" >活性炭池</button>
-                    <button class="btn btn-info  btn_list disabled">清水池</button>
+                    <button  class="btn btn-info  btn_list" onclick="window.location.href='cy.jsp'" >臭氧池</button>
+                    <button  class="btn btn-info  btn_list" onclick="window.location.href='hxt.jsp'">活性炭池</button>
+                    <button class="btn btn-info  btn_list" onclick="window.location.href='qsc.jsp'">清水池</button>
                     <button class="btn btn-info  btn_list " onclick="window.location.href='main.jsp'">厂平图</button>
                  </div>
 

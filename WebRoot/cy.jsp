@@ -11,17 +11,33 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/breadcrumb.css">
-    <%--<link rel="stylesheet" href="index.css">--%>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/ocanvas-2.7.4.min.js"></script>
     <script src="js/my_oCanvas.js"></script>
-    <script src="js/JJC.js"></script>
+    <script src="js/cy.js"></script>
 
 
     <style>
-        #myContent{
-             margin: 0px auto;
+        body {
+            background: #eeeeef;
+        }
+
+        .sidebar a{
+            color: #000000;
+            margin-top: 2px;
+        }
+        .sidebar a:hover{
+            color:blue;
+        }
+        .sidebar a:hover{
+            background: #f5f5dc;
+        }
+        a {
+            margin-left: 10px;
+        }
+         #myContent{
+            margin: 0px auto;
             position: relative;
             height: 750px;
             width: 1600px;
@@ -29,13 +45,7 @@
         * {
             font-family: '微软雅黑', 'Arial';
         }
-        #canvas_JJC {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            z-index: 1;
-        }
-         #up{
+        #up{
             height: 30%;
             background-color: #f1f3f5;
         }
@@ -59,30 +69,27 @@
             margin-top: 0px;
             margin-right: 0px;
         }
-        #pageHead {
-            margin-bottom: 0px;
-            padding-bottom: 0px;
-        }
-        #btn_start{
-            position: relative;
-            left: 60px;
-        }
-        #btn_downS{
-            position: relative;
-            left: 60px;
-        }
-        #btn_upS{
-            position: relative;
-            left: 60px;
-        }#btn_reset{
+
+         #btn_start{
              position: relative;
              left: 60px;
          }
-        .btn_main{
-            width: 150px;
-            display: block;
-            background-color: #337ab7;
-        }
+         #btn_downS{
+             position: relative;
+             left: 60px;
+         }
+         #btn_upS{
+             position: relative;
+             left: 60px;
+         }#btn_reset{
+              position: relative;
+              left: 60px;
+          }
+         .btn_main{
+             width: 150px;
+             display: block;
+             background-color: #337ab7;
+         }
          .btn_list{
              width: 100%;
              display: block;
@@ -94,6 +101,23 @@
 		.btn-info.disabled{
 			background-color: #eeeeee;
 		}
+        .flag{
+            font-size: 30px;
+            color: #000000;
+            z-index: 999;
+            width: 150px;
+            height: 40px;
+        }
+        #flag1{
+        position: absolute;
+    left: 138px;
+    top: 533px;
+         }
+    #flag2{
+    position: absolute;
+    left: 1061px;
+    top: 533px;
+    }
     </style>
 </head>
 <body>
@@ -101,11 +125,12 @@
     <ol class="breadcrumb">
     <li><a href="main.jsp">动态演示</a></li>
     <li><a href="main.jsp">厂平展示</a></li>
-    <li class="active">机加池</li>
+    <li class="active">取水泵房</li>
     </ol>
     <div id="myContent" style="overflow: hidden">
+    
         <div id="left" class="col-lg-10" style="height: 753px">
-            <canvas id="canvas_JJC" width="1334" height="753"></canvas>
+            <canvas id="canvas_cy" width="1400" height="775"></canvas>
         </div>
         <div id="right" class="col-lg-2" style="height: 753px">
             <div id="up">
@@ -124,25 +149,22 @@
                     <button id="btn_downS" class="btn btn-info btn-lg btn_main">速度减</button>
                     <button id="btn_reset" class="btn btn-info btn-lg btn_main">重新开始</button>
                 </div>
-                 <div id="list_group" class="list-group">
+                <div id="list_group" class="list-group">
                     <button  class="btn btn-info  btn_list" onclick="window.location.href='QS.jsp'" >取水泵房</button>
                     <button  class="btn btn-info  btn_list" onclick="window.location.href='hhj.jsp'" >混合井</button>
-                    <button  class="btn btn-info  btn_list active" onclick="window.location.href='JJC.jsp'"  >机加池</button>
+                    <button  class="btn btn-info  btn_list" onclick="window.location.href='JJC.jsp'"  >机加池</button>
                     <button  class="btn btn-info  btn_list" onclick="window.location.href='VL.jsp'">V型滤池</button>
-                    <button  class="btn btn-info  btn_list" onclick="window.location.href='cy.jsp'" >臭氧池</button>
+                    <button  class="btn btn-info  btn_list active" onclick="window.location.href='cy.jsp'" >臭氧池</button>
                     <button  class="btn btn-info  btn_list" onclick="window.location.href='hxt.jsp'">活性炭池</button>
                     <button class="btn btn-info  btn_list" onclick="window.location.href='qsc.jsp'">清水池</button>
                     <button class="btn btn-info  btn_list " onclick="window.location.href='main.jsp'">厂平图</button>
                  </div>
+
             </div>
         </div>
     </div>
     <jsp:include page="down.jsp" />
-    <script>
-        function open_mainView(){
-            window.open("main1.html",'_self');
-        }
-    </script>
+
 </div>
 </body>
 </html>

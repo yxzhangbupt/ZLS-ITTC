@@ -1,4 +1,4 @@
-//ˮ�صĹ�������������
+
 var constructor = function (settings, core) {
 
     return oCanvas.extend({
@@ -40,7 +40,6 @@ var constructor = function (settings, core) {
         }
     }, settings);
 };
-//ˮ�صĹ��캯��
 oCanvas.registerDisplayObject("SC", constructor, "init");
 
 
@@ -89,7 +88,7 @@ var constructor_show = function (settings, core) {
         }
     }, settings);
 };
-//ˮ�صĹ��캯��
+
 oCanvas.registerDisplayObject("SC_show", constructor_show, "init");
 
 var constructor_show_down = function (settings, core) {
@@ -137,7 +136,7 @@ var constructor_show_down = function (settings, core) {
         }
     }, settings);
 };
-//ˮ�صĹ��캯��
+
 oCanvas.registerDisplayObject("SC_show_down", constructor_show_down, "init");
 //原来的管道绘制方法����
 //var constructor_gd = function (settings, core) {
@@ -350,6 +349,8 @@ var constructor_gd = function (settings, core) {
             this.destination.y_d = this.cells[0].y_cell;
 
             this.legacyHeight = -1;
+            this.LineHeight=10;
+            this.Speed=2*this.LineHeight/20;
         },
         advance: function () {
             if(this.paused==1){
@@ -447,6 +448,7 @@ var constructor_gd = function (settings, core) {
             canvas.beginPath();
 
             canvas.lineJoin = 'round';
+            canvas.lineCap="round";
             this.endHeight = 0;
             canvas.lineWidth = this.GDwidth / 4;
             canvas.strokeStyle = this.fill;
@@ -467,7 +469,8 @@ var constructor_gd = function (settings, core) {
                 this.flag_y = this.deta_y / this.deta;
 
                 if (this.endHeight > 0) {
-                    canvas.moveTo(this.cells[i - 1].x_cell - this.flag_x * (this.GDwidth / 8), this.cells[i - 1].y_cell - this.flag_y * (this.GDwidth / 8));
+                    //canvas.moveTo(this.cells[i - 1].x_cell - this.flag_x * (this.GDwidth / 8), this.cells[i - 1].y_cell - this.flag_y * (this.GDwidth / 8));
+                    canvas.moveTo(this.cells[i - 1].x_cell, this.cells[i - 1].y_cell);
                     canvas.lineTo(this.cells[i - 1].x_cell + this.flag_x * (this.endHeight ), this.cells[i - 1].y_cell + this.flag_y * this.endHeight);
                     this.x_now = this.cells[i - 1].x_cell + this.flag_x * (this.LineHeight + this.endHeight);
                     this.y_now = this.cells[i - 1].y_cell + this.flag_y * (this.LineHeight + this.endHeight);
@@ -518,8 +521,8 @@ var constructor_gd = function (settings, core) {
             }
             //管道的最前片段现在闪烁
             if (this.cellIndex < this.cells.length - 1) {
-//                canvas.moveTo(this.cells[this.cellIndex].x_cell,this.cells[this.cellIndex].y_cell);
-//                canvas.lineTo(this.destination.x_d,this.destination.y_d);
+                //canvas.moveTo(this.cells[this.cellIndex].x_cell,this.cells[this.cellIndex].y_cell);
+                //canvas.lineTo(this.destination.x_d,this.destination.y_d);
                 myEnd = false;
                 this.deta_x = this.cells[this.cellIndex+1].x_cell-this.destination.x_d;
                 this.deta_y = this.cells[this.cellIndex+1].y_cell-this.destination.y_d;
@@ -528,23 +531,19 @@ var constructor_gd = function (settings, core) {
                     this.flag_x = this.deta_x / this.deta;
                     this.flag_y = this.deta_y / this.deta;
                     if (this.endHeight > 0) {
-                        canvas.moveTo(this.cells[this.cellIndex].x_cell - this.flag_x * (this.GDwidth / 8), this.cells[this.cellIndex].y_cell - this.flag_y * (this.GDwidth / 8));
-                        canvas.lineTo(this.cells[this.cellIndex].x_cell + this.flag_x * (this.legacyHeight ), this.cells[this.cellIndex].y_cell + this.flag_y * this.legacyHeight)
-                        this.x_now = this.destination.x_d;
-                        this.y_now = this.destination.y_d;
-                        //if(this.legacyHeight!=-1)
-                        //{
-                        //    canvas.moveTo(this.cells[this.cellIndex].x_cell - this.flag_x * (this.GDwidth / 8), this.cells[this.cellIndex].y_cell - this.flag_y * (this.GDwidth / 8));
-                        //    canvas.lineTo(this.cells[this.cellIndex].x_cell + this.flag_x * (this.legacyHeight ), this.cells[this.cellIndex].y_cell + this.flag_y * this.legacyHeight);
-                        //    this.x_now = this.destination.x_d;
-                        //    this.y_now = this.destination.y_d;
-                        //}
-                        //else{
-                        //    canvas.moveTo(this.cells[this.cellIndex].x_cell - this.flag_x * (this.GDwidth / 8), this.cells[this.cellIndex].y_cell - this.flag_y * (this.GDwidth / 8));
-                        //    canvas.lineTo(this.cells[this.cellIndex].x_cell + this.flag_x * (this.endHeight ), this.cells[this.cellIndex].y_cell + this.flag_y * this.endHeight);
-                        //    this.x_now = this.cells[this.cellIndex].x_cell + this.flag_x * (this.LineHeight + this.endHeight);
-                        //    this.y_now = this.cells[this.cellIndex].y_cell + this.flag_y * (this.LineHeight + this.endHeight);
-                        //}
+                        //canvas.moveTo(this.cells[this.cellIndex].x_cell - this.flag_x * (this.GDwidth / 8), this.cells[this.cellIndex].y_cell - this.flag_y * (this.GDwidth / 8));
+                        canvas.moveTo(this.cells[this.cellIndex].x_cell, this.cells[this.cellIndex].y_cell);
+                        canvas.lineTo(this.cells[this.cellIndex].x_cell + this.flag_x * (this.endHeight ), this.cells[this.cellIndex].y_cell + this.flag_y * this.endHeight);
+                        this.x_now = this.cells[this.cellIndex].x_cell + this.flag_x * ( this.endHeight);
+                        this.y_now = this.cells[this.cellIndex].y_cell + this.flag_y * ( this.endHeight);
+                        if(Math.abs(this.destination.x_d-this.x_now)>this.LineHeight*Math.abs(this.flag_x)||Math.abs(this.destination.y_d-this.y_now)>this.LineHeight*Math.abs(this.flag_y)){
+                            this.x_now+=this.LineHeight*this.flag_x;
+                            this.y_now+=this.LineHeight*this.flag_y;
+                        }
+                        else{
+                            this.x_now=this.destination.x_d;
+                            this.y_now=this.destination.y_d;
+                        }
                     }
                     if (this.endHeight < 0) {
                         this.endHeight = Math.abs(this.endHeight);
@@ -625,7 +624,6 @@ var constructor_gd1 = function (settings, core) {
             items.forEach(function(data){
                 data++;
             });
-            console,log(items);
             this.endHeight = -1;
         },
         advance: function () {
@@ -693,3 +691,67 @@ var constructor_gd1 = function (settings, core) {
     }, settings);
 };
 oCanvas.registerDisplayObject("GD1", constructor_gd1, "init");
+//画管道函数,参数：
+//parent,cells,GDwidth,color
+function createGD(options){
+    var GD01 = options.parent.display.GD({
+        x: 0,
+        y: 0,
+        destination: {
+            x_d: 0, y_d: 0
+        },
+        cells: options.cells,
+        cellIndex: 0,
+        Speed: 1,
+        GDwidth: options.GDwidth,
+        LineHeight: 10,
+        x_now: 0,
+        y_now: 0,
+        firstX: 0,
+        firstY: 0,
+        beginHeight: 0,
+        endHeight: 0,
+        paused: 1,
+        full:0,
+        fill:options.color
+    });
+    options.parent.addChild(GD01);
+    return GD01;
+}
+//画水池函数
+//参数如下：parent,x,y,width,height,[trail_flag,trail],speed,color
+function createSC(options){
+    var SC01;
+    if(options.trail_flag==1){
+        SC01 = options.parent.display.SC_show({
+            x: options.x,
+            y: options.y,
+            Width: options.width,
+            Height: options.height,
+            height_now: 0,
+            trail_flag: 1,
+            trail: options.trail,
+            t: 1405,
+            speed:options.speed,
+            fill: options.color,
+            full:0,
+            start:0
+        });
+    }else{
+        SC01 = options.parent.display.SC_show({
+            x: options.x,
+            y: options.y,
+            Width: options.width,
+            Height: options.height,
+            height_now: 0,
+            trail_flag: 0,
+            t: 1405,
+            speed:options.speed,
+            fill: options.color,
+            full:0,
+            start:0
+        });
+    }
+    options.parent.addChild(SC01);
+    return SC01;
+}

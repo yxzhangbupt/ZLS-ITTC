@@ -982,7 +982,9 @@ oCanvas.domReady(function () {
         image:"image/main/hhj.png"
     });
     canvas.addChild(img4);
-    img4.bind("mouseenter",function(){
+    img4.bind("click",function(){
+        window.location.href="hhj.jsp";
+    }).bind("mouseenter",function(){
         canvas.mouse.cursor("pointer");
         $("#name_HHJ").css("display","inline");
     }).bind("mouseleave",function(){
@@ -1013,7 +1015,9 @@ oCanvas.domReady(function () {
         image:"image/main/hhj2.png"
     });
     canvas.addChild(img41);
-    img41.bind("mouseenter",function(){
+    img41.bind("click",function(){
+        window.location.href="hhj.jsp";
+    }).bind("mouseenter",function(){
         canvas.mouse.cursor("pointer");
         $("#name_HHJ2").css("display","inline");
     }).bind("mouseleave",function(){
@@ -1040,7 +1044,9 @@ oCanvas.domReady(function () {
         image:"image/main/hx.png"
     });
     canvas.addChild(img5);
-    img5.bind("mouseenter",function(){
+    img5.bind("click",function(){
+        window.location.href="hxt.jsp";
+    }).bind("mouseenter",function(){
         canvas.mouse.cursor("pointer");
         $("#name_HX").css("display","inline");
     }).bind("mouseleave",function(){
@@ -1071,7 +1077,9 @@ oCanvas.domReady(function () {
         image:"image/main/qsc1.png"
     });
     canvas.addChild(img6);
-    img6.bind("mouseenter",function(){
+    img6.bind("click",function(){
+        window.location.href="qsc.jsp";
+    }).bind("mouseenter",function(){
         canvas.mouse.cursor("pointer");
         $("#name_QSC1").css("display","inline");
     }).bind("mouseleave",function(){
@@ -1102,7 +1110,9 @@ oCanvas.domReady(function () {
         image:"image/main/qsc2.png"
     });
     canvas.addChild(img61);
-    img61.bind("mouseenter",function(){
+    img61.bind("click",function(){
+        window.location.href="qsc.jsp";
+    }).bind("mouseenter",function(){
         canvas.mouse.cursor("pointer");
         $("#name_QSC2").css("display","inline");
     }).bind("mouseleave",function(){
@@ -1127,7 +1137,9 @@ oCanvas.domReady(function () {
         image:"image/main/qsc2.png"
     });
     canvas.addChild(img62);
-    img62.bind("mouseenter",function(){
+    img62.bind("click",function(){
+        window.location.href="qsc.jsp";
+    }).bind("mouseenter",function(){
         canvas.mouse.cursor("pointer");
         $("#name_QSC3").css("display","inline");
     }).bind("mouseleave",function(){
@@ -1152,7 +1164,9 @@ oCanvas.domReady(function () {
         image:"image/main/qsc3.png"
     });
     canvas.addChild(img63);
-    img63.bind("mouseenter",function(){
+    img63.bind("click",function(){
+        window.location.href="qsc.jsp";
+    }).bind("mouseenter",function(){
         canvas.mouse.cursor("pointer");
         $("#name_QSC4").css("display","inline");
     }).bind("mouseleave",function(){
@@ -1197,7 +1211,9 @@ oCanvas.domReady(function () {
         image:"image/main/tc.png"
     });
     canvas.addChild(img8);
-    img8.bind("mouseenter",function(){
+    img8.bind("click",function(){
+        window.location.href="hxt.jsp";
+    }).bind("mouseenter",function(){
         canvas.mouse.cursor("pointer");
         $("#name_TC").css("display","inline");
     }).bind("mouseleave",function(){
@@ -1227,7 +1243,9 @@ oCanvas.domReady(function () {
         image:"image/main/tc.png"
     });
     canvas.addChild(img81);
-    img81.bind("mouseenter",function(){
+    img81.bind("click",function(){
+        window.location.href="hxt.jsp";
+    }).bind("mouseenter",function(){
         canvas.mouse.cursor("pointer");
         $("#name_TC1").css("display","inline");
     }).bind("mouseleave",function(){
@@ -1253,7 +1271,9 @@ oCanvas.domReady(function () {
         image:"image/main/cy.png"
     });
     canvas.addChild(img9);
-    img9.bind("mouseenter",function(){
+    img9.bind("click",function(){
+        window.location.href="cy.jsp";
+    }).bind("mouseenter",function(){
         canvas.mouse.cursor("pointer");
         $("#name_CY").css("display","inline");
     }).bind("mouseleave",function(){
@@ -1283,7 +1303,9 @@ oCanvas.domReady(function () {
         image:"image/main/cyc.png"
     });
     canvas.addChild(img10);
-    img10.bind("mouseenter",function(){
+    img10.bind("click",function(){
+        window.location.href="cy.jsp";
+    }).bind("mouseenter",function(){
         canvas.mouse.cursor("pointer");
         $("#name_CYC").css("display","inline");
     }).bind("mouseleave",function(){
