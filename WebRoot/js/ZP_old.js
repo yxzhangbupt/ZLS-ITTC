@@ -25,7 +25,7 @@ $(document).ready(function(){
         var bg = canvas.display.image({
             x: 0,
             y: 0,
-            image: "image/waterline_old.png"
+            image: "image/waterLine_old.png"
         });
         var bg1 = canvas.display.image({
             x: 0,

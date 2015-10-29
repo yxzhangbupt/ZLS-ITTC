@@ -17,7 +17,6 @@
     <script src="js/my_oCanvas.js"></script>
     <script src="js/VL.js"></script>
 
-
     <style>
          body {
             background: #afd9ee;
