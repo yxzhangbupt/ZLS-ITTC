@@ -11,14 +11,14 @@
 //  		out.print(da);
 		if(da==1)
 		{
-			String json="{status:'Success',title:'on'}";
-			response.getWriter().write(json);
-// 			out.print(json);
-		}
+			/* String json="{status:'Success',title:'on'}";
+			response.getWriter().write(json); */
+			/* String result="window.location.href='CP_show.jsp';"; */
+			response.sendRedirect("CP_show.jsp");
+		} 
 		else{
 			String json="{status:'fail',title:'off'}";
 			response.getWriter().write(json);
-// 			out.print(json);
 		}
 	 %>
 
