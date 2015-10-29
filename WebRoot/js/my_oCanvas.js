@@ -1,4 +1,3 @@
-
 var constructor = function (settings, core) {
 
     return oCanvas.extend({
@@ -755,3 +754,4 @@ function createSC(options){
     options.parent.addChild(SC01);
     return SC01;
 }
+
