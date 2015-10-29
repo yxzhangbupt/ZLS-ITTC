@@ -17,8 +17,7 @@
 			response.sendRedirect("CP_show.jsp");
 		} 
 		else{
-			String json="{status:'fail',title:'off'}";
-			response.getWriter().write(json);
+			response.sendRedirect("error.html");
 		}
 	 %>
 
