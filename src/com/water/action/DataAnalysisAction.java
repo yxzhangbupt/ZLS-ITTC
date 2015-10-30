@@ -1,13 +1,25 @@
 package com.water.action;
 
+import java.io.Console;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList; 
 import java.util.Map;
 
+import org.hibernate.exception.DataException;
+
+import jxl.Cell;
+import jxl.Sheet;
 import jxl.Workbook;
+import jxl.read.biff.BiffException;
 import jxl.write.Label;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
@@ -31,6 +43,19 @@ public class DataAnalysisAction extends ActionSupport{
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
+	
+	//导入的文件路径和文件名
+	private String importFileName;
+		
+
+	public String getImportFileName() {
+		return importFileName;
+	}
+
+	public void setImportFileName(String importFileName) {
+		this.importFileName = importFileName;
+	}
+
 	private DataAnalysisService dataAnalysisService;
 
 	private DataAnalysis dataAnalysis; 
@@ -146,15 +171,15 @@ public class DataAnalysisAction extends ActionSupport{
 	public String list() {
 		data.clear();// ���
 		if (sort == null) {
-			sort = "id";// Ĭ�ϰ���������
+			sort = "ID";// Ĭ�ϰ���������
 		}
 		if (order == null) {
 			order = "asc";// Ĭ�ϰ���������
 		}
 		
 		data.put("total", dataAnalysisService.findTotal());// �õ����еļ�¼��
-		data.put("rows", dataAnalysisService.findPages(page, size, sort, order));// �õ�ĳһҳ�����
-		
+//		data.put("rows", dataAnalysisService.findPages(page, size, sort, order));// �õ�ĳһҳ�����
+		data.put("rows", dataAnalysisService.findAll());
 		return "success";
 	}
 
@@ -203,7 +228,7 @@ public class DataAnalysisAction extends ActionSupport{
 			sql="from DataAnalysis where 1=1";
 			if (searchT!=null)
 			{
-				sql+= " and t = '"+(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(searchT)+"'";
+				sql+= " and Convert(varchar,t,120)  like '%"+(new SimpleDateFormat("yyyy-MM-dd")).format(searchT)+"%'";
 			}
 			if(!searchPoolID.equals(""))
 			{
@@ -229,7 +254,7 @@ public class DataAnalysisAction extends ActionSupport{
 			sql="from DataAnalysis where 1=1";
 			if (searchT!=null)
 			{
-				sql+= " and t = '"+searchT+"'";
+				sql+= " and Convert(varchar,t,120)  like '%"+(new SimpleDateFormat("yyyy-MM-dd")).format(searchT)+"%'";
 			}
 			if(!searchPoolID.equals(""))
 			{
@@ -285,7 +310,7 @@ public class DataAnalysisAction extends ActionSupport{
 
 					sheet.addCell(new Label(0,i+1,Long.toString(list.get(i).getID()),formatBody));
 					sheet.addCell(new Label(1,i+1,list.get(i).getPoolID()));
-					sheet.addCell(new Label(2,i+1,(new SimpleDateFormat("yyyy-MM-dd hh")).format(list.get(i).getT()),formatBody));
+					sheet.addCell(new Label(2,i+1,(new SimpleDateFormat("yyyy-MM-dd hh:mm")).format(list.get(i).getT()),formatBody));
 					sheet.addCell(new Label(3,i+1,Double.toString(list.get(i).getInV()),formatBody));
 					sheet.addCell(new Label(4,i+1,Double.toString(list.get(i).getOutV()),formatBody));
 					sheet.addCell(new Label(5,i+1,Double.toString(list.get(i).getHXOutV()),formatBody));
@@ -313,6 +338,57 @@ public class DataAnalysisAction extends ActionSupport{
 			}
 		}
 		return "success";
+	}
+	
+	public String import2DB(){
 
+		Workbook workBook = null;
+		InputStream fs = null;
+		if(importFileName!=null || importFileName!="")
+		{
+		try{
+			//加载excel文件
+			fs = new FileInputStream(importFileName);
+			//得到工作簿
+			workBook = Workbook.getWorkbook(fs);
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+		}catch(BiffException e){
+			e.printStackTrace();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH");
+		Sheet sheet = workBook.getSheet(0); //只取第一个sheet的值
+		List<DataAnalysis> list = new ArrayList<DataAnalysis>();
+
+		for(int i=1;i<sheet.getRows();i++){ //共12列数据,从第二行开始
+			DataAnalysis dataTemp = new DataAnalysis();
+			dataTemp.setID(0);
+			dataTemp.setPoolID(sheet.getCell(1,i).getContents());
+			try{
+				dataTemp.setT(sdf.parse(sheet.getCell(2,i).getContents()));
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			System.out.println(dataTemp.getT());
+			dataTemp.setInV(Double.parseDouble(sheet.getCell(3,i).getContents()));
+			dataTemp.setOutV(Double.parseDouble(sheet.getCell(4,i).getContents()));
+			dataTemp.setHXOutV(Double.parseDouble(sheet.getCell(5,i).getContents()));
+			dataTemp.setLCOutV(Double.parseDouble(sheet.getCell(6,i).getContents()));
+			dataTemp.setTCOutV(Double.parseDouble(sheet.getCell(7,i).getContents()));
+			dataTemp.setJJOutV(Double.parseDouble(sheet.getCell(8,i).getContents()));
+			dataTemp.setHLInV(Double.parseDouble(sheet.getCell(9,i).getContents()));
+			dataTemp.setStorage(Double.parseDouble(sheet.getCell(10,i).getContents()));
+			dataTemp.setPreH(Double.parseDouble(sheet.getCell(11,i).getContents()));
+			dataAnalysisService.addDataAnalysis(dataTemp);	//添加到数据库
+			}
+		workBook.close(); //关闭
+		return "success";
+		}
+		else{
+			return "false";
+		}
+		
 	}
 }

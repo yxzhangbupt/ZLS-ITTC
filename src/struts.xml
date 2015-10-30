@@ -115,5 +115,11 @@
 		<action name="exportPoolEvaluate" class="poolEvaluateAction" method="export2excel">
 			 <result name="success">PoolEvaluate.jsp</result>
 		</action>
+		
+		<!-- 导入excel  -->
+		<action name="importDataAnalysis" class="dataAnalysisAction" method="import2DB">
+			 <result name="success" type="json"></result>
+			 <result name="false" type="json" ></result>
+		</action>
 	</package>
 </struts>

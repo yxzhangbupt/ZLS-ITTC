@@ -21,7 +21,10 @@
 <link rel="stylesheet" href="css/top_down.css">
 <link rel="stylesheet" href="css/breadcrumb.css">
 
-<link rel="stylesheet" type="text/css"	href="easyui/themes/default/easyui.css" /> 
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"	href="easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css"	href="style/myeasyui.css" />
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css" />
 
@@ -30,11 +33,7 @@
 <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-<script src="highcharts/highcharts.js" type="text/javascript"></script>
-<script src="highcharts/exporting.src.js" type="text/javascript"></script>
-<script src="highcharts/themes/grid.js" type="text/javascript"></script>
-
-<script type="text/javascript" src="js/dataAnalysis2.js"></script>
+<script type="text/javascript" src="js/dataAnalysis.js"></script>
 <link rel="stylesheet" href="style/myStyle.css" type="text/css" />
 <style>
 body {
@@ -114,10 +113,20 @@ body {
 </head>
 <body>
 	<jsp:include page="top.jsp" />
-	
+	<div id="test"></div>
 	<div id="myPage">
 		<div id="myContent" style="overflow: hidden">
 			<a href="download/QSC_cal.xlsx">点击下载清水池水位计算表 - 模板 .xlsx</a><br /> <br />
+			<div id="analyze">
+
+				<!-- <input type="button" id="analyzeButton" value=" 数据分析图  "
+					onclick="window.open('analyzeImage.jsp');"></input> -->
+				<!--  <input type="button" id="preHButton" value=" 水池水位分析图  "
+					onclick="javascript:preHfun()"></input> -->
+				<input type="button" id="preHButton" value=" 水池水位分析图  "
+					onclick="window.open('preHImage.jsp');"></input>
+			</div>
+
 		<!-- 操作按钮 -->
 			<div id="btn_group" class="btn-group-vertical btn-group-lg"
 				role="group">
@@ -137,38 +146,17 @@ body {
 		<!-- 导出文件操作-->
 		<div id="tab_export">
 				<form action="exportDataAnalysis" id="exportDataAnalysis">
-				   <span style="font-size:18px">导出文件名：</span><br/>
-				   <input type="text" id="filename" name="filename" style="width:100px"/>
+				   <span style="font-size:18px">导出文件名：</span><br/><input type="text" id="filename" name="filename" style="width:100px"/>
 				   <br/><br/>			
 				   <button id="btn-export" class="btn btn-primary" style="font-size:18px;" type="submit" 
 					   onclick="alert('导出成功，请在D盘根目录下查看文件！')"> &nbsp; &nbsp; 导出  &nbsp; &nbsp; </button>
 				</form>
-				<br/>
-				
-				 <form action="importDataAnalysis" id="importDataAnalysis">
-					<span style="font-size:18px">导入文件：</span><br/>
-					<input id="importFileName" name="importFileName" style="width:100px" type="text"/>								   <br/>			
-				   <button id="btn-import" class="btn btn-primary" style="font-size:18px;" type="submit" 
-					   onclick="javascript:import2DB()"> &nbsp; &nbsp; 导入  &nbsp; &nbsp; </button>
-				</form>
 		</div>
-		
-			<!-- <div class="easyui-layout" style="width:1200px; height:960px;"> -->
-				<div  style="width:150px; position: absolute; left:100px;">
-					<p style="padding:5px;margin:0;">选择时间:</p>
-					<!-- 树形导航菜单 -->
-					<ul id="timeTree" class="easyui-tree"></ul>			
-				</div>
-				<div style="position: absolute;  left:300px;">
-				<table id="dataAnalysisbody" style="max-width:1050px;height:300px;"
-						class="easyui-datagrid"></table> <br/>
-					<div id="imageContainer" style="max-width:1050px;height:760px;"></div>
-				<br>
-			</div>
-				
-			<!-- </div> -->
-	
-			<!-- <div id="main">
+		<center>
+			<table id="dataAnalysisbody" class="easyui-datagrid">
+			</table>
+		</center>
+		<!-- <div id="main">
 			<table id="dataAnalysisbody" class="easyui-datagrid">
 			</table>
 		</div> -->
@@ -179,63 +167,63 @@ body {
 					<input type="hidden" id="ID" name="dataAnalysis.ID" /> <br />
 					<dl>
 						<dd>
-							&nbsp; &nbsp; &nbsp; &nbsp;水 池 编 号 : &nbsp; &nbsp; <input  class="easyui-validatebox textbox"
-								size="25" id="PoolID" name="dataAnalysis.PoolID" data-options="required:true"/>
+							&nbsp; &nbsp; &nbsp; &nbsp;水 池 编 号 : &nbsp; &nbsp; <input type="text"
+								size="25" id="PoolID" name="dataAnalysis.PoolID" />
 						</dd>
 					</dl>
 					<dl>
 						<dd>
 							&nbsp; &nbsp; &nbsp; &nbsp;时  &nbsp; &nbsp; &nbsp; &nbsp; 间 : &nbsp; &nbsp; <input
-								class="easyui-datetimebox textbox" size="25" id="t" name="dataAnalysis.t"/>
+								type="date" width="100px" id="t" name="dataAnalysis.t" />
 						</dd>
 					</dl>
 					<dl>
 						<dd>
-							&nbsp; &nbsp; &nbsp; &nbsp;总 进 水 量 : &nbsp; &nbsp; <input class="easyui-numberbox textbox"
+							&nbsp; &nbsp; &nbsp; &nbsp;总 进 水 量 : &nbsp; &nbsp; <input type="text"
 								size="25" id="InV" name="dataAnalysis.InV" />
 						</dd>
 					</dl>
 					<dl>
 						<dd>
-							&nbsp; &nbsp; &nbsp; &nbsp;出   &nbsp;水  &nbsp; 量 : &nbsp; &nbsp; &nbsp; <input class="easyui-numberbox textbox"
+							&nbsp; &nbsp; &nbsp; &nbsp;出   &nbsp;水  &nbsp; 量 : &nbsp; &nbsp; &nbsp; <input type="text"
 								size="25" id="OutV" name="dataAnalysis.OutV" />
 						</dd>
 					</dl>
 					<dl>
 						<dd>
-							&nbsp; &nbsp; &nbsp; &nbsp;洗虹吸滤池 : &nbsp; &nbsp; <input class="easyui-numberbox textbox"
+							&nbsp; &nbsp; &nbsp; &nbsp;洗虹吸滤池 : &nbsp; &nbsp; <input type="text"
 								size="25" id="HXOutV" name="dataAnalysis.HXOutV" />
 						</dd>
 					</dl>
 					<dl>
 						<dd>
-							&nbsp; &nbsp; &nbsp; &nbsp;洗V型滤池 : &nbsp;&nbsp; &nbsp; <input class="easyui-numberbox textbox"
+							&nbsp; &nbsp; &nbsp; &nbsp;洗V型滤池 : &nbsp;&nbsp; &nbsp; <input type="text"
 								size="25" id="LCOutV" name="dataAnalysis.LCOutV" />
 						</dd>
 					</dl>
 					<dl>
 						<dd>
-							&nbsp; &nbsp; &nbsp; &nbsp;炭池反冲洗 : &nbsp; &nbsp; <input class="easyui-numberbox textbox"
+							&nbsp; &nbsp; &nbsp; &nbsp;炭池反冲洗 : &nbsp; &nbsp; <input type="text"
 								size="25" id="TCOutV" name="dataAnalysis.TCOutV" />
 						</dd>
 					</dl>
 					<dl>
 						<dd>
-							&nbsp; &nbsp; &nbsp; &nbsp;机加池排泥 : &nbsp; &nbsp; <input class="easyui-numberbox textbox"
+							&nbsp; &nbsp; &nbsp; &nbsp;机加池排泥 : &nbsp; &nbsp; <input type="text"
 								size="25" id="JJOutV" name="dataAnalysis.JJOutV" />
 						</dd>
 					</dl>
 					<dl>
 						<dd>
-							&nbsp; &nbsp; &nbsp; &nbsp;回 流 进 水: &nbsp;&nbsp; &nbsp; <input class="easyui-numberbox textbox"
+							&nbsp; &nbsp; &nbsp; &nbsp;回 流 进 水: &nbsp;&nbsp; &nbsp; <input type="text"
 								size="25" id="HLInV" name="dataAnalysis.HLInV" />
 						</dd>
 					</dl>
-					 <input type="hidden" class="easyui-numberbox" precision="2"
+					<!-- <input type="hidden" class="easyui-numberbox" precision="2"
 						id="Storage" name="dataAnalysis.Storage" />
 				    <input type="hidden"
 						class="easyui-numberbox" precision="2" id="PreH"
-						name="dataAnalysis.PreH" />
+						name="dataAnalysis.PreH" /> -->
 					<!-- 可以自动计算 -->
 					<!--
 				 <dl>
@@ -262,28 +250,23 @@ body {
 					<dd>
 						<br/>
 						&nbsp; &nbsp; &nbsp; &nbsp;
-					         时  &nbsp; 间: <input class="easyui-datebox" style="width:120px" id="searchT"
+					         时  &nbsp; 间 : &nbsp; <input class="easyui-datetimebox" style="width:150px" id="searchT"
 					                        name="searchT" text="" type="text"></input>
-					</dd>
-					<dd>
-						<br/>
+					
 						&nbsp; &nbsp; &nbsp; &nbsp;
   						<!-- 水池编号:  <input  class="easyui-validatebox" type="text" style="width:120px" id="searchPoolID"
 					                 size="20px" name="searchPoolID" ></input> -->
-					         水池编号: <!--  <input type="text" size="15" id="searchPoolID" name="searchPoolID" /> -->
-					           <input class="easyui-combobox" style="width:120px" id="searchPoolID" 
-								name="searchPoolID" type="text"></input>
+					         清水池编号 :  <input type="text" size="20" id="searchPoolID" name="searchPoolID" />
+					          <!-- <input class="easyui-combobox" style="width:120px" id="searchPoolID" 
+								name="searchPoolID" text="" type="text"></input>  -->
 					</dd>
 				</dl>
 				</form>
 			</div>
 		</div>
 	</div>
-
-
 	<jsp:include page="down.jsp" />
-	
-	
+
 	<script src="js/QS1.js" type="text/javascript" charset="UTF-8"></script>
 	</div>
 </body>
