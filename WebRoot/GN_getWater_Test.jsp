@@ -15,7 +15,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/ocanvas-2.7.4.min.js"></script>
-    <script src="js/GN_CYB.js"></script>
+    <script src="js/GN_QS_Test.js"></script>
 
 
     <style>
@@ -25,122 +25,47 @@
             left: 0px;
             z-index: 1;
         }
-        #CY_Y1B{
+        #readout_SC1 {
             position: absolute;
-            left: 950px;
-            top: 183px;
-            width: 100px;
-            height: 30px;
-            font-size: 20px;
-            color: #ec1800;
-            z-index: 10;
-        }
-        #CY_Y2B{
-            position: absolute;
-            left: 780px;
-            top: 183px;
-            width: 100px;
-            height: 30px;
-            font-size: 20px;
-            color: #ec1800;
-            z-index: 10;
-        }
-        #CY_Y3B{
-            position: absolute;
-            left: 500px;
-            top: 183px;
-            width: 100px;
-            height: 30px;
-            font-size: 20px;
-            color: #ec1800;
-            z-index: 10;
-        }
-		    #CY_Y4B{
-            position: absolute;
-            left: 300px;
-            top: 183px;
-            width: 100px;
-            height: 30px;
-            font-size: 20px;
-            color: #ec1800;
-            z-index: 10;
-        }
-		    #CY_Y5B{
-            position: absolute;
-            left: 200px;
-            top: 183px;
-            width: 100px;
-            height: 30px;
-            font-size: 20px;
-            color: #ec1800;
-            z-index: 10;
-        }
-        /*#readout_SimTime{*/
-            /*position: absolute;*/
-            /*left: 678px;*/
-            /*top: 30px;*/
-            /*width: 200px;*/
-            /*height: 200px;*/
-            /*font-size: 15px;*/
-            /*color: #00082b;*/
-            /*z-index: 10;*/
-        /*}*/
-        #readout_CY_Y1B {
-            position: absolute;
-            left: 980px;
-            top: 650px;
+            left: 483px;
+            top: 220px;
             width: 200px;
             height: 200px;
             font-size: 15px;
-            color: #00082b;
-            z-index: 10;
-        }
-       
-        #readout_CY_Y2B {
-            position: absolute;
-            left: 790px;
-            top: 650px;
-            width: 200px;
-            height: 200px;
-            font-size: 15px;
-            color: #00082b;
+            <%--color: #eef5fd;--%>
             z-index: 10;
         }
 
-      
-        #readout_CY_Y3B {
+        #readout_SC2 {
             position: absolute;
-            left: 500px;
-            top: 650px;
+            left: 483px;
+            top: 680px;
             width: 200px;
             height: 200px;
             font-size: 15px;
-            color: #00082b;
+            <%--color: #eef5fd;--%>
             z-index: 10;
         }
-        
-		#readout_CY_Y4B {
+        #readout_Y1 {
             position: absolute;
-            left: 300px;
-            top: 650px;
+            left: 983px;
+            top: 220px;
             width: 200px;
             height: 200px;
             font-size: 15px;
-            color: #00082b;
+            <%--color: #eef5fd;--%>
             z-index: 10;
         }
-       
-		#readout_CY_Y5B {
+        #readout_Y2 {
             position: absolute;
-            left: 150px;
-            top: 650px;
+            left: 983px;
+            top: 680px;
             width: 200px;
             height: 200px;
             font-size: 15px;
-            color: #00082b;
+            <%--color: #eef5fd;--%>
             z-index: 10;
         }
-       
         #test1 {
             position: absolute;
             left: 678px;
@@ -148,7 +73,7 @@
             width: 200px;
             height: 200px;
             font-size: 15px;
-            color: #eef5fd;
+            <%--color: #eef5fd;--%>
             z-index: 10;
         }
         #water_input {
@@ -158,7 +83,7 @@
             height: 200px;
             width: 30px;
             font-size: 20px;
-            color: #d9e4f5;
+            <%--color: #d9e4f5;--%>
             z-index: 10;
         }
 
@@ -167,7 +92,7 @@
             height: 50px;
             width: 100px;
             font-size: 18px;
-            color: #d9e4f5;
+            <%--color: #d9e4f5;--%>
             z-index: 10;
         }
 
@@ -216,71 +141,50 @@
     <ol class="breadcrumb">
     <li><a href="main.jsp">水量控制</a></li>
     <li><a href="main.jsp">水量增减</a></li>
-    <li class="active">臭氧接触池</li>
+    <li class="active">取水泵房</li>
     </ol>
 <div id="myPage">
     <div id="myContent" style="overflow: hidden">
         <div id="btn_group" class="btn-group-vertical btn-group-lg" role="group">
-            <button id="btn_start" class="btn btn-primary">暂停演示</button>
+            <button id="btn_start" class="btn btn-primary" value="0">暂停演示</button>
             <button id="btn_fast" class="btn btn-primary">加速</button>
             <button id="btn_slow" class="btn btn-primary">减速</button>
             <button id="btn_reset" class="btn btn-primary">重置</button>
-            <button  id="btn_last" class="btn btn-primary">上一个</button>
             <button  id="btn_next" class="btn btn-primary">下一个</button>
-			<button  id="btn_CYB" class="btn btn-primary">A面</button>
             <button  id="btn_home" class="btn btn-primary">平面图</button>
         </div>
-        <canvas id="canvas_CY" width="1600" height="753"></canvas>
+        <canvas id="canvas_QS" width="1600" height="753"></canvas>
+        <div id="SC01">
         <!--<div id="test1">-->
             <!--<p>测试cookie</p>-->
         <!--</div>-->
+        </div>
         <div id="GZW">
-              <p>臭氧接触池</p>
+              <p>取水泵房</p>
         </div>
-        <div id="CY_Y1B">
-              <p>堰1B</p>
-        </div>
-        
-        <div id="CY_Y2B">
-            <p>堰2B</p>
-        </div>
-        
-        <div id="CY_Y3B">
-            <p>堰3B</p>
-        </div>
-        
-		 <div id="CY_Y4B">
-            <p>堰4B</p>
-        </div>
-        
-		 <div id="CY_Y5B">
-            <p>堰5B</p>
-        </div>
-
         <div id="readout_SimTime">
             <p id="SimTime"></p>
             <p id="step"></p>
         </div>
-        <div id="readout_CY_Y2B">
-            <p id="readout_CY_Y2B_Vnow">水量: 0.0</p>
+        <div id="readout_SC1">
+            <p id="readout_SC1_Vnow">水量: 0.0</p>
         </div>
-      
-        <div id="readout_CY_Y1B">
-            <p id="readout_CY_Y1B_Vnow">水量: 0.0</p>
+        <div id="readout_SC2">
+        <p id="readout_SC2_Vnow">水量: 0.0</p>
         </div>
-     
-        <div id="readout_CY_Y3B">
-            <p id="readout_CY_Y3B_Vnow">水量: 0.0</p>
+        <div id="readout_Y1">
+            <p id="readout_Y1_Vnow">水量: 0.0</p>
         </div>
-       
-		<div id="readout_CY_Y4B">
-            <p id="readout_CY_Y4B_Vnow">水量: 0.0</p>
+        <div id="readout_Y2">
+            <p id="readout_Y2_Vnow">水量: 0.0</p>
         </div>
-      
-		<div id="readout_CY_Y5B">
-            <p id="readout_CY_Y5B_Vnow">水量: 0.0</p>
-        </div>
-     
+        <div id="water_input">进厂水</div>
+        <div id="flow1" class="flow">流量计</div>
+        <div id="flow2" class="flow">流量计</div>
+        <div id="upLevel1" class="upLevel">提升泵1</div>
+        <div id="upLevel2" class="upLevel">提升泵2</div>
+        <div id="upLevel3" class="upLevel">提升泵3</div>
+        <div id="upLevel4" class="upLevel">提升泵4</div>
     </div>
     <jsp:include page="down.jsp" />
     <script>

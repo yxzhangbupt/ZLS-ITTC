@@ -1,4 +1,4 @@
-    <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -16,7 +16,8 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/ocanvas-2.7.4.min.js"></script>
-    <script src="js/GN_FMControl.js"></script>
+    <script src="js/GN_FMControl_test.js"></script>
+
 
 
     <style>
@@ -391,7 +392,7 @@
     font-family: '微软雅黑','Arial';
     position: absolute;
     left:1472px;
-    top: -5px;
+    top: 315px;
     z-index: 999;
     font-size:15px;
     width:137px;
@@ -626,123 +627,12 @@
     top: 416px;
     z-index:999;
     }
-    #qsOut1{
-        position: absolute;
-        left:639px;
-        top: 200px;
-        z-index:999;
-        }
-        #qsOut2{
-        position: absolute;
-        left:780px;
-        top: 200px;
-        z-index:999;
-        }
-        #hh1In1{
-        position: absolute;
-        left:943px;
-        top: 328px;
-        z-index:999;
-        }#hh1In2{
-        position: absolute;
-        left:1031px;
-        top: 328px;
-        z-index:999;
-        }#hh2In{
-        position: absolute;
-        left:1200px;
-        top: 328px;
-        z-index:999;
-        }
-        #jjc1In{
-        position: absolute;
-        left:960px;
-        top: 419px;
-        z-index:999;
-        }
-        #jjc2In{
-        position: absolute;
-        left:1010px;
-        top: 419px;
-        z-index:999;
-        }
-        #jjc3In{
-        position: absolute;
-        left:1142px;
-        top: 540px;
-        z-index:999;
-        }
-        #hx1In{
-        position: absolute;
-        left:750px;
-        top: 540px;
-        z-index:999;
-        }
-        #hx2In{
-        position: absolute;
-        left:990px;
-        top: 540px;
-        z-index:999;
-        }
-        #vlIn{
-        position: absolute;
-        left:940px;
-        top: 625px;
-        z-index:999;
-        }
-
-        #Wmodel1{
-        position: absolute;
-        left:37px;
-        top: 5px;
-        z-index:999;
-        }
-        #btn_model1_1{
-        position:absolute;
-        top:40px;
-        left:30px;
-        z-index:999;
-        }
-        #btn_model1_2{
-        position:absolute;
-        top:80px;
-        left:30px;
-        z-index:999;
-        }
-        #btn_model1_3{
-        position:absolute;
-        top:120px;
-        left:30px;
-        z-index:999;
-        }#btn_model1_4{
-        position:absolute;
-        top:160px;
-        left:40px;
-        z-index:999;
-        }
     .name_FM{
     font-family: '微软雅黑','Arial';
     color:black;
     font-size: 15px;
     font-weight:bold;
     }
-        .flow{
-        font-family: '微软雅黑','Arial';
-        color:#8dd9ff;
-        font-size: 15px;
-        font-weight:bold;
-        border:1px solid #008fd7;
-        background:rgba(0,0,0,0.5);
-        <%--background-color:rgba(0,0,0,0.2);--%>
-        <%--background:red;--%>
-        width:40px;
-        }
-        .name_Model{
-        font-family: '微软雅黑','Arial';
-        color:#ff4400;
-        font-size: 15px;
-        font-weight:bold;
-        }
     #FMList{
     margin-left:144px;
     margin-top:10px;
@@ -754,106 +644,30 @@
     }
     </style>
     <script>
-    function changeImage(id){
     var image = document.getElementById(id);
+    function changeImage(id){
     if(image.src.match("image/y3.png"))
     image.src = "image/y2.png";
     else image.src = "image/y3.png";
     }
-    var read = 3600;
-    function changeInput(){
-    read =document.getElementById("read").value ;
+    var read =document.getElementById("read").value ;
     var textFeild =document.getElementById("write");
+    function changeInput(){
     textFeild.innerHTML="进水量："+read+" m3/h";
-    computeAll();
-    write();
     }
     function setOpenDgree(id){
-        var openDgree = 0;
-        var num = id.substr(2);
-        var table =document.getElementById(num);
-        var image = document.getElementById(id);
-        <%--var openDgree = prompt("请输入"+id+"开启度   (输入范围0-100的整数：0为关闭，1为完全开启):","0");--%>
-        <%--if(openDgree<0||openDgree>100||isNaN(openDgree)){--%>
-            <%--alert("输入有误！请重新输入！");--%>
-            <%--return;--%>
-        <%--}--%>
-        <%--else if(openDgree==null){--%>
-            <%--return;--%>
-         <%--}--%>
-        if (openDgree==0){
-             table.innerHTML=openDgree+"%";
-             image.src = "image/y2.png";
-             $('#'+num).toggleClass('danger');
-    return;
-        }
-        else if(openDgree==100)
-    {
-    table.innerHTML=openDgree+"%";
-            image.src = "image/y3.png";
-             $('#'+num).toggleClass('info');
-    return;
-
-    }
-
-        else{
-    table.innerHTML=openDgree+"%";
-             image.src = "image/y1.png";
-             $('#'+num).toggleClass('warning');
-    return;
-
-    }
-    }
-        var qsOut1;
-        var qsOut2;
-        var hh1In1;
-        var hh1In2;
-        var hh2In;
-        var hh1Out1;
-        var hh1Out2;
-        var hh2Out;
-        var jjc1In;
-        var jjc2In;
-        var jjc3In;
-        var jjc1Out;
-        var jjc2Out;
-        var jjc3Out;
-        var hx1In;
-        var hx2In;
-        var hx1Out;
-        var hx2Out;
-        var vlIn;
-        var vlOut;
-        var cy1In;
-        var cy2In;
-        var cy1Out;
-        var cy2Out;
-        var tc1In;
-        var tc1Out;
-        var tc2In;
-        var tc2Out;
-        var qsc1In;
-        var qsc1Out;
-        var qsc2In;
-        var qsc2Out;
-        var qsc3In;
-        var qsc3Out;
-        var qsc4In;
-        var qsc4Out;
-    function clearOpenDgree(id){
-    var openDgree = 100;
     var num = id.substr(2);
     var table =document.getElementById(num);
-    var image =document.getElementById(id);
-    <%--var openDgree = prompt("请输入"+id+"开启度   (输入范围0-100的整数：0为关闭，1为完全开启):","0");--%>
-    <%--if(openDgree<0||openDgree>100||isNaN(openDgree)){--%>
-    <%--alert("输入有误！请重新输入！");--%>
-    <%--return;--%>
-    <%--}--%>
-    <%--else if(openDgree==null){--%>
-    <%--return;--%>
-    <%--}--%>
-    if (openDgree==0){
+    var image = document.getElementById(id);
+    var openDgree = prompt("请输入"+id+"开启度   (输入范围0-100的整数：0为关闭，1为完全开启):","0");
+    if(openDgree<0||openDgree>100||isNaN(openDgree)){
+    alert("输入有误！请重新输入！");
+    return;
+    }
+    else if(openDgree==null){
+    return;
+    }
+    else if (openDgree==0){
     table.innerHTML=openDgree+"%";
     image.src = "image/y2.png";
     $('#'+num).toggleClass('danger');
@@ -865,112 +679,18 @@
     image.src = "image/y3.png";
     $('#'+num).toggleClass('info');
     return;
+
     }
     else{
     table.innerHTML=openDgree+"%";
     image.src = "image/y1.png";
     $('#'+num).toggleClass('warning');
     return;
-    }
-    }
-    var model1=4;
-    var model2=1;
 
-    function chose1(c){
-        model1 = c;
-        computeAll();
-        write();
-        }
-    function computeAll(){
-        compute1(model1);
     }
-    function compute1(c){
-        clearModle1();
-        changeModle1(c);
-        qsOut1=qsOut2=read/2;
-        if(c==1){
-        hh1In1=0;
-        hh1In2=hh2In=(qsOut1+qsOut2)/2;
-        }
-        else if(c==2){
-        hh1In2=0;
-        hh1In1=hh2In=(qsOut1+qsOut2)/2;
-        }
-        else if(c==3){
-        hh2In=0;
-        hh1In2=hh1In1=(qsOut1+qsOut2)/2;
-        }
-        else if(c==4){
-        hh1In2=hh1In1=hh2In=(qsOut1+qsOut2)/3;
-        }
-        hh1Out1=hh1In1;
-        hh1Out2=hh1In2;
-        hh2Out=hh2In;
-        jjc1In=hh1Out1;
-        jjc1Out = jjc1In;
-        jjc2In=hh1Out2;
-        jjc2Out = jjc2In;
-        jjc3In=hh2Out;
-        jjc3Out = jjc3In;
-        hx1In=hx2In=(jjc1Out+jjc2Out)/2;
-        vlIn = jjc3Out;
-        hx1Out=hx1In;
-        hx2Out=hx2In;
-        vlOut=vlIn;
     }
-    function write(){
-        document.getElementById("qsOut1").innerHTML=qsOut1;
-        document.getElementById("qsOut2").innerHTML=qsOut2;
-        document.getElementById("hh1In1").innerHTML=hh1In1;
-        document.getElementById("hh1In2").innerHTML=hh1In2;
-        document.getElementById("hh2In").innerHTML=hh2In;
-        document.getElementById("jjc1In").innerHTML=jjc1In;
-        document.getElementById("jjc2In").innerHTML=jjc2In;
-        document.getElementById("jjc3In").innerHTML=jjc3In;
-        document.getElementById("hx1In").innerHTML=hx1In;
-        document.getElementById("hx2In").innerHTML=hx2In;
-        document.getElementById("vlIn").innerHTML=vlIn;
-        }
-    function clearModle1(){
-        clearOpenDgree("FM05");
-        clearOpenDgree("FM06");
-        clearOpenDgree("FM07");
-        clearOpenDgree("FM09");
-        clearOpenDgree("FM010");
-        clearOpenDgree("FM065");
-        clearOpenDgree("FM062");
-        clearOpenDgree("FM066");
-        clearOpenDgree("FM069");
-        clearOpenDgree("FM015");
-        clearOpenDgree("FM045");
-        clearOpenDgree("FM014");
-        clearOpenDgree("FM016");
-        clearOpenDgree("FM068");
-        clearOpenDgree("FM067");
-    }
-    function changeModle1(c){
-    if(c==1){
-    setOpenDgree("FM062");
-    setOpenDgree("FM045");
-    setOpenDgree("FM068");
-    }
-    else if(c==2){
-    setOpenDgree("FM069");
-    setOpenDgree("FM015");
-    setOpenDgree("FM068");
-    }
-    else if(c==3){
-    setOpenDgree("FM065");
-    setOpenDgree("FM066");
-    setOpenDgree("FM068");
-    setOpenDgree("FM067");
-    }
-    else if(c==4){
-    setOpenDgree("FM068");
-        }
-    }
-
     </script>
+    <script src="js/Compute.js"></script>
 </head>
 <body>
     <jsp:include page="top.jsp" />
@@ -979,7 +699,6 @@
     <li class="active">水量增减</li>
     </ol>
 <div id="myPage">
-    <div id="myContent" style="overflow: hidden">
         <canvas id="canvas_QS" width="1600" height="753"></canvas>
         <div id="SC01">
         <!--<div id="test1">-->
@@ -999,8 +718,8 @@
             <p><input id="read" type="text"size="10px"/>&nbsp;m3/h</p>
             <button id="btn_submit" class="btn btn-info btn-sm btn_main" value="0" onclick="changeInput()">提交</button>
         </div>
-        <div id="qs1" calss = "waterOut">
-
+        <div id="FMhelp" class="name_ob">
+            单击阀门设置阀门开启度！
         </div>
     <a href="GN_getWater.jsp" id="name_QS"  style="text-decoration: none" class="name_ob">取水泵房</a>
     <a href="GN_JJ.jsp" id="name_JJC1" style="text-decoration: none" class="name_ob">1#机加池</a>
@@ -1020,44 +739,124 @@
     <a href="GN_QingS.jsp" id="name_QSC3" class="name_ob" style="text-decoration: none">2#清水池</a>
     <a href="GN_QingS.jsp" id="name_QSC4" class="name_ob" style="text-decoration: none">4#清水池</a>
 
-    <img id="FM05" src="image/y3.png" onclick="setOpenDgree('FM05')" hover="heighlight()">
-    <img id="FM06" src="image/y3.png" onclick="setOpenDgree('FM06')">
-    <img id="FM07" src="image/y3.png" onclick="setOpenDgree('FM07')">
-    <img id="FM09" src="image/y3.png" onclick="setOpenDgree('FM09')">
-    <img id="FM010" src="image/y3.png" onclick="setOpenDgree('FM010')">
-    <img id="FM065" src="image/y3.png" onclick="setOpenDgree('FM065')">
-    <img id="FM062" src="image/y3.png" onclick="setOpenDgree('FM062')">
-    <img id="FM045" src="image/y3.png" onclick="setOpenDgree('FM045')">
-    <img id="FM014" src="image/y3.png" onclick="setOpenDgree('FM014')">
-    <img id="FM015" src="image/y3.png" onclick="setOpenDgree('FM015')">
-    <img id="FM069" src="image/y3.png" onclick="setOpenDgree('FM069')">
-    <img id="FM066" src="image/y3.png" onclick="setOpenDgree('FM066')">
-    <img id="FM016" src="image/y3.png" onclick="setOpenDgree('FM016')">
-    <img id="FM068" src="image/y3.png" onclick="setOpenDgree('FM068')">
-    <img id="FM067" src="image/y3.png" onclick="setOpenDgree('FM067')">
-    <img id="FM017" src="image/y3.png" onclick="setOpenDgree('FM017')">
-    <img id="FM018" src="image/y3.png" onclick="setOpenDgree('FM018')">
-    <img id="FM019" src="image/y3.png" onclick="setOpenDgree('FM019')">
-    <img id="FM020" src="image/y3.png" onclick="setOpenDgree('FM020')">
-    <img id="FM052" src="image/y3.png" onclick="setOpenDgree('FM052')">
-    <img id="FM056" src="image/y3.png" onclick="setOpenDgree('FM056')">
-    <img id="FM053" src="image/y3.png" onclick="setOpenDgree('FM053')">
-    <img id="FM054" src="image/y3.png" onclick="setOpenDgree('FM054')">
-    <img id="FM057" src="image/y3.png" onclick="setOpenDgree('FM057')">
-    <img id="FM058" src="image/y3.png" onclick="setOpenDgree('FM058')">
-    <img id="FM059" src="image/y3.png" onclick="setOpenDgree('FM059')">
-    <img id="FM021" src="image/y3.png" onclick="setOpenDgree('FM021')">
-    <img id="FM022" src="image/y3.png" onclick="setOpenDgree('FM022')">
-    <img id="FM046" src="image/y3.png" onclick="setOpenDgree('FM046')">
-    <img id="FM024" src="image/y3.png" onclick="setOpenDgree('FM024')">
-    <img id="FM044" src="image/y3.png" onclick="setOpenDgree('FM044')">
-    <img id="FM055" src="image/y3.png" onclick="setOpenDgree('FM055')">
-    <img id="FM026" src="image/y3.png" onclick="setOpenDgree('FM026')">
-    <img id="FM047" src="image/y3.png" onclick="setOpenDgree('FM047')">
-    <img id="FM048" src="image/y3.png" onclick="setOpenDgree('FM048')">
-    <img id="FM049" src="image/y3.png" onclick="setOpenDgree('FM049')">
-    <img id="FM050" src="image/y3.png" onclick="setOpenDgree('FM050')">
-    <img id="FM051" src="image/y3.png" onclick="setOpenDgree('FM051')">
+    <img id="FM05" src="image/y3.png" onclick="setOpenDgree('FM05')" hover="heighlight()" onMouseOver="show(this,'FMDispaly05');" onMouseOut="hide(this,'FMDispaly05')">
+    <img id="FM06" src="image/y3.png" onclick="setOpenDgree('FM06')" onMouseOver="show(this,'FMDispaly06');" onMouseOut="hide(this,'FMDispaly06')">
+    <img id="FM07" src="image/y3.png" onclick="setOpenDgree('FM07')" onMouseOver="show(this,'FMDispaly07');" onMouseOut="hide(this,'FMDispaly07')">
+    <img id="FM09" src="image/y3.png" onclick="setOpenDgree('FM09')" onMouseOver="show(this,'FMDispaly09');" onMouseOut="hide(this,'FMDispaly09')">
+    <img id="FM010" src="image/y3.png" onclick="setOpenDgree('FM010')" onMouseOver="show(this,'FMDispaly010');" onMouseOut="hide(this,'FMDispaly010')">
+    <img id="FM065" src="image/y3.png" onclick="setOpenDgree('FM065')" onMouseOver="show(this,'FMDispaly065');" onMouseOut="hide(this,'FMDispaly065')">
+    <img id="FM062" src="image/y3.png" onclick="setOpenDgree('FM062')" onMouseOver="show(this,'FMDispaly062');" onMouseOut="hide(this,'FMDispaly062')">
+    <img id="FM045" src="image/y3.png" onclick="setOpenDgree('FM045')" onMouseOver="show(this,'FMDispaly045');" onMouseOut="hide(this,'FMDispaly045')">
+    <img id="FM014" src="image/y3.png" onclick="setOpenDgree('FM014')" onMouseOver="show(this,'FMDispaly014');" onMouseOut="hide(this,'FMDispaly014')">
+    <img id="FM015" src="image/y3.png" onclick="setOpenDgree('FM015')" onMouseOver="show(this,'FMDispaly015');" onMouseOut="hide(this,'FMDispaly015')">
+    <img id="FM069" src="image/y3.png" onclick="setOpenDgree('FM069')" onMouseOver="show(this,'FMDispaly069');" onMouseOut="hide(this,'FMDispaly069')">
+    <img id="FM066" src="image/y3.png" onclick="setOpenDgree('FM066')" onMouseOver="show(this,'FMDispaly066');" onMouseOut="hide(this,'FMDispaly066')">
+    <img id="FM016" src="image/y3.png" onclick="setOpenDgree('FM016')" onMouseOver="show(this,'FMDispaly016');" onMouseOut="hide(this,'FMDispaly016')">
+    <img id="FM068" src="image/y3.png" onclick="setOpenDgree('FM068')" onMouseOver="show(this,'FMDispaly068');" onMouseOut="hide(this,'FMDispaly068')">
+    <img id="FM067" src="image/y3.png" onclick="setOpenDgree('FM067')" onMouseOver="show(this,'FMDispaly067');" onMouseOut="hide(this,'FMDispaly067')">
+    <img id="FM017" src="image/y3.png" onclick="setOpenDgree('FM017')" onMouseOver="show(this,'FMDispaly017');" onMouseOut="hide(this,'FMDispaly017')">
+    <img id="FM018" src="image/y3.png" onclick="setOpenDgree('FM018')" onMouseOver="show(this,'FMDispaly018');" onMouseOut="hide(this,'FMDispaly018')">
+    <img id="FM019" src="image/y3.png" onclick="setOpenDgree('FM019')" onMouseOver="show(this,'FMDispaly019');" onMouseOut="hide(this,'FMDispaly019')">
+    <img id="FM020" src="image/y3.png" onclick="setOpenDgree('FM020')" onMouseOver="show(this,'FMDispaly020');" onMouseOut="hide(this,'FMDispaly020')">
+    <img id="FM052" src="image/y3.png" onclick="setOpenDgree('FM052')" onMouseOver="show(this,'FMDispaly052');" onMouseOut="hide(this,'FMDispaly052')">
+    <img id="FM056" src="image/y3.png" onclick="setOpenDgree('FM056')" onMouseOver="show(this,'FMDispaly056');" onMouseOut="hide(this,'FMDispaly056')">
+    <img id="FM053" src="image/y3.png" onclick="setOpenDgree('FM053')" onMouseOver="show(this,'FMDispaly053');" onMouseOut="hide(this,'FMDispaly053')">
+    <img id="FM054" src="image/y3.png" onclick="setOpenDgree('FM054')" onMouseOver="show(this,'FMDispaly054');" onMouseOut="hide(this,'FMDispaly054')">
+    <img id="FM057" src="image/y3.png" onclick="setOpenDgree('FM057')" onMouseOver="show(this,'FMDispaly057');" onMouseOut="hide(this,'FMDispaly057')">
+    <img id="FM058" src="image/y3.png" onclick="setOpenDgree('FM058')" onMouseOver="show(this,'FMDispaly058');" onMouseOut="hide(this,'FMDispaly058')">
+    <img id="FM059" src="image/y3.png" onclick="setOpenDgree('FM059')" onMouseOver="show(this,'FMDispaly059');" onMouseOut="hide(this,'FMDispaly059')">
+    <img id="FM021" src="image/y3.png" onclick="setOpenDgree('FM021')" onMouseOver="show(this,'FMDispaly021');" onMouseOut="hide(this,'FMDispaly021')">
+    <img id="FM022" src="image/y3.png" onclick="setOpenDgree('FM022')" onMouseOver="show(this,'FMDispaly022');" onMouseOut="hide(this,'FMDispaly022')">
+    <img id="FM046" src="image/y3.png" onclick="setOpenDgree('FM046')" onMouseOver="show(this,'FMDispaly046');" onMouseOut="hide(this,'FMDispaly046')">
+    <img id="FM024" src="image/y3.png" onclick="setOpenDgree('FM024')" onMouseOver="show(this,'FMDispaly024');" onMouseOut="hide(this,'FMDispaly024')">
+    <img id="FM044" src="image/y3.png" onclick="setOpenDgree('FM044')" onMouseOver="show(this,'FMDispaly044');" onMouseOut="hide(this,'FMDispaly044')">
+    <img id="FM055" src="image/y3.png" onclick="setOpenDgree('FM055')" onMouseOver="show(this,'FMDispaly055');" onMouseOut="hide(this,'FMDispaly055')">
+    <img id="FM026" src="image/y3.png" onclick="setOpenDgree('FM026')" onMouseOver="show(this,'FMDispaly026');" onMouseOut="hide(this,'FMDispaly026')">
+    <img id="FM047" src="image/y3.png" onclick="setOpenDgree('FM047')" onMouseOver="show(this,'FMDispaly047');" onMouseOut="hide(this,'FMDispaly047')">
+    <img id="FM048" src="image/y3.png" onclick="setOpenDgree('FM048')" onMouseOver="show(this,'FMDispaly048');" onMouseOut="hide(this,'FMDispaly048')">
+    <img id="FM049" src="image/y3.png" onclick="setOpenDgree('FM049')" onMouseOver="show(this,'FMDispaly049');" onMouseOut="hide(this,'FMDispaly049')">
+    <img id="FM050" src="image/y3.png" onclick="setOpenDgree('FM050')" onMouseOver="show(this,'FMDispaly050');" onMouseOut="hide(this,'FMDispaly050')">
+    <img id="FM051" src="image/y3.png" onclick="setOpenDgree('FM051')" onMouseOver="show(this,'FMDispaly051');" onMouseOut="hide(this,'FMDispaly051')">
+
+    <div id="FMDispaly05" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly06" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly07" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly09" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly010" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly065" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly062" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly045" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly014" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly015" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly069" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly066" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly016" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly068" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly067" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly017" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly018" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly019" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly020" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly052" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly056" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly053" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly054" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly057" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly058" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly059" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly021" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly022" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly046" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly024" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly044" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly055" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly026" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly047" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly048" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly049" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly050" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+    <div id="FMDispaly051" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+    </div>
+
+
+
 
     <p id="WFM05" class="name_FM">05#</p>
     <p id="WFM06" class="name_FM">06#</p>
@@ -1097,36 +896,6 @@
     <p id="WFM049" class="name_FM">049#</p>
     <p id="WFM050" class="name_FM">050#</p>
     <p id="WFM051" class="name_FM">051#</p>
-
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut2" class="flow"></p>
-        <p id="hh1In1" class="flow"></p>
-        <p id="hh1In2" class="flow"></p>
-        <p id="hh2In" class="flow"></p>
-        <p id="jjc1In" class="flow"></p>
-        <p id="jjc2In" class="flow"></p>
-        <p id="jjc3In" class="flow"></p>
-        <p id="hx1In" class="flow"></p>
-        <p id="hx2In" class="flow"></p>
-        <p id="vlIn" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="Wmodel1" class="name_Model">机加池模式</p>
-        <button id="btn_model1_1" class="btn btn-info btn-sm btn_main"  onclick="chose1(1)">关闭机加池1</button>
-        <button id="btn_model1_2" class="btn btn-info btn-sm btn_main"  onclick="chose1(2)">关闭机加池2</button>
-        <button id="btn_model1_3" class="btn btn-info btn-sm btn_main"  onclick="chose1(3)">关闭机加池3</button>
-        <button id="btn_model1_4" class="btn btn-info btn-sm btn_main"  onclick="chose1(4)">开启所有</button>
     </div>
     <div id="FMList">
 
