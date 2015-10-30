@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -391,7 +391,7 @@
     font-family: '微软雅黑','Arial';
     position: absolute;
     left:1472px;
-    top: 315px;
+    top: -5px;
     z-index: 999;
     font-size:15px;
     width:137px;
@@ -419,7 +419,7 @@
     #WFM05{
     position: absolute;
     left:695px;
-    top: 106px;
+     top: 106px;
     z-index:999;
     }
     #WFM06{
@@ -626,12 +626,123 @@
     top: 416px;
     z-index:999;
     }
+    #qsOut1{
+        position: absolute;
+        left:639px;
+        top: 200px;
+        z-index:999;
+        }
+        #qsOut2{
+        position: absolute;
+        left:780px;
+        top: 200px;
+        z-index:999;
+        }
+        #hh1In1{
+        position: absolute;
+        left:943px;
+        top: 328px;
+        z-index:999;
+        }#hh1In2{
+        position: absolute;
+        left:1031px;
+        top: 328px;
+        z-index:999;
+        }#hh2In{
+        position: absolute;
+        left:1200px;
+        top: 328px;
+        z-index:999;
+        }
+        #jjc1In{
+        position: absolute;
+        left:960px;
+        top: 419px;
+        z-index:999;
+        }
+        #jjc2In{
+        position: absolute;
+        left:1010px;
+        top: 419px;
+        z-index:999;
+        }
+        #jjc3In{
+        position: absolute;
+        left:1142px;
+        top: 540px;
+        z-index:999;
+        }
+        #hx1In{
+        position: absolute;
+        left:750px;
+        top: 540px;
+        z-index:999;
+        }
+        #hx2In{
+        position: absolute;
+        left:990px;
+        top: 540px;
+        z-index:999;
+        }
+        #vlIn{
+        position: absolute;
+        left:940px;
+        top: 625px;
+        z-index:999;
+        }
+
+        #Wmodel1{
+        position: absolute;
+        left:37px;
+        top: 5px;
+        z-index:999;
+        }
+        #btn_model1_1{
+        position:absolute;
+        top:40px;
+        left:30px;
+        z-index:999;
+        }
+        #btn_model1_2{
+        position:absolute;
+        top:80px;
+        left:30px;
+        z-index:999;
+        }
+        #btn_model1_3{
+        position:absolute;
+        top:120px;
+        left:30px;
+        z-index:999;
+        }#btn_model1_4{
+        position:absolute;
+        top:160px;
+        left:40px;
+        z-index:999;
+        }
     .name_FM{
     font-family: '微软雅黑','Arial';
     color:black;
     font-size: 15px;
     font-weight:bold;
     }
+        .flow{
+        font-family: '微软雅黑','Arial';
+        color:#8dd9ff;
+        font-size: 15px;
+        font-weight:bold;
+        border:1px solid #008fd7;
+        background:rgba(0,0,0,0.5);
+        <%--background-color:rgba(0,0,0,0.2);--%>
+        <%--background:red;--%>
+        width:40px;
+        }
+        .name_Model{
+        font-family: '微软雅黑','Arial';
+        color:#ff4400;
+        font-size: 15px;
+        font-weight:bold;
+        }
     #FMList{
     margin-left:144px;
     margin-top:10px;
@@ -649,24 +760,28 @@
     image.src = "image/y2.png";
     else image.src = "image/y3.png";
     }
+    var read = 3600;
     function changeInput(){
-    var read =document.getElementById("read").value ;
+    read =document.getElementById("read").value ;
     var textFeild =document.getElementById("write");
     textFeild.innerHTML="进水量："+read+" m3/h";
+    computeAll();
+    write();
     }
     function setOpenDgree(id){
+        var openDgree = 0;
         var num = id.substr(2);
         var table =document.getElementById(num);
         var image = document.getElementById(id);
-        var openDgree = prompt("请输入"+id+"开启度   (输入范围0-100的整数：0为关闭，1为完全开启):","0");
-        if(openDgree<0||openDgree>100||isNaN(openDgree)){
-            alert("输入有误！请重新输入！");
-            return;
-        }
-        else if(openDgree==null){
-            return;
-         }
-        else if (openDgree==0){
+        <%--var openDgree = prompt("请输入"+id+"开启度   (输入范围0-100的整数：0为关闭，1为完全开启):","0");--%>
+        <%--if(openDgree<0||openDgree>100||isNaN(openDgree)){--%>
+            <%--alert("输入有误！请重新输入！");--%>
+            <%--return;--%>
+        <%--}--%>
+        <%--else if(openDgree==null){--%>
+            <%--return;--%>
+         <%--}--%>
+        if (openDgree==0){
              table.innerHTML=openDgree+"%";
              image.src = "image/y2.png";
              $('#'+num).toggleClass('danger');
@@ -680,6 +795,7 @@
     return;
 
     }
+
         else{
     table.innerHTML=openDgree+"%";
              image.src = "image/y1.png";
@@ -688,6 +804,172 @@
 
     }
     }
+        var qsOut1;
+        var qsOut2;
+        var hh1In1;
+        var hh1In2;
+        var hh2In;
+        var hh1Out1;
+        var hh1Out2;
+        var hh2Out;
+        var jjc1In;
+        var jjc2In;
+        var jjc3In;
+        var jjc1Out;
+        var jjc2Out;
+        var jjc3Out;
+        var hx1In;
+        var hx2In;
+        var hx1Out;
+        var hx2Out;
+        var vlIn;
+        var vlOut;
+        var cy1In;
+        var cy2In;
+        var cy1Out;
+        var cy2Out;
+        var tc1In;
+        var tc1Out;
+        var tc2In;
+        var tc2Out;
+        var qsc1In;
+        var qsc1Out;
+        var qsc2In;
+        var qsc2Out;
+        var qsc3In;
+        var qsc3Out;
+        var qsc4In;
+        var qsc4Out;
+    function clearOpenDgree(id){
+    var openDgree = 100;
+    var num = id.substr(2);
+    var table =document.getElementById(num);
+    var image =document.getElementById(id);
+    <%--var openDgree = prompt("请输入"+id+"开启度   (输入范围0-100的整数：0为关闭，1为完全开启):","0");--%>
+    <%--if(openDgree<0||openDgree>100||isNaN(openDgree)){--%>
+    <%--alert("输入有误！请重新输入！");--%>
+    <%--return;--%>
+    <%--}--%>
+    <%--else if(openDgree==null){--%>
+    <%--return;--%>
+    <%--}--%>
+    if (openDgree==0){
+    table.innerHTML=openDgree+"%";
+    image.src = "image/y2.png";
+    $('#'+num).toggleClass('danger');
+    return;
+    }
+    else if(openDgree==100)
+    {
+    table.innerHTML=openDgree+"%";
+    image.src = "image/y3.png";
+    $('#'+num).toggleClass('info');
+    return;
+    }
+    else{
+    table.innerHTML=openDgree+"%";
+    image.src = "image/y1.png";
+    $('#'+num).toggleClass('warning');
+    return;
+    }
+    }
+    var model1=4;
+    var model2=1;
+
+    function chose1(c){
+        model1 = c;
+        computeAll();
+        write();
+        }
+    function computeAll(){
+        compute1(model1);
+    }
+    function compute1(c){
+        clearModle1();
+        changeModle1(c);
+        qsOut1=qsOut2=read/2;
+        if(c==1){
+        hh1In1=0;
+        hh1In2=hh2In=(qsOut1+qsOut2)/2;
+        }
+        else if(c==2){
+        hh1In2=0;
+        hh1In1=hh2In=(qsOut1+qsOut2)/2;
+        }
+        else if(c==3){
+        hh2In=0;
+        hh1In2=hh1In1=(qsOut1+qsOut2)/2;
+        }
+        else if(c==4){
+        hh1In2=hh1In1=hh2In=(qsOut1+qsOut2)/3;
+        }
+        hh1Out1=hh1In1;
+        hh1Out2=hh1In2;
+        hh2Out=hh2In;
+        jjc1In=hh1Out1;
+        jjc1Out = jjc1In;
+        jjc2In=hh1Out2;
+        jjc2Out = jjc2In;
+        jjc3In=hh2Out;
+        jjc3Out = jjc3In;
+        hx1In=hx2In=(jjc1Out+jjc2Out)/2;
+        vlIn = jjc3Out;
+        hx1Out=hx1In;
+        hx2Out=hx2In;
+        vlOut=vlIn;
+    }
+    function write(){
+        document.getElementById("qsOut1").innerHTML=qsOut1;
+        document.getElementById("qsOut2").innerHTML=qsOut2;
+        document.getElementById("hh1In1").innerHTML=hh1In1;
+        document.getElementById("hh1In2").innerHTML=hh1In2;
+        document.getElementById("hh2In").innerHTML=hh2In;
+        document.getElementById("jjc1In").innerHTML=jjc1In;
+        document.getElementById("jjc2In").innerHTML=jjc2In;
+        document.getElementById("jjc3In").innerHTML=jjc3In;
+        document.getElementById("hx1In").innerHTML=hx1In;
+        document.getElementById("hx2In").innerHTML=hx2In;
+        document.getElementById("vlIn").innerHTML=vlIn;
+        }
+    function clearModle1(){
+        clearOpenDgree("FM05");
+        clearOpenDgree("FM06");
+        clearOpenDgree("FM07");
+        clearOpenDgree("FM09");
+        clearOpenDgree("FM010");
+        clearOpenDgree("FM065");
+        clearOpenDgree("FM062");
+        clearOpenDgree("FM066");
+        clearOpenDgree("FM069");
+        clearOpenDgree("FM015");
+        clearOpenDgree("FM045");
+        clearOpenDgree("FM014");
+        clearOpenDgree("FM016");
+        clearOpenDgree("FM068");
+        clearOpenDgree("FM067");
+    }
+    function changeModle1(c){
+    if(c==1){
+    setOpenDgree("FM062");
+    setOpenDgree("FM045");
+    setOpenDgree("FM068");
+    }
+    else if(c==2){
+    setOpenDgree("FM069");
+    setOpenDgree("FM015");
+    setOpenDgree("FM068");
+    }
+    else if(c==3){
+    setOpenDgree("FM065");
+    setOpenDgree("FM066");
+    setOpenDgree("FM068");
+    setOpenDgree("FM067");
+    }
+    else if(c==4){
+    setOpenDgree("FM068");
+        }
+    }
+
     </script>
 </head>
 <body>
@@ -698,13 +980,6 @@
     </ol>
 <div id="myPage">
     <div id="myContent" style="overflow: hidden">
-        <div id="btn_group" class="btn-group-vertical btn-group-lg" role="group">
-            <button id="btn_start" class="btn btn-primary" value="0">开始演示</button>
-            <button id="btn_fast" class="btn btn-primary">加速</button>
-            <button id="btn_slow" class="btn btn-primary">减速</button>
-            <button id="btn_zero" class="btn btn-primary">默认速度</button>
-            <button id="btn_reset" class="btn btn-primary">重置</button>
-        </div>
         <canvas id="canvas_QS" width="1600" height="753"></canvas>
         <div id="SC01">
         <!--<div id="test1">-->
@@ -724,8 +999,8 @@
             <p><input id="read" type="text"size="10px"/>&nbsp;m3/h</p>
             <button id="btn_submit" class="btn btn-info btn-sm btn_main" value="0" onclick="changeInput()">提交</button>
         </div>
-        <div id="FMhelp" class="name_ob">
-            单击阀门设置阀门开启度！
+        <div id="qs1" calss = "waterOut">
+
         </div>
     <a href="GN_getWater.jsp" id="name_QS"  style="text-decoration: none" class="name_ob">取水泵房</a>
     <a href="GN_JJ.jsp" id="name_JJC1" style="text-decoration: none" class="name_ob">1#机加池</a>
@@ -822,6 +1097,36 @@
     <p id="WFM049" class="name_FM">049#</p>
     <p id="WFM050" class="name_FM">050#</p>
     <p id="WFM051" class="name_FM">051#</p>
+
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut2" class="flow"></p>
+        <p id="hh1In1" class="flow"></p>
+        <p id="hh1In2" class="flow"></p>
+        <p id="hh2In" class="flow"></p>
+        <p id="jjc1In" class="flow"></p>
+        <p id="jjc2In" class="flow"></p>
+        <p id="jjc3In" class="flow"></p>
+        <p id="hx1In" class="flow"></p>
+        <p id="hx2In" class="flow"></p>
+        <p id="vlIn" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="qsOut1" class="flow"></p>
+        <p id="Wmodel1" class="name_Model">机加池模式</p>
+        <button id="btn_model1_1" class="btn btn-info btn-sm btn_main"  onclick="chose1(1)">关闭机加池1</button>
+        <button id="btn_model1_2" class="btn btn-info btn-sm btn_main"  onclick="chose1(2)">关闭机加池2</button>
+        <button id="btn_model1_3" class="btn btn-info btn-sm btn_main"  onclick="chose1(3)">关闭机加池3</button>
+        <button id="btn_model1_4" class="btn btn-info btn-sm btn_main"  onclick="chose1(4)">开启所有</button>
     </div>
     <div id="FMList">
 

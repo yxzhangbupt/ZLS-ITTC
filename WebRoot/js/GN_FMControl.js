@@ -331,60 +331,60 @@ oCanvas.domReady(function(){
 
 
 
-    var flag = 0;
-    var step = 5;
-    $("button#btn_start").click(function(){
-        if(flag==1){
-            flag=0;
-            $(this).text("开始演示");}
-        else{
-            flag=1;
-            $(this).text("暂停演示");}
-    });
-    $("#btn_fast").click(function(){
-        step += 5;
-    });
-    $("#btn_slow").click(function(){
-        step -= 5;
-    });
-    $("#btn_zero").click(function(){
-        step = 5;
-    });
-    $("#btn_reset").click(function(){
-        t=0;
-        flag=0;
-        step = 5;
-        $("#btn_start").text("开始演示");
-        document.cookie="time=0";
-    });
-    var strCookie =document.cookie;
-    //将多cookie切割为多个名/值对
-    var arrCookie=strCookie.split(";");
-    var t;
-    //遍历cookie数组，处理每个cookie对
-    for(var i=0;i<arrCookie.length;i++){
-        var arr=arrCookie[i].split("=");
-        //找到名称为time的cookie，并返回它的值
-        if("time"==arr[0]){
-            t = parseFloat(arr[1]);
-            break;
-        }
-    }
-    canvas.setLoop(function () {
-//        var testCookie =document.cookie;
-//        document.getElementById("test1").innerHTML="cookies:"+testCookie;
-        document.getElementById("SimTime").innerHTML="仿真时间: "+t+"秒";
-        document.getElementById("step").innerHTML="步长: "+step+"秒";
-
-        if(flag==1){
-            t+=step;
-        }
-        else{
-            t+=0;
-        }
-        var writeCookie="time="+t;
-        document.cookie=writeCookie;
-
-        canvas.redraw();
-    }).start();
+//    var flag = 0;
+//    var step = 5;
+//    $("button#btn_start").click(function(){
+//        if(flag==1){
+//            flag=0;
+//            $(this).text("开始演示");}
+//        else{
+//            flag=1;
+//            $(this).text("暂停演示");}
+//    });
+//    $("#btn_fast").click(function(){
+//        step += 5;
+//    });
+//    $("#btn_slow").click(function(){
+//        step -= 5;
+//    });
+//    $("#btn_zero").click(function(){
+//        step = 5;
+//    });
+//    $("#btn_reset").click(function(){
+//        t=0;
+//        flag=0;
+//        step = 5;
+//        $("#btn_start").text("开始演示");
+//        document.cookie="time=0";
+//    });
+//    var strCookie =document.cookie;
+//    //将多cookie切割为多个名/值对
+//    var arrCookie=strCookie.split(";");
+//    var t;
+//    //遍历cookie数组，处理每个cookie对
+//    for(var i=0;i<arrCookie.length;i++){
+//        var arr=arrCookie[i].split("=");
+//        //找到名称为time的cookie，并返回它的值
+//        if("time"==arr[0]){
+//            t = parseFloat(arr[1]);
+//            break;
+//        }
+//    }
+//    canvas.setLoop(function () {
+////        var testCookie =document.cookie;
+////        document.getElementById("test1").innerHTML="cookies:"+testCookie;
+//        document.getElementById("SimTime").innerHTML="仿真时间: "+t+"秒";
+//        document.getElementById("step").innerHTML="步长: "+step+"秒";
+//
+//        if(flag==1){
+//            t+=step;
+//        }
+//        else{
+//            t+=0;
+//        }
+//        var writeCookie="time="+t;
+//        document.cookie=writeCookie;
+//
+//        canvas.redraw();
+//    }).start();
 });
