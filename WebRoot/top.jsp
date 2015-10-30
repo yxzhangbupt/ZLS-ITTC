@@ -13,7 +13,7 @@
 <div class="top">
     <div class="top_a">
         <div class="top_logo"><img src="images/Top_logo.jpg" /></div>
-        <div class="toplogo_02"><img src="images/Top_logo_02.jpg" /></div>
+        <div class="top_logo_02"><img src="images/Top_logo_02.jpg" /></div>
         <div class="nav">
             <ul class="nav__menu">
                 <li class="nav_bag01"> 动态演示
@@ -48,7 +48,6 @@
 </div>
 <div class="content">
     <div class="content_Bg1"><img src="images/background02.png" width="1603" height="46" /></div>
-    <!--<div class="content_Bg2"></div>-->
 </div>
 </body>
 </html>
