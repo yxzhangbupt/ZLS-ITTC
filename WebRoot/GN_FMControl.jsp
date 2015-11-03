@@ -690,7 +690,54 @@
         top: 625px;
         z-index:999;
         }
-
+        #cy1In{
+        position: absolute;
+        left:590px;
+        top: 637px;
+        z-index:999;
+        }
+        #cy2In{
+        position: absolute;
+        left:670px;
+        top: 637px;
+        z-index:999;
+        }
+        #tc1In{
+        position: absolute;
+        left:388px;
+        top: 711px;
+        z-index:999;
+        }
+        #tc2In{
+        position: absolute;
+        left:570px;
+        top: 693px;
+        z-index:999;
+        }
+        #qsc2In2{
+        position: absolute;
+        left:609px;
+        top: 367px;
+        z-index:999;
+        }
+        #qsc3In1{
+        position: absolute;
+        left:364px;
+        top: 611px;
+        z-index:999;
+        }
+        #qsc3In2{
+        position: absolute;
+        left:488px;
+        top: 613px;
+        z-index:999;
+        }
+        #qsc3In3{
+        position: absolute;
+        left:545px;
+        top: 553px;
+        z-index:999;
+        }
         #Wmodel1{
         position: absolute;
         left:37px;
@@ -717,6 +764,30 @@
         }#btn_model1_4{
         position:absolute;
         top:160px;
+        left:40px;
+        z-index:999;
+        }
+        #Wmodel2{
+        position: absolute;
+        left:17px;
+        top: 205px;
+        z-index:999;
+        }
+        #btn_model2_1{
+        position:absolute;
+        top:240px;
+        left:30px;
+        z-index:999;
+        }
+        #btn_model2_2{
+        position:absolute;
+        top:280px;
+        left:30px;
+        z-index:999;
+        }
+        #btn_model2_3{
+        position:absolute;
+        top:320px;
         left:40px;
         z-index:999;
         }
@@ -834,9 +905,13 @@
         var tc2Out;
         var qsc1In;
         var qsc1Out;
-        var qsc2In;
+        var qsc2In1;
+        var qsc2In2;
         var qsc2Out;
         var qsc3In;
+        var qsc3In1;
+        var qsc3In2;
+        var qsc3In3;
         var qsc3Out;
         var qsc4In;
         var qsc4Out;
@@ -874,15 +949,21 @@
     }
     }
     var model1=4;
-    var model2=1;
+    var model2=3;
 
     function chose1(c){
         model1 = c;
         computeAll();
         write();
         }
+    function chose2(c){
+        model2 = c;
+        computeAll();
+        write();
+        }
     function computeAll(){
         compute1(model1);
+        compute2(model2)
     }
     function compute1(c){
         clearModle1();
@@ -918,6 +999,35 @@
         hx2Out=hx2In;
         vlOut=vlIn;
     }
+    function compute2(c){
+        clearModle2();
+        changeModle2(c);
+        if(c==1){
+        cy1In=0;
+        cy2In=hx1Out;
+        qsc2In2 = vlOut+hx2Out;
+        qsc3In3=0;
+        }
+        if(c==2){
+        cy1In= vlOut+hx2Out;
+        cy2In=0;
+        qsc3In3=hx1Out;
+        qsc2In2=0;
+        }
+        if(c==3){
+        cy1In=vlOut+hx2Out;
+        cy2In=hx1Out;
+        qsc3In3=0;
+        qsc2In2=0;
+        }
+        cy1Out=cy2Out=(cy1In+cy2In)/2;
+        tc1In=cy1Out;
+        tc2In=cy2Out;
+        tc1Out=tc1In;
+        tc2Out=tc2In;
+        qsc3In1=tc1Out;
+        qsc3In2=tc2Out;
+        }
     function write(){
         document.getElementById("qsOut1").innerHTML=qsOut1;
         document.getElementById("qsOut2").innerHTML=qsOut2;
@@ -930,6 +1040,15 @@
         document.getElementById("hx1In").innerHTML=hx1In;
         document.getElementById("hx2In").innerHTML=hx2In;
         document.getElementById("vlIn").innerHTML=vlIn;
+        document.getElementById("cy1In").innerHTML=cy1In;
+        document.getElementById("cy2In").innerHTML=cy2In;
+        document.getElementById("tc1In").innerHTML=tc1In;
+        document.getElementById("tc2In").innerHTML=tc2In;
+        <%--document.getElementById("qsc2In1").innerHTML=qsc2In1;--%>
+        document.getElementById("qsc2In2").innerHTML=qsc2In2;
+        document.getElementById("qsc3In1").innerHTML=qsc3In1;
+        document.getElementById("qsc3In2").innerHTML=qsc3In2;
+        document.getElementById("qsc3In3").innerHTML=qsc3In3;
         }
     function clearModle1(){
         clearOpenDgree("FM05");
@@ -948,6 +1067,40 @@
         clearOpenDgree("FM068");
         clearOpenDgree("FM067");
     }
+    function clearModle2(){
+        clearOpenDgree("FM017");
+        clearOpenDgree("FM018");
+        clearOpenDgree("FM019");
+        clearOpenDgree("FM067");
+        clearOpenDgree("FM052");
+        clearOpenDgree("FM020");
+        clearOpenDgree("FM056");
+        clearOpenDgree("FM057");
+        clearOpenDgree("FM058");
+        clearOpenDgree("FM053");
+        clearOpenDgree("FM054");
+        clearOpenDgree("FM021");
+        clearOpenDgree("FM022");
+        clearOpenDgree("FM024");
+        }
+    function changeModle2(c){
+        if(c==1){
+        setOpenDgree("FM056");
+        setOpenDgree("FM054");
+        setOpenDgree("FM022");
+        setOpenDgree("FM024");
+        }
+        else if(c==2){
+        setOpenDgree("FM053");
+        setOpenDgree("FM021");
+        }
+        else if(c==3){
+        setOpenDgree("FM056");
+        setOpenDgree("FM021");
+        setOpenDgree("FM022");
+        setOpenDgree("FM024");
+        }
+        }
     function changeModle1(c){
     if(c==1){
     setOpenDgree("FM062");
@@ -985,10 +1138,6 @@
         <!--<div id="test1">-->
             <!--<p>测试cookie</p>-->
         <!--</div>-->
-        </div>
-        <div id="readout_SimTime">
-            <p id="SimTime"></p>
-            <p id="step"></p>
         </div>
         <div id="readout_input" class="name_ob">
            <P id="write">进水量：3600 m3/h</P>
@@ -1109,11 +1258,15 @@
         <p id="hx1In" class="flow"></p>
         <p id="hx2In" class="flow"></p>
         <p id="vlIn" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
-        <p id="qsOut1" class="flow"></p>
+        <p id="cy1In" class="flow"></p>
+        <p id="cy2In" class="flow"></p>
+        <p id="tc1In" class="flow"></p>
+        <p id="tc2In" class="flow"></p>
+        <%--<p id="qsc2In1" class="flow"></p>--%>
+        <p id="qsc2In2" class="flow"></p>
+        <p id="qsc3In1" class="flow"></p>
+        <p id="qsc3In2" class="flow"></p>
+        <p id="qsc3In3" class="flow"></p>
         <p id="qsOut1" class="flow"></p>
         <p id="qsOut1" class="flow"></p>
         <p id="qsOut1" class="flow"></p>
@@ -1127,6 +1280,10 @@
         <button id="btn_model1_2" class="btn btn-info btn-sm btn_main"  onclick="chose1(2)">关闭机加池2</button>
         <button id="btn_model1_3" class="btn btn-info btn-sm btn_main"  onclick="chose1(3)">关闭机加池3</button>
         <button id="btn_model1_4" class="btn btn-info btn-sm btn_main"  onclick="chose1(4)">开启所有</button>
+        <p id="Wmodel2" class="name_Model">臭氧接触池模式</p>
+        <button id="btn_model2_1" class="btn btn-info btn-sm btn_main"  onclick="chose2(1)">关闭接触池1</button>
+        <button id="btn_model2_2" class="btn btn-info btn-sm btn_main"  onclick="chose2(2)">关闭接触池2</button>
+        <button id="btn_model2_3" class="btn btn-info btn-sm btn_main"  onclick="chose2(3)">开启所有</button>
     </div>
     <div id="FMList">
 
@@ -1151,7 +1308,7 @@
     <td>开启度</td>
     </thead>
     <tbody>
-    <tr><td>05</td><td id="05" ">100</td><td>06</td><td id="06" >100</td><td>07</td><td id="07" >100</td><td>09</td><td id="09">100</td><td>010</td><td id="010">100</td><td>065</td><td id="065">100</td><td>062</td><td id="062">100</td><td>045</td><td id="045">100</td></tr>
+    <tr><td>05</td><td id="05">100</td><td>06</td><td id="06" >100</td><td>07</td><td id="07" >100</td><td>09</td><td id="09">100</td><td>010</td><td id="010">100</td><td>065</td><td id="065">100</td><td>062</td><td id="062">100</td><td>045</td><td id="045">100</td></tr>
     <tr><td>014</td><td id="014">100</td><td>015</td><td id="015">100</td><td>069</td><td id="069">100</td><td>066</td><td id="066">100</td><td>016</td><td id="016">100</td><td>068</td><td id="068">100</td><td>067</td><td id="067">100</td><td>017</td><td id="017">100</td></tr>
     <tr><td>018</td><td id="018">100</td><td>019</td><td id="019">100</td><td>020</td><td id="020">100</td><td>052</td><td id="052">100</td><td>056</td><td id="056">100</td><td>053</td><td id="053">100</td><td>054</td><td id="054">100</td><td>057</td><td id="057">100</td></tr>
     <tr><td>058</td><td id="058">100</td><td>059</td><td id="059">100</td><td>021</td><td id="021">100</td><td>022</td><td id="022">100</td><td>046</td><td id="046">100</td><td>024</td><td id="024">100</td><td>044</td><td id="044">100</td><td>055</td><td id="055">100</td></tr>
